@@ -1,24 +1,28 @@
 package com.eshsprogramming.nudistrailroadexhibition.controller;
 
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
-import com.eshsprogramming.nudistrailroadexhibition.model.World;
 import com.eshsprogramming.nudistrailroadexhibition.model.Train;
+import com.eshsprogramming.nudistrailroadexhibition.model.World;
+import com.sun.xml.internal.fastinfoset.tools.TransformInputOutput;
 
 /**
- * @author Zachary Latta, Benjamin Landers
+ * @author Zachary Latta
  */
 public class WorldController
 {
-	private World world;
-	private Array<Nudist> nudists; // I deleted the intialization because it was a memory leak
-    private Array<Train> trains;
+	private World world = null;
+	private Array<Nudist> nudists = null;
+	private Array<Train> trains = null;
+	private Vector2 touchPosition = null;
 
 	public WorldController(World world)
 	{
 		this.world = world;
 		this.nudists = world.getNudists();
-        trains = world.getTrains();
+		this.touchPosition = world.getNudists().get(0).getPosition();
+		trains = world.getTrains();
 	}
 
 	/**
@@ -33,11 +37,14 @@ public class WorldController
 		{
 			nudist.update(delta);
 		}
-        for(Train train: trains)
-        {
-            train.update(delta);
-        }
-        checkCollision();
+
+		// Calls update methods of trains
+		for(Train train : trains)
+		{
+			train.update(delta);
+		}
+
+		checkCollision();
 	}
 
 	/**
@@ -45,23 +52,32 @@ public class WorldController
 	 */
 	private void processInput()
 	{
+		nudists.get(0).getPosition().x = touchPosition.x;
+	}
+
+	private void checkCollision()
+	{
 		for(Nudist nudist : nudists)
 		{
+			for(Train train : trains)
+			{
+				checkCollision(train, nudist);
+			}
 		}
 	}
-    private void checkCollision()
-    {
-        for(Nudist nudist : nudists)
-        {
-            for(Train train: trains)
-            {
-                checkCollision(train,nudist);
-            }
 
-        }
-    }
-    private boolean checkCollision(Train train, Nudist nudist)
-    {
-        return false;
-    }
+	private boolean checkCollision(Train train, Nudist nudist)
+	{
+		return false;
+	}
+
+	/**
+	 * Sets the touch position to the position given
+	 *
+	 * @param touchPosition
+	 */
+	public void setTouchPosition(Vector2 touchPosition)
+	{
+		this.touchPosition = touchPosition;
+	}
 }

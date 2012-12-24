@@ -16,8 +16,8 @@ import com.eshsprogramming.nudistrailroadexhibition.model.World;
  */
 public class WorldRenderer
 {
-	private static final float CAMERA_WIDTH = 8f;
-	private static final float CAMERA_HEIGHT = 5f;
+	public static final float CAMERA_WIDTH = 8f;
+	public static final float CAMERA_HEIGHT = 5f;
 
 	private World world;
 	private OrthographicCamera camera;
