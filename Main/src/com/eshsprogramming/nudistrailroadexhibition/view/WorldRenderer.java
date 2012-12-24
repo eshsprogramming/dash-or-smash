@@ -66,6 +66,7 @@ public class WorldRenderer
 		spriteBatch.begin();
 		drawBlocks();
 		drawNudists();
+		spriteBatch.end();
 
 		if(debug)
 		{
@@ -119,5 +120,13 @@ public class WorldRenderer
 		}
 
 		debugRenderer.end();
+	}
+
+	public void setSize(int width, int height)
+	{
+		this.width = width;
+		this.height = height;
+		ppuX = (float)width / CAMERA_WIDTH;
+		ppuY = (float)height / CAMERA_HEIGHT;
 	}
 }
