@@ -39,4 +39,14 @@ public class World
 			}
 		}
 	}
+
+	public Array<Block> getBlocks()
+	{
+		return blocks;
+	}
+
+	public Array<Nudist> getNudists()
+	{
+		return nudists;
+	}
 }
