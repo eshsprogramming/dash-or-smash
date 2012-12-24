@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 /**
- * @author Zachary Latta
+ * @author Zachary Latta, Benjamin Landers
  */
 public class World
 {
@@ -16,6 +16,10 @@ public class World
 	 * An array of the nudists in the world.
 	 */
 	private Array<Nudist> nudists = new Array<Nudist>();
+    /**
+     * An array of all the trains
+     */
+    private Array<Train> trains = new Array<Train>();
 
 	public World()
 	{
@@ -49,4 +53,8 @@ public class World
 	{
 		return nudists;
 	}
+    public Array<Train> getTrains()
+    {
+        return trains;
+    }
 }

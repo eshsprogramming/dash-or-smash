@@ -3,19 +3,22 @@ package com.eshsprogramming.nudistrailroadexhibition.controller;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
+import com.eshsprogramming.nudistrailroadexhibition.model.Train;
 
 /**
- * @author Zachary Latta
+ * @author Zachary Latta, Benjamin Landers
  */
 public class WorldController
 {
 	private World world;
-	private Array<Nudist> nudists = new Array<Nudist>();
+	private Array<Nudist> nudists; // I deleted the intialization because it was a memory leak
+    private Array<Train> trains;
 
 	public WorldController(World world)
 	{
 		this.world = world;
 		this.nudists = world.getNudists();
+        trains = world.getTrains();
 	}
 
 	/**
@@ -30,6 +33,11 @@ public class WorldController
 		{
 			nudist.update(delta);
 		}
+        for(Train train: trains)
+        {
+            train.update(delta);
+        }
+        checkCollision();
 	}
 
 	/**
@@ -41,4 +49,19 @@ public class WorldController
 		{
 		}
 	}
+    private void checkCollision()
+    {
+        for(Nudist nudist : nudists)
+        {
+            for(Train train: trains)
+            {
+                checkCollision(train,nudist);
+            }
+
+        }
+    }
+    private boolean checkCollision(Train train, Nudist nudist)
+    {
+        return false;
+    }
 }
