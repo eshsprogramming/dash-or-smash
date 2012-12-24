@@ -72,4 +72,6 @@ $RECYCLE.BIN/
 #   Dependencies   #
 ####################
 
-/lib/*
+/Main/libs/*
+/Desktop/libs/*
+/Android/libs/*
