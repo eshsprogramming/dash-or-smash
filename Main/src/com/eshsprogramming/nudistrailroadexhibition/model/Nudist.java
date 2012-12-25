@@ -53,6 +53,8 @@ public class Nudist
 	 */
 	public void update(float delta)
 	{
+    bounds.setY(position.y);
+    bounds.setX(position.x);
 	}
 
 	/**

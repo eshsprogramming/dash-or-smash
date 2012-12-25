@@ -41,7 +41,7 @@ public class Train
     public void update(float delta)
     {
         position.add(0,delta*vY);
-        bounds.setY(bounds.getY()+delta*vY);
+        bounds.setY(position.y);
     }
 
     /**
