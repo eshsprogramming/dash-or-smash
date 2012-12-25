@@ -106,14 +106,14 @@ public class WorldController
 
 	private void checkCollision()
 	{
-		for(Nudist nudist : nudists)
+		for(int index1 = 0; index1 < trains.size; index1++)
 		{
-			for(Train train : trains)
+			for(int index2 = 0; index2 < nudists.size; index2++)
 			{
-				if(checkCollision(train, nudist))
+				if(checkCollision(trains.get(index1), nudists.get(index2)))
                 {
 					hurtSound.play();
-					nudists.removeValue(nudist, true);
+					nudists.removeIndex(index2);
 					touchPosition = nudists.get(0).getPosition();
 				}
 			}
