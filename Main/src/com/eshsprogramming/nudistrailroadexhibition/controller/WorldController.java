@@ -164,7 +164,7 @@ public class WorldController
 	/**
 	 * Sets the touch position to the position given
 	 *
-	 * @param touchPosition
+	 * @param touchPosition The position of the user's touch.
 	 */
 	public void setTouchPosition(Vector2 touchPosition)
 	{
