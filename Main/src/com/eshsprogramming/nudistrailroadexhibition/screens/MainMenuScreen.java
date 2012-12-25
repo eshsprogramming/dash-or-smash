@@ -1,6 +1,7 @@
 package com.eshsprogramming.nudistrailroadexhibition.screens;
 
 import com.badlogic.gdx.Screen;
+import com.eshsprogramming.nudistrailroadexhibition.model.MainMenu;
 import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
 
 /**
@@ -10,6 +11,10 @@ import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
  */
 public class MainMenuScreen implements Screen
 {
+    /**
+     * The main menu.
+     */
+    private MainMenu mainMenu;
     /**
      * The main menu renderer.
      */
@@ -41,7 +46,8 @@ public class MainMenuScreen implements Screen
     @Override
     public void show()
     {
-        renderer = new MainMenuRenderer();
+        mainMenu = new MainMenu();
+        renderer = new MainMenuRenderer(mainMenu);
     }
 
     @Override

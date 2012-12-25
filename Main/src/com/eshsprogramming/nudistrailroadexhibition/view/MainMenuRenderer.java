@@ -51,10 +51,10 @@ public class MainMenuRenderer
     /**
      * Creates a new MainMenuRenderer
      */
-    public MainMenuRenderer()
+    public MainMenuRenderer(MainMenu mainMenu)
     {
-        mainMenu = new MainMenu();
-        spriteBatch = new SpriteBatch();
+        this.mainMenu = mainMenu;
+        this.spriteBatch = new SpriteBatch();
     }
 
     /**
