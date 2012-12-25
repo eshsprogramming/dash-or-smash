@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -79,7 +80,10 @@ public class WorldRenderer
 	 * Pixels per unit on the Y axis
 	 */
 	private float ppuY;
-
+	/**
+	 * Basic font
+	 */
+	private BitmapFont font = new BitmapFont();
 	/**
 	 * Creates a new world renderer.
 	 *
@@ -94,7 +98,7 @@ public class WorldRenderer
 		this.camera.update();
 		this.debug = debug;
 		spriteBatch = new SpriteBatch();
-
+		font.setScale(4f);
 		loadTextures();
 	}
 
@@ -117,8 +121,8 @@ public class WorldRenderer
 		drawBlocks();
 		drawTrains();
 		drawNudists();
+		drawScore();
 		spriteBatch.end();
-
 		if(debug)
 		{
 			drawDebug();
@@ -217,5 +221,9 @@ public class WorldRenderer
 		this.height = height;
 		ppuX = (float)width / CAMERA_WIDTH;
 		ppuY = (float)height / CAMERA_HEIGHT;
+	}
+	private void drawScore()
+	{
+		  font.draw(spriteBatch,""+world.getScore().getScore(),1000,800);
 	}
 }

@@ -20,7 +20,7 @@ public class World
      * An array of all the trains
      */
     private Array<Train> trains = new Array<Train>();
-
+	private Score score = new Score();
 	/**
 	 * Creates a new world.
 	 */
@@ -79,4 +79,8 @@ public class World
     {
         return trains;
     }
+	public Score getScore()
+	{
+		return score;
+	}
 }

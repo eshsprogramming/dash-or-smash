@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
 import com.eshsprogramming.nudistrailroadexhibition.model.Train;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
+import com.eshsprogramming.nudistrailroadexhibition.model.Score;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 /**
@@ -39,7 +40,10 @@ public class WorldController
 	 * The hurt sound. Played when a nudist dies.
 	 */
 	private Sound hurtSound = null;
-
+	/**
+	 * The Score object
+	 */
+	private Score score =null;
 	/**
 	 * Creates a new world controller.
 	 *
@@ -50,6 +54,7 @@ public class WorldController
 		this.world = world;
 		this.nudists = world.getNudists();
 		this.trains = world.getTrains();
+		this.score = world.getScore();
 		this.touchPosition = world.getNudists().get(0).getPosition();
 		this.hurtSound = Gdx.audio.newSound(Gdx.files.internal("sounds/hurt.wav"));
 	}
@@ -98,6 +103,7 @@ public class WorldController
 			if(train.getPosition().y + Train.SIZEY <  0)
 			{
 				trains.removeValue(train, true);
+				score.increment();
 			}
 		}
 
