@@ -120,7 +120,7 @@ public class GameScreen implements Screen, InputProcessor
 			}
 		}
 
-		controller.setTouchPosition(new Vector2(x, y));
+		controller.setTouchPosition(new Vector2(x - Nudist.SIZE/2, y));
 
 		return true;
 	}
@@ -140,7 +140,7 @@ public class GameScreen implements Screen, InputProcessor
 		float x = (touchX/width) * WorldRenderer.CAMERA_WIDTH;
 		float y = (touchY/height) * WorldRenderer.CAMERA_HEIGHT;
 
-		controller.setTouchPosition(new Vector2(x, y));
+		controller.setTouchPosition(new Vector2(x - Nudist.SIZE/2, y));
 
 		return true;
 	}
