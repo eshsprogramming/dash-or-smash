@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.eshsprogramming.nudistrailroadexhibition.model.Block;
 import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
+import com.eshsprogramming.nudistrailroadexhibition.model.Train;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
 
 /**
@@ -28,6 +29,7 @@ public class WorldRenderer
 	ShapeRenderer debugRenderer = new ShapeRenderer();
 
 	private Texture nudistTexture;
+	private Texture trainTexture;
 	private Texture blockTexture;
 
 	private SpriteBatch spriteBatch;
@@ -58,6 +60,7 @@ public class WorldRenderer
 	private void loadTextures()
 	{
 		nudistTexture = new Texture(Gdx.files.internal("images/nudist_01.png"));
+		trainTexture = new Texture(Gdx.files.internal("images/train_01.png"));
 		blockTexture = new Texture(Gdx.files.internal("images/block.png"));
 	}
 
@@ -65,6 +68,7 @@ public class WorldRenderer
 	{
 		spriteBatch.begin();
 		drawBlocks();
+		drawTrains();
 		drawNudists();
 		spriteBatch.end();
 
@@ -92,6 +96,15 @@ public class WorldRenderer
 		}
 	}
 
+	private void drawTrains()
+	{
+		for(Train train : world.getTrains())
+		{
+			spriteBatch.draw(trainTexture, train.getPosition().x * ppuX, train.getPosition().y * ppuY,
+					Train.SIZEX * ppuX, Train.SIZEY * ppuY);
+		}
+	}
+
 	private void drawDebug()
 	{
 		debugRenderer.setProjectionMatrix(camera.combined);
@@ -105,6 +118,17 @@ public class WorldRenderer
 			float y1 = block.getPosition().y + rect.y;
 
 			debugRenderer.setColor(new Color(1, 0, 0, 1));
+			debugRenderer.rect(x1, y1, rect.width, rect.height);
+		}
+
+		for(Train train : world.getTrains())
+		{
+			Rectangle rect = train.getBounds();
+
+			float x1 = rect.x;
+			float y1 = rect.y;
+
+			debugRenderer.setColor(new Color(0, 1, 1, 0));
 			debugRenderer.rect(x1, y1, rect.width, rect.height);
 		}
 
