@@ -13,14 +13,28 @@ import com.eshsprogramming.nudistrailroadexhibition.model.Train;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
 
 /**
+ * Renderer for the world. Manages rendering of objects.
+ *
  * @author Zachary Latta
  */
 public class WorldRenderer
 {
+	/**
+	 * The width of the screen in relative units.
+	 */
 	public static final float CAMERA_WIDTH = 8f;
+	/**
+	 * The height of the screen in relative units.
+	 */
 	public static final float CAMERA_HEIGHT = 5f;
 
+	/**
+	 * The world itself.
+	 */
 	private World world;
+	/**
+	 * The camera used in rendering.
+	 */
 	private OrthographicCamera camera;
 
 	/**
@@ -28,13 +42,34 @@ public class WorldRenderer
 	 */
 	ShapeRenderer debugRenderer = new ShapeRenderer();
 
+	/**
+	 * The texture for the nudists.
+	 */
 	private Texture nudistTexture;
+	/**
+	 * The texture for the trains.
+	 */
 	private Texture trainTexture;
+	/**
+	 * The texture for the blocks.
+	 */
 	private Texture blockTexture;
 
+	/**
+	 * Used for rendering sprites.
+	 */
 	private SpriteBatch spriteBatch;
+	/**
+	 * Whether or not debug information should be rendered.
+	 */
 	private boolean debug = false;
+	/**
+	 * The width of the screen in pixels.
+	 */
 	private int width;
+	/**
+	 * The height of the screen in pixels.
+	 */
 	private int height;
 	/**
 	 * Pixels per unit on the X axis
@@ -45,6 +80,12 @@ public class WorldRenderer
 	 */
 	private float ppuY;
 
+	/**
+	 * Creates a new world renderer.
+	 *
+	 * @param world The world to be rendered.
+	 * @param debug Whether or not debug information should be rendered.
+	 */
 	public WorldRenderer(World world, boolean debug)
 	{
 		this.world = world;
@@ -57,6 +98,9 @@ public class WorldRenderer
 		loadTextures();
 	}
 
+	/**
+	 * Loads the textures from files.
+	 */
 	private void loadTextures()
 	{
 		nudistTexture = new Texture(Gdx.files.internal("images/nudist_01.png"));
@@ -64,6 +108,9 @@ public class WorldRenderer
 		blockTexture = new Texture(Gdx.files.internal("images/block.png"));
 	}
 
+	/**
+	 * Renders things to be rendered on the screen.
+	 */
 	public void render()
 	{
 		spriteBatch.begin();
@@ -78,6 +125,9 @@ public class WorldRenderer
 		}
 	}
 
+	/**
+	 * Draws blocks on the screen.
+	 */
 	private void drawBlocks()
 	{
 		for(Block block : world.getBlocks())
@@ -87,6 +137,9 @@ public class WorldRenderer
 		}
 	}
 
+	/**
+	 * Draws nudists on the screen.
+	 */
 	private void drawNudists()
 	{
 		for(Nudist nudist : world.getNudists())
@@ -96,6 +149,9 @@ public class WorldRenderer
 		}
 	}
 
+	/**
+	 * Draws trains on the screen.
+	 */
 	private void drawTrains()
 	{
 		for(Train train : world.getTrains())
@@ -105,6 +161,9 @@ public class WorldRenderer
 		}
 	}
 
+	/**
+	 * Draws debug information on the screen.
+	 */
 	private void drawDebug()
 	{
 		debugRenderer.setProjectionMatrix(camera.combined);
@@ -146,6 +205,12 @@ public class WorldRenderer
 		debugRenderer.end();
 	}
 
+	/**
+	 * Sets the size of the window in pixels.
+	 *
+	 * @param width The width of the window in pixels.
+	 * @param height The height of the window in pixels.
+	 */
 	public void setSize(int width, int height)
 	{
 		this.width = width;

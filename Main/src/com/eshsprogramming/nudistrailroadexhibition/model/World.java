@@ -21,11 +21,17 @@ public class World
      */
     private Array<Train> trains = new Array<Train>();
 
+	/**
+	 * Creates a new world.
+	 */
 	public World()
 	{
 		createBlankWorld();
 	}
 
+	/**
+	 * Fills the world with blocks.
+	 */
 	private void createBlankWorld()
 	{
 		// Adds nudists to the array of them
@@ -44,15 +50,31 @@ public class World
 		}
 	}
 
+	/**
+	 * Returns the array of blocks in the world.
+	 *
+	 * @return The array of blocks in the world.
+	 */
 	public Array<Block> getBlocks()
 	{
 		return blocks;
 	}
 
+	/**
+	 * Returns the array of nudists in the world.
+	 *
+	 * @return The array of nudists in the world.
+	 */
 	public Array<Nudist> getNudists()
 	{
 		return nudists;
 	}
+
+	/**
+	 * Returns the array of trains in the world.
+	 *
+	 * @return The array of trains in the world.
+	 */
     public Array<Train> getTrains()
     {
         return trains;

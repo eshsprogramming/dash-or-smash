@@ -9,7 +9,13 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Train
 {
-	public static int NUMBEROFTRAINS=7;
+	/**
+	 * The total number of trains.
+	 */
+	public static int NUMBER_OF_TRAINS =7;
+	/**
+	 * The velocity of the train on the Y axis.
+	 */
     private float vY = 0f;
     /**
      * The train's width in units
@@ -28,6 +34,12 @@ public class Train
      */
     private Rectangle bounds = new Rectangle();
 
+	/**
+	 * Creates a new train.
+	 *
+	 * @param position The train's starting position
+	 * @param vY The train's velocity on the Y axis
+	 */
     public Train(Vector2 position, float vY)
     {
         this.position = position;

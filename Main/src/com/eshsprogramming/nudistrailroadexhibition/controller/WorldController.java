@@ -7,18 +7,36 @@ import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
 import com.eshsprogramming.nudistrailroadexhibition.model.Train;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
-import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 /**
+ * The controller for the world. Manages sprite properties.
+ *
  * @author Zachary Latta
  */
 public class WorldController
 {
+	/**
+	 * The world.
+	 */
 	private World world = null;
+	/**
+	 * The nudists in the world.
+	 */
 	private Array<Nudist> nudists = null;
+	/**
+	 * The trains in the world.
+	 */
 	private Array<Train> trains = null;
+	/**
+	 * The position of the user's touch.
+	 */
 	private Vector2 touchPosition = null;
 
+	/**
+	 * Creates a new world controller.
+	 *
+	 * @param world The world to be used in the world controller.
+	 */
 	public WorldController(World world)
 	{
 		this.world = world;
@@ -53,7 +71,7 @@ public class WorldController
         trains.removeValue(temp,true);
         }
 		checkCollision();
-		while(trains.size < Train.NUMBEROFTRAINS)
+		while(trains.size < Train.NUMBER_OF_TRAINS)
 		{
 		trains.add(new Train(new Vector2(MathUtils.random(.5f,7f),MathUtils.random(5f,7f)),MathUtils.random(-.3f,-.7f)));
 		}
