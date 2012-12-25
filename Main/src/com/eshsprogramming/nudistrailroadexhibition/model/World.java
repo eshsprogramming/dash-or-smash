@@ -35,7 +35,7 @@ public class World
 	private void createBlankWorld()
 	{
 		// Adds nudists to the array of them
-		for(int index = 0; index < 3; index++)
+		for(int index = 0; index < 8; index++)
 		{
 			nudists.add(new Nudist(new Vector2(index, 0)));
 		}
