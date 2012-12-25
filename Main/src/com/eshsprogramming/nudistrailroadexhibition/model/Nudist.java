@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 public class Nudist
 {
 	/**
-	 * The different states the nudist can be in.0
+	 * The different states the nudist can be in.
 	 */
 	public enum State
 	{

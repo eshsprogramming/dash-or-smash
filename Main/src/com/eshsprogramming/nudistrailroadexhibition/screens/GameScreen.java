@@ -12,18 +12,44 @@ import com.eshsprogramming.nudistrailroadexhibition.model.World;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 /**
+ * The screen that contains the gameplay.
+ *
  * @author Zachary Latta
  */
 public class GameScreen implements Screen, InputProcessor
 {
+	/**
+	 * The game's world.
+	 */
 	private World world;
+	/**
+	 * The game's world renderer.
+	 */
 	private WorldRenderer renderer;
+	/**
+	 * The game's world controller.
+	 */
 	private WorldController controller;
 
+	/**
+	 * The background music.
+	 */
 	private Music backgroundMusic;
 
-	private float width, height;
+	/**
+	 * The width of the world in pixels.
+	 */
+	private float width;
+	/**
+	 * The height of the world in pixels.
+	 */
+	private float height;
 
+	/**
+	 * Called each frame to render and update the game.
+	 *
+	 * @param delta The time in milleseconds between frames.
+	 */
 	@Override
 	public void render(float delta)
 	{
@@ -34,6 +60,12 @@ public class GameScreen implements Screen, InputProcessor
 		controller.update(delta);
 	}
 
+	/**
+	 * Called when the window is resized. Changes the width and size of the game.
+	 *
+	 * @param width The new width of the screen in pixels.
+	 * @param height The new height of the screen in pixels.
+	 */
 	@Override
 	public void resize(int width, int height)
 	{

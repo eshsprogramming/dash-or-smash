@@ -4,6 +4,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
+ * A block in the world.
+ *
  * @author Zachary Latta
  */
 public class Block

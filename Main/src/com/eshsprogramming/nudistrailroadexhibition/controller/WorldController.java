@@ -8,15 +8,34 @@ import com.eshsprogramming.nudistrailroadexhibition.model.Train;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
 
 /**
+ * The controller for the world. Manages sprite properties.
+ *
  * @author Zachary Latta
  */
 public class WorldController
 {
+	/**
+	 * The world.
+	 */
 	private World world = null;
+	/**
+	 * The nudists in the world.
+	 */
 	private Array<Nudist> nudists = null;
+	/**
+	 * The trains in the world.
+	 */
 	private Array<Train> trains = null;
+	/**
+	 * The position of the user's touch.
+	 */
 	private Vector2 touchPosition = null;
 
+	/**
+	 * Creates a new world controller.
+	 *
+	 * @param world The world to be used in the world controller.
+	 */
 	public WorldController(World world)
 	{
 		this.world = world;
