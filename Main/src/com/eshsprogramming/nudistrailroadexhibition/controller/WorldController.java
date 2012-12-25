@@ -2,6 +2,7 @@ package com.eshsprogramming.nudistrailroadexhibition.controller;
 
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
 import com.eshsprogramming.nudistrailroadexhibition.model.Train;
@@ -44,7 +45,7 @@ public class WorldController
 		for(Train train : trains)
 		{
 			train.update(delta);
-            if(train.getPosition().y >  WorldRenderer.CAMERA_WIDTH)
+            if(train.getPosition().y <  0)
                 toKill.add(train);
 		}
         for(Train temp: toKill)
@@ -52,6 +53,11 @@ public class WorldController
         trains.removeValue(temp,true);
         }
 		checkCollision();
+		while(trains.size < Train.NUMBEROFTRAINS)
+		{
+		trains.add(new Train(new Vector2(MathUtils.random(.5f,7f),MathUtils.random(5f,7f)),MathUtils.random(-.3f,-.7f)));
+		}
+
 	}
 
 	/**

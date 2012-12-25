@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Train
 {
+	public static int NUMBEROFTRAINS=7;
     private float vY = 0f;
     /**
      * The train's width in units
@@ -32,6 +33,7 @@ public class Train
         this.position = position;
         this.bounds.height = SIZEY;
         this.bounds.width = SIZEX;
+		this.bounds.setX(position.x);
         this.vY = vY;
     }
 
