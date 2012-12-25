@@ -377,6 +377,7 @@ public class WorldRenderer
 	
 	private void drawScore()
 	{
+		// todo Make score display correctly on Android devices.
 		font.draw(spriteBatch, "" + world.getScore().getScore(), 6.25f * ppuX, 4.75f * ppuY);
 	}
 }
