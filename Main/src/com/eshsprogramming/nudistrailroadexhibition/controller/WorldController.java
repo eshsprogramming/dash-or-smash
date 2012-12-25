@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
 import com.eshsprogramming.nudistrailroadexhibition.model.Train;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
+import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 /**
  * The controller for the world. Manages sprite properties.
@@ -91,8 +92,8 @@ public class WorldController
 
 		while(trains.size < Train.NUMBER_OF_TRAINS)
 		{
-			trains.add(new Train(new Vector2(MathUtils.random(.5f,7f),
-					MathUtils.random(5f,7f)), MathUtils.random(-.3f,-.7f)));
+			trains.add(new Train(new Vector2(MathUtils.random(0f, WorldRenderer.CAMERA_WIDTH - Train.SIZEX),
+					MathUtils.random(5f, 10f)), MathUtils.random(-0.8f, -3f)));
 		}
 	}
 
