@@ -73,7 +73,8 @@ public class WorldController
 	public void update(float delta)
 	{
 		processInput();
-		respawnCounter+=delta;
+		respawnCounter += delta;
+
 		// Calls update methods of nudists
 		for(Nudist nudist : nudists)
 		{
@@ -88,7 +89,8 @@ public class WorldController
 
 		handleCollision();
 		checkTrainValidity();
-		if(respawnCounter>5)
+
+		if(respawnCounter > 5)
 		{
 			respawnCounter = 0;
 			spawnNudist();

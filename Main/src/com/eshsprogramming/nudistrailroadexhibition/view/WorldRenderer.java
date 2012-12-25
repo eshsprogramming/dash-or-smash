@@ -10,10 +10,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.eshsprogramming.nudistrailroadexhibition.model.Block;
-import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
-import com.eshsprogramming.nudistrailroadexhibition.model.Train;
-import com.eshsprogramming.nudistrailroadexhibition.model.World;
+import com.badlogic.gdx.math.Vector2;
+import com.eshsprogramming.nudistrailroadexhibition.model.*;
 
 /**
  * Renderer for the world. Manages rendering of objects.
@@ -131,9 +129,9 @@ public class WorldRenderer
 	 */
 	private float ppuY;
 	/**
-	 * Basic font
+	 * Text used for displaying score.
 	 */
-	private BitmapFont font = new BitmapFont(Gdx.files.internal("fonts/arial/font.fnt"), false);
+	private Text scoreText;
 
 	/**
 	 * Creates a new world renderer.
@@ -148,14 +146,14 @@ public class WorldRenderer
 		this.camera.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
 		this.camera.update();
 		this.debug = debug;
+        this.scoreText = new Text("fonts/arial/font.fnt", false, 4f, new Vector2(6.25f, 4.75f),
+                Integer.toString(world.getScore().getScore()));
 		
 		spriteBatch = new SpriteBatch();
 		
 		loadTextures();
 		initTextureRegions();
 		initAnimations();
-
-		font.setScale(4f);
 
 		stateTime = 0;
 	}
@@ -318,7 +316,8 @@ public class WorldRenderer
      */
     private void drawScore()
     {
-        font.draw(spriteBatch, "" + world.getScore().getScore(), 1000, 800);
+        scoreText.setText(Integer.toString(world.getScore().getScore()));
+        scoreText.render(spriteBatch, ppuX, ppuY);
     }
 
 	/**
