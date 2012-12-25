@@ -108,7 +108,7 @@ public class WorldController
 			}
 		}
 
-		for(Nudist temp: toKill)
+		for(Nudist temp : toKill)
 		{
 		   nudists.removeValue(temp, true);
 		}
