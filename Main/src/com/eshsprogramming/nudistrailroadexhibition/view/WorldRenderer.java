@@ -1,6 +1,7 @@
 package com.eshsprogramming.nudistrailroadexhibition.view;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,6 +15,8 @@ import com.eshsprogramming.nudistrailroadexhibition.model.Block;
 import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
 import com.eshsprogramming.nudistrailroadexhibition.model.Train;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
+
+import java.io.File;
 
 /**
  * Renderer for the world. Manages rendering of objects.
@@ -133,7 +136,7 @@ public class WorldRenderer
 	/**
 	 * Basic font
 	 */
-	private BitmapFont font = new BitmapFont();
+	private BitmapFont font = new BitmapFont(new FileHandle("fonts/arial/font.fnt"), false);
 	/**
 	 * Creates a new world renderer.
 	 *
