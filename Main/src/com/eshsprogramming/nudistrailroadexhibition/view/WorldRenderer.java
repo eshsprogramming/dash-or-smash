@@ -377,6 +377,6 @@ public class WorldRenderer
 	
 	private void drawScore()
 	{
-		  font.draw(spriteBatch, "" + world.getScore().getScore(), 6.25f * ppuX, 4.75f * ppuY);
+		font.draw(spriteBatch, "" + world.getScore().getScore(), 6.25f * ppuX, 4.75f * ppuY);
 	}
 }
