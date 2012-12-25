@@ -53,7 +53,6 @@ public class WorldController
 	private void processInput()
 	{
 		nudists.get(0).getPosition().x = touchPosition.x;
-        nudists.get(0).getBounds().setX(touchPosition.x);
 	}
 
 	private void checkCollision()
