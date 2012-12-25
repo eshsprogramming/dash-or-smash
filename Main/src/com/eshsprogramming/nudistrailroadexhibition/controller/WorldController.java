@@ -20,11 +20,11 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 public class WorldController
 {
 	/**
-	 * used to count how long since the player hit a train
+	 * Used to count how long since the player hit a train
 	 */
 	private float respawnCounter = 0;
 	/**
-	 * used to tell if player selected a nudist
+	 * Used to tell if player selected a nudist
 	 */
 	private boolean selected = false;
 	/**
@@ -50,7 +50,8 @@ public class WorldController
 	/**
 	 * The Score object
 	 */
-	private Score score =null;
+	private Score score = null;
+
 	/**
 	 * Creates a new world controller.
 	 *
@@ -85,7 +86,7 @@ public class WorldController
 			train.update(delta);
 		}
 
-		checkCollision();
+		handleCollision();
 		checkTrainValidity();
 		if(respawnCounter>5)
 		{
@@ -126,7 +127,10 @@ public class WorldController
 		}
 	}
 
-	private void checkCollision()
+    /**
+     * Handles collision between trains and nudists.
+     */
+	private void handleCollision()
 	{
 		for(int index1 = 0; index1 < trains.size; index1++)
 		{
@@ -145,6 +149,13 @@ public class WorldController
 		}
 	}
 
+    /**
+     * Checks for collision between a train and a nudist.
+     *
+     * @param train The train used for the collision check.
+     * @param nudist The nudist used for the collision check.
+     * @return Whether or not there is a collision between the train and nudist.
+     */
 	private boolean checkCollision(Train train, Nudist nudist)
 	{
 		return Intersector.intersectRectangles(train.getBounds(),nudist.getBounds());
@@ -153,18 +164,29 @@ public class WorldController
 	/**
 	 * Sets the touch position to the position given
 	 *
-	 * @param touchPosition
+	 * @param touchPosition The position of the user's touch.
 	 */
 	public void setTouchPosition(Vector2 touchPosition)
 	{
 		this.touchPosition = touchPosition;
 	}
+
+    /**
+     * Sets whether or not the user has a selected nudist.
+     *
+     * @param isSelected Whether or not the user has selected a nudist.
+     */
 	public void setSelected(boolean isSelected)
 	{
 		selected = isSelected;
 	}
+
+    /**
+     * Spawns a new nudist into the world.
+     */
 	private void spawnNudist()
 	{
-		nudists.add(new Nudist(new Vector2(nudists.first().getPosition().x+Nudist.SIZE,nudists.first().getPosition().y )));
+		nudists.add(new Nudist(new Vector2(nudists.first().getPosition().x +
+                Nudist.SIZE,nudists.first().getPosition().y)));
 	}
 }

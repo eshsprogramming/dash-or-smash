@@ -26,7 +26,7 @@ public class Train
      */
     public static final float SIZEY = 1f;
     /**
-     * The 2 d location of the train
+     * The location of the train on the relative cartesian coordinate plane.
      */
     private Vector2 position = new Vector2();
     /**

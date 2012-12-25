@@ -5,11 +5,18 @@ package com.eshsprogramming.nudistrailroadexhibition.model;
  */
 public class Score
 {
+    /**
+     * The score coefficient. The amount used to increment the score.
+     */
 	public static final int SCORE_COEFF = 10;
-	private int score=0;
+    /**
+     * The current score.
+     */
+	private int score = 0;
 
 	/**
 	 * A getter for score
+     *
 	 * @return  scrore the score the player currently has
 	 */
 	public int getScore()

@@ -134,6 +134,7 @@ public class WorldRenderer
 	 * Basic font
 	 */
 	private BitmapFont font = new BitmapFont(Gdx.files.internal("fonts/arial/font.fnt"), false);
+
 	/**
 	 * Creates a new world renderer.
 	 *
@@ -249,6 +250,7 @@ public class WorldRenderer
 		drawNudists();
 		drawScore();
 		spriteBatch.end();
+
 		if(debug)
 		{
 			drawDebug();
@@ -287,6 +289,18 @@ public class WorldRenderer
 		}
 	}
 
+    /**
+     * Draws trains on the screen.
+     */
+    private void drawTrains()
+    {
+        for(Train train : world.getTrains())
+        {
+            spriteBatch.draw(trainCurrentFrame, train.getPosition().x * ppuX, train.getPosition().y * ppuY,
+                    Train.SIZEX * ppuX, Train.SIZEY * ppuY);
+        }
+    }
+
 	/**
 	 * Draws nudists on the screen.
 	 */
@@ -299,17 +313,13 @@ public class WorldRenderer
 		}
 	}
 
-	/**
-	 * Draws trains on the screen.
-	 */
-	private void drawTrains()
-	{
-		for(Train train : world.getTrains())
-		{
-			spriteBatch.draw(trainCurrentFrame, train.getPosition().x * ppuX, train.getPosition().y * ppuY,
-					Train.SIZEX * ppuX, Train.SIZEY * ppuY);
-		}
-	}
+    /**
+     * Draws the score on the screen.
+     */
+    private void drawScore()
+    {
+        font.draw(spriteBatch, "" + world.getScore().getScore(), 1000, 800);
+    }
 
 	/**
 	 * Draws debug information on the screen.
@@ -367,11 +377,5 @@ public class WorldRenderer
 		this.height = height;
 		ppuX = (float)width / CAMERA_WIDTH;
 		ppuY = (float)height / CAMERA_HEIGHT;
-	}
-	
-	private void drawScore()
-	{
-		// todo Make score display correctly on Android devices.
-		font.draw(spriteBatch, "" + world.getScore().getScore(), 6.25f * ppuX, 4.75f * ppuY);
 	}
 }

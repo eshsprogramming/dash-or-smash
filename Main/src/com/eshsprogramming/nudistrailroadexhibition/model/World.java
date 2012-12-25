@@ -79,6 +79,12 @@ public class World
     {
         return trains;
     }
+
+    /**
+     * Returns the current score.
+     *
+     * @return The current score.
+     */
 	public Score getScore()
 	{
 		return score;
