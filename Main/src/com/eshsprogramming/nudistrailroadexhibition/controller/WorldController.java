@@ -63,19 +63,25 @@ public class WorldController
 		for(Train train : trains)
 		{
 			train.update(delta);
+
             if(train.getPosition().y <  0)
+			{
                 toKill.add(train);
-		}
-        for(Train temp: toKill)
-        {
-        trains.removeValue(temp,true);
-        }
-		checkCollision();
-		while(trains.size < Train.NUMBER_OF_TRAINS)
-		{
-		trains.add(new Train(new Vector2(MathUtils.random(.5f,7f),MathUtils.random(5f,7f)),MathUtils.random(-.3f,-.7f)));
+			}
 		}
 
+        for(Train temp: toKill)
+        {
+        	trains.removeValue(temp,true);
+        }
+
+		checkCollision();
+
+		while(trains.size < Train.NUMBER_OF_TRAINS)
+		{
+			trains.add(new Train(new Vector2(MathUtils.random(.5f,7f),
+					MathUtils.random(5f,7f)),MathUtils.random(-.3f,-.7f)));
+		}
 	}
 
 	/**
