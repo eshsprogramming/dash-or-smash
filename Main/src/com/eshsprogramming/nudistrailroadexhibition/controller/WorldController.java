@@ -80,7 +80,8 @@ public class WorldController
 	 * Changes the nudists' state and position based on input controls
 	 */
 	private void processInput()
-	{   float temp = (touchPosition.x-nudists.get(0).getPosition().x)*.01f;
+	{
+		float temp = (touchPosition.x-nudists.get(0).getPosition().x)*.01f;
 		temp = (temp < 2f)? temp : 2f;
 		nudists.get(0).getPosition().x += temp;
 	}
