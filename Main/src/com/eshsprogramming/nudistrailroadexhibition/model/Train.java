@@ -12,7 +12,7 @@ public class Train
 	/**
 	 * The total number of trains.
 	 */
-	public static int NUMBER_OF_TRAINS =7;
+	public static int NUMBER_OF_TRAINS = 5;
 	/**
 	 * The velocity of the train on the Y axis.
 	 */
