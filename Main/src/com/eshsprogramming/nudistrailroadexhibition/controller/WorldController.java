@@ -60,6 +60,7 @@ public class WorldController
 
 		// Calls update methods of trains and kills if necessary
         Array<Train> toKill = new Array<Train>();
+
 		for(Train train : trains)
 		{
 			train.update(delta);
@@ -80,7 +81,7 @@ public class WorldController
 		while(trains.size < Train.NUMBER_OF_TRAINS)
 		{
 			trains.add(new Train(new Vector2(MathUtils.random(.5f,7f),
-					MathUtils.random(5f,7f)),MathUtils.random(-.3f,-.7f)));
+					MathUtils.random(5f,7f)), MathUtils.random(-.3f,-.7f)));
 		}
 	}
 
@@ -95,20 +96,22 @@ public class WorldController
 	private void checkCollision()
 	{
         Array<Nudist> toKill = new Array<Nudist>();
+
 		for(Nudist nudist : nudists)
 		{
 			for(Train train : trains)
 			{
 				if(checkCollision(train, nudist))
                 {
-                toKill.add(nudist);
+                	toKill.add(nudist);
                 }
 			}
 		}
-       for(Nudist temp: toKill)
-       {
-           nudists.removeValue(temp, true);
-       }
+
+		for(Nudist temp: toKill)
+		{
+		   nudists.removeValue(temp, true);
+		}
 	}
 
 	private boolean checkCollision(Train train, Nudist nudist)
