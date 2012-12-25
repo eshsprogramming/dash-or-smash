@@ -134,6 +134,7 @@ public class WorldRenderer
 	 * Basic font
 	 */
 	private BitmapFont font = new BitmapFont();
+
 	/**
 	 * Creates a new world renderer.
 	 *
