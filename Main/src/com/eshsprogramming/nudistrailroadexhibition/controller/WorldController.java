@@ -98,22 +98,15 @@ public class WorldController
 
 	private void checkCollision()
 	{
-        Array<Nudist> toKill = new Array<Nudist>();
-
 		for(Nudist nudist : nudists)
 		{
 			for(Train train : trains)
 			{
 				if(checkCollision(train, nudist))
                 {
-                	toKill.add(nudist);
+					nudists.removeValue(nudist, true);
                 }
 			}
-		}
-
-		for(Nudist temp : toKill)
-		{
-		   nudists.removeValue(temp, true);
 		}
 	}
 
