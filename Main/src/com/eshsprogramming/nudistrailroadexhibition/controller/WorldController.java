@@ -114,7 +114,8 @@ public class WorldController
                 {
 					hurtSound.play();
 					nudists.removeValue(nudist, true);
-                }
+					touchPosition = nudists.get(0).getPosition();
+				}
 			}
 		}
 	}
