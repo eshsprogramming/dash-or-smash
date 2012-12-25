@@ -4,6 +4,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
 /**
+ * The game world.
+ *
  * @author Zachary Latta, Benjamin Landers
  */
 public class World
@@ -20,7 +22,11 @@ public class World
      * An array of all the trains
      */
     private Array<Train> trains = new Array<Train>();
+    /**
+     * The player's score.
+     */
 	private Score score = new Score();
+
 	/**
 	 * Creates a new world.
 	 */
