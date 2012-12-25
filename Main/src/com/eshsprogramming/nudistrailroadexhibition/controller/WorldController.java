@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
 import com.eshsprogramming.nudistrailroadexhibition.model.Train;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
+import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 /**
  * @author Zachary Latta
@@ -38,12 +39,18 @@ public class WorldController
 			nudist.update(delta);
 		}
 
-		// Calls update methods of trains
+		// Calls update methods of trains and kills if necessary
+        Array<Train> toKill = new Array<Train>();
 		for(Train train : trains)
 		{
 			train.update(delta);
+            if(train.getPosition().y >  WorldRenderer.CAMERA_WIDTH)
+                toKill.add(train);
 		}
-
+        for(Train temp: toKill)
+        {
+        trains.removeValue(temp,true);
+        }
 		checkCollision();
 	}
 
