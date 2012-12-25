@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Train
 {
+    private float vY = 0f;
     /**
      * The train's width in units
      */
@@ -26,18 +27,21 @@ public class Train
      */
     private Rectangle bounds = new Rectangle();
 
-    public Train(Vector2 position)
+    public Train(Vector2 position, float vY)
     {
         this.position = position;
         this.bounds.height = SIZEY;
         this.bounds.width = SIZEX;
+        this.vY = vY;
     }
 
     /**
-     * The update method for the train. Doesn't do anything.
+     * The update method for the train. Makes the train move down
      */
     public void update(float delta)
     {
+        position.add(0,delta*vY);
+        bounds.setY(bounds.getY()+delta*vY);
     }
 
     /**
