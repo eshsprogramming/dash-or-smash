@@ -110,6 +110,9 @@ public class GameScreen implements Screen, InputProcessor
 	@Override
 	public void dispose()
 	{
+		backgroundMusic.setLooping(false);
+		backgroundMusic.stop();
+
 		Gdx.input.setInputProcessor(null);
 	}
 
