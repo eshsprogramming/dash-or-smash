@@ -1,5 +1,6 @@
 package com.eshsprogramming.nudistrailroadexhibition.controller;
 
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
@@ -21,7 +22,7 @@ public class WorldController
 		this.world = world;
 		this.nudists = world.getNudists();
 		this.touchPosition = world.getNudists().get(0).getPosition();
-		trains = world.getTrains();
+		this.trains = world.getTrains();
 	}
 
 	/**
@@ -56,18 +57,26 @@ public class WorldController
 
 	private void checkCollision()
 	{
+        Array<Nudist> toKill = new Array<Nudist>();
 		for(Nudist nudist : nudists)
 		{
 			for(Train train : trains)
 			{
-				checkCollision(train, nudist);
+				if(checkCollision(train, nudist))
+                {
+                toKill.add(nudist);
+                }
 			}
 		}
+       for(Nudist temp: toKill)
+       {
+           nudists.removeValue(temp, true);
+       }
 	}
 
 	private boolean checkCollision(Train train, Nudist nudist)
 	{
-		return false;
+		return Intersector.intersectRectangles(train.getBounds(),nudist.getBounds());
 	}
 
 	/**
