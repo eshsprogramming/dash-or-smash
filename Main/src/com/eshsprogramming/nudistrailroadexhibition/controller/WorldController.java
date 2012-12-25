@@ -19,6 +19,13 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
  */
 public class WorldController
 {
+	/**
+	 * used to count how long since the player hit a train
+	 */
+	private float respawnCounter = 0;
+	/**
+	 * used to tell if player selected a nudist
+	 */
 	private boolean selected = false;
 	/**
 	 * The world.
@@ -65,7 +72,7 @@ public class WorldController
 	public void update(float delta)
 	{
 		processInput();
-
+		respawnCounter+=delta;
 		// Calls update methods of nudists
 		for(Nudist nudist : nudists)
 		{
@@ -80,6 +87,11 @@ public class WorldController
 
 		checkCollision();
 		checkTrainValidity();
+		if(respawnCounter>5)
+		{
+			respawnCounter = 0;
+			spawnNudist();
+		}
 	}
 
 	/**
@@ -125,6 +137,7 @@ public class WorldController
 					hurtSound.play();
 					nudists.removeIndex(index2);
 					touchPosition = nudists.get(0).getPosition();
+					respawnCounter = 0;
 					if(index2 == 0)
 				    selected = false;
 				}
@@ -149,5 +162,9 @@ public class WorldController
 	public void setSelected(boolean isSelected)
 	{
 		selected = isSelected;
+	}
+	private void spawnNudist()
+	{
+		nudists.add(new Nudist(new Vector2(nudists.first().getPosition().x+Nudist.SIZE,nudists.first().getPosition().y )));
 	}
 }
