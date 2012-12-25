@@ -112,8 +112,8 @@ public class WorldRenderer
 		{
 			Rectangle rect = nudist.getBounds();
 
-			float x1 = nudist.getPosition().x + rect.x;
-			float y1 = nudist.getPosition().y + rect.y;
+			float x1 = rect.x;
+			float y1 = rect.y;
 
 			debugRenderer.setColor(new Color(0, 1, 0, 1));
 			debugRenderer.rect(x1, y1, rect.width, rect.height);
