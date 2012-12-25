@@ -15,7 +15,7 @@ public class Nudist
 	 */
 	public enum State
 	{
-		DANCING, DYING
+		IDLE, DYING
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class Nudist
 	/**
 	 * The nudist's current state
 	 */
-	private State state = State.DANCING;
+	private State state = State.IDLE;
 
 	/**
 	 * Creates a new nudist.
