@@ -76,16 +76,6 @@ public class Nudist
 	}
 
 	/**
-	 * Sets the position of the nudist.
-	 *
-	 * @param position The new position of the nudist.
-	 */
-	public void setPosition(Vector2 position)
-	{
-		this.position = position;
-	}
-
-	/**
 	 * Sets the state of the nudist.
 	 *
 	 * @param state The new state of the nudist.

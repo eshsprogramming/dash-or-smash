@@ -79,7 +79,7 @@ public class WorldRenderer
 		for(Block block : world.getBlocks())
 		{
 			spriteBatch.draw(blockTexture, block.getPosition().x * ppuX, block.getPosition().y * ppuY,
-					Block.SIZE * ppuX, block.SIZE * ppuY);
+					Block.SIZE * ppuX, Block.SIZE * ppuY);
 		}
 	}
 
@@ -88,7 +88,7 @@ public class WorldRenderer
 		for(Nudist nudist : world.getNudists())
 		{
 			spriteBatch.draw(nudistTexture, nudist.getPosition().x * ppuX, nudist.getPosition().y * ppuY,
-					Nudist.SIZE * ppuX, nudist.SIZE * ppuY);
+					Nudist.SIZE * ppuX, Nudist.SIZE * ppuY);
 		}
 	}
 

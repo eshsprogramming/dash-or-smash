@@ -10,9 +10,6 @@ import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
-import java.util.Collections;
-import java.util.List;
-
 /**
  * @author Zachary Latta
  */

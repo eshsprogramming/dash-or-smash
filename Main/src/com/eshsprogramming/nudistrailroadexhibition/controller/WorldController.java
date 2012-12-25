@@ -5,7 +5,6 @@ import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
 import com.eshsprogramming.nudistrailroadexhibition.model.Train;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
-import com.sun.xml.internal.fastinfoset.tools.TransformInputOutput;
 
 /**
  * @author Zachary Latta

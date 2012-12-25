@@ -59,14 +59,4 @@ public class Train
     {
         return position;
     }
-
-    /**
-     * Sets the position of the train.
-     *
-     * @param position The new position of the train.
-     */
-    public void setPosition(Vector2 position)
-    {
-        this.position = position;
-    }
 }
