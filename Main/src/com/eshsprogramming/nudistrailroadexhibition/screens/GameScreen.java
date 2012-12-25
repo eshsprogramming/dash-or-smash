@@ -48,7 +48,7 @@ public class GameScreen implements Screen, InputProcessor
 	/**
 	 * Called each frame to render and update the game.
 	 *
-	 * @param delta The time in milleseconds between frames.
+	 * @param delta The time in milliseconds between frames.
 	 */
 	@Override
 	public void render(float delta)
@@ -56,7 +56,7 @@ public class GameScreen implements Screen, InputProcessor
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
-		renderer.render();
+		renderer.render(delta);
 		controller.update(delta);
 	}
 

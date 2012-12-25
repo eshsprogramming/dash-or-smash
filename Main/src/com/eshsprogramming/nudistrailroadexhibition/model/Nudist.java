@@ -78,6 +78,16 @@ public class Nudist
 	}
 
 	/**
+	 * Returns the state of the nudist.
+	 *
+	 * @return The current state of the nudist.
+	 */
+	public State getState()
+	{
+		return state;
+	}
+
+	/**
 	 * Sets the state of the nudist.
 	 *
 	 * @param state The new state of the nudist.
