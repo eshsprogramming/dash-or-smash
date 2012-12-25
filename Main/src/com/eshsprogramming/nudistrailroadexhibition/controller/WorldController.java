@@ -14,7 +14,7 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 /**
  * The controller for the world. Manages sprite properties.
  *
- * @author Zachary Latta
+ * @author Zachary Latta, Benjamin Landers
  */
 public class WorldController
 {
@@ -84,6 +84,7 @@ public class WorldController
 	{
 		float temp = (touchPosition.x-nudists.get(0).getPosition().x)*1f;
 		temp = (selected)?temp:0;
+		temp = (-1f < temp&&temp < 1f)?temp:0;
 		nudists.get(0).getPosition().x += temp;
 	}
 
