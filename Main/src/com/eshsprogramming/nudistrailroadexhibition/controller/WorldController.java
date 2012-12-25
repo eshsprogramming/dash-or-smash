@@ -18,6 +18,7 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
  */
 public class WorldController
 {
+	private boolean selected = false;
 	/**
 	 * The world.
 	 */
@@ -81,8 +82,8 @@ public class WorldController
 	 */
 	private void processInput()
 	{
-		float temp = (touchPosition.x-nudists.get(0).getPosition().x)*.01f;
-		temp = (temp < 2f)? temp : 2f;
+		float temp = (touchPosition.x-nudists.get(0).getPosition().x)*1f;
+		temp = (selected)?temp:0;
 		nudists.get(0).getPosition().x += temp;
 	}
 
@@ -117,6 +118,8 @@ public class WorldController
 					hurtSound.play();
 					nudists.removeIndex(index2);
 					touchPosition = nudists.get(0).getPosition();
+					if(index2 == 0)
+				    selected = false;
 				}
 			}
 		}
@@ -135,5 +138,9 @@ public class WorldController
 	public void setTouchPosition(Vector2 touchPosition)
 	{
 		this.touchPosition = touchPosition;
+	}
+	public void setSelected(boolean isSelected)
+	{
+		selected = isSelected;
 	}
 }

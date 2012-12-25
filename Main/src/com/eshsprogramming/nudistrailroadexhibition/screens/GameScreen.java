@@ -161,9 +161,10 @@ public class GameScreen implements Screen, InputProcessor
 					// Swap the nudist into index 0 of the array
 					world.getNudists().swap(0, index);
 				}
-
+				controller.setSelected(true);
 				break;
 			}
+
 		}
 
 		controller.setTouchPosition(new Vector2(x - Nudist.SIZE / 2, y));
