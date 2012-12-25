@@ -3,6 +3,7 @@ package com.eshsprogramming.nudistrailroadexhibition.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.controller.WorldController;
@@ -18,6 +19,8 @@ public class GameScreen implements Screen, InputProcessor
 	private World world;
 	private WorldRenderer renderer;
 	private WorldController controller;
+
+	private Music backgroundMusic;
 
 	private float width, height;
 
@@ -45,6 +48,10 @@ public class GameScreen implements Screen, InputProcessor
 		world = new World();
 		renderer = new WorldRenderer(world, true);
 		controller = new WorldController(world);
+		backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/backgroundMusic.mp3"));
+
+		backgroundMusic.setLooping(true);
+		backgroundMusic.play();
 
 		Gdx.input.setInputProcessor(this);
 	}
@@ -52,6 +59,9 @@ public class GameScreen implements Screen, InputProcessor
 	@Override
 	public void hide()
 	{
+		backgroundMusic.setLooping(false);
+		backgroundMusic.stop();
+
 		Gdx.input.setInputProcessor(null);
 	}
 
