@@ -1,5 +1,7 @@
 package com.eshsprogramming.nudistrailroadexhibition.controller;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.MathUtils;
@@ -32,6 +34,10 @@ public class WorldController
 	 * The position of the user's touch.
 	 */
 	private Vector2 touchPosition = null;
+	/**
+	 * The hurt sound. Played when a nudist dies.
+	 */
+	private Sound hurtSound = null;
 
 	/**
 	 * Creates a new world controller.
@@ -42,8 +48,9 @@ public class WorldController
 	{
 		this.world = world;
 		this.nudists = world.getNudists();
-		this.touchPosition = world.getNudists().get(0).getPosition();
 		this.trains = world.getTrains();
+		this.touchPosition = world.getNudists().get(0).getPosition();
+		this.hurtSound = Gdx.audio.newSound(Gdx.files.internal("sounds/hurt.wav"));
 	}
 
 	/**
@@ -105,6 +112,7 @@ public class WorldController
 			{
 				if(checkCollision(train, nudist))
                 {
+					hurtSound.play();
 					nudists.removeValue(nudist, true);
                 }
 			}

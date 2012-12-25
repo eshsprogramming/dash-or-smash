@@ -34,7 +34,7 @@ public class GameScreen implements Screen, InputProcessor
 	/**
 	 * The background music.
 	 */
-	private Music backgroundMusic;
+	private Music music;
 
 	/**
 	 * The width of the world in pixels.
@@ -80,10 +80,11 @@ public class GameScreen implements Screen, InputProcessor
 		world = new World();
 		renderer = new WorldRenderer(world, true);
 		controller = new WorldController(world);
-		backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/backgroundMusic.mp3"));
+		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
 
-		backgroundMusic.setLooping(true);
-		backgroundMusic.play();
+		music.setLooping(true);
+		music.setVolume(0.7f);
+		music.play();
 
 		Gdx.input.setInputProcessor(this);
 	}
@@ -91,8 +92,8 @@ public class GameScreen implements Screen, InputProcessor
 	@Override
 	public void hide()
 	{
-		backgroundMusic.setLooping(false);
-		backgroundMusic.stop();
+		music.setLooping(false);
+		music.stop();
 
 		Gdx.input.setInputProcessor(null);
 	}
@@ -110,8 +111,8 @@ public class GameScreen implements Screen, InputProcessor
 	@Override
 	public void dispose()
 	{
-		backgroundMusic.setLooping(false);
-		backgroundMusic.stop();
+		music.setLooping(false);
+		music.stop();
 
 		Gdx.input.setInputProcessor(null);
 	}
@@ -165,7 +166,7 @@ public class GameScreen implements Screen, InputProcessor
 			}
 		}
 
-		controller.setTouchPosition(new Vector2(x - Nudist.SIZE/2, y));
+		controller.setTouchPosition(new Vector2(x - Nudist.SIZE / 2, y));
 
 		return true;
 	}
@@ -185,7 +186,7 @@ public class GameScreen implements Screen, InputProcessor
 		float x = (touchX/width) * WorldRenderer.CAMERA_WIDTH;
 		float y = (touchY/height) * WorldRenderer.CAMERA_HEIGHT;
 
-		controller.setTouchPosition(new Vector2(x - Nudist.SIZE/2, y));
+		controller.setTouchPosition(new Vector2(x - Nudist.SIZE / 2, y));
 
 		return true;
 	}
