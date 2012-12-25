@@ -33,7 +33,7 @@ public class Text
      */
     public Text(String ref, boolean flip)
     {
-        bitmapFont = new BitmapFont(Gdx.files.internal(ref), flip);
+        this.bitmapFont = new BitmapFont(Gdx.files.internal(ref), flip);
     }
 
     /**
@@ -45,9 +45,9 @@ public class Text
      */
     public Text(String ref, boolean flip, String text)
     {
-        bitmapFont = new BitmapFont(Gdx.files.internal(ref), flip);
-        this.position = position;
-        this.text = text;
+        this.bitmapFont = new BitmapFont(Gdx.files.internal(ref), flip);
+        this.setPosition(position);
+        this.setText(text);
     }
 
     /**
@@ -58,7 +58,7 @@ public class Text
      */
     public Text(String ref, boolean flip, Vector2 position)
     {
-        bitmapFont = new BitmapFont(Gdx.files.internal(ref), flip);
+        this.bitmapFont = new BitmapFont(Gdx.files.internal(ref), flip);
     }
 
     /**
@@ -69,11 +69,13 @@ public class Text
      * @param position The position of the text.
      * @param text The text to be displayed.
      */
-    public Text(String ref, boolean flip, Vector2 position, String text)
+    public Text(String ref, boolean flip, float scale, Vector2 position, String text)
     {
         bitmapFont = new BitmapFont(Gdx.files.internal(ref), flip);
-        this.position = position;
-        this.text = text;
+
+        this.setScale(scale);
+        this.setPosition(position);
+        this.setText(text);
     }
 
     /**
@@ -85,7 +87,7 @@ public class Text
      */
     public void render(SpriteBatch spriteBatch, float ppuX, float ppuY)
     {
-        bitmapFont.draw(spriteBatch, text, getPosition().x * ppuX, getPosition().y * ppuY);
+        this.bitmapFont.draw(spriteBatch, text, getPosition().x * ppuX, getPosition().y * ppuY);
     }
 
     /**
@@ -96,6 +98,26 @@ public class Text
     public Vector2 getPosition()
     {
         return this.position;
+    }
+
+    /**
+     * Returns the x scale of the text
+     *
+     * @return the x scale of the text;
+     */
+    public float getScaleX()
+    {
+        return bitmapFont.getScaleX();
+    }
+
+    /**
+     * Returns the y scale of the text
+     *
+     * @return the y scale of the text;
+     */
+    public float getScaleY()
+    {
+        return this.bitmapFont.getScaleY();
     }
 
     /**
@@ -116,6 +138,27 @@ public class Text
     public void setPosition(Vector2 position)
     {
         this.position = position;
+    }
+
+    /**
+     * Sets the scale of the text.
+     *
+     * @param scale The new scale of the text.
+     */
+    public void setScale(float scale)
+    {
+        this.bitmapFont.setScale(scale);
+    }
+
+    /**
+     * Sets the scale of the text.
+     *
+     * @param scaleX The new x scale of the text.
+     * @param scaleY The new y scale of the text.
+     */
+    public void setScale(float scaleX, float scaleY)
+    {
+        this.bitmapFont.setScale(scaleX, scaleY);
     }
 
     /**
