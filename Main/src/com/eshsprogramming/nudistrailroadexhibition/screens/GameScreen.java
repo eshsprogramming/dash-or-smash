@@ -74,6 +74,9 @@ public class GameScreen implements Screen, InputProcessor
 		this.height = height;
 	}
 
+    /**
+     * Called when this screen becomes the current screen for the game.
+     */
 	@Override
 	public void show()
 	{
@@ -89,6 +92,9 @@ public class GameScreen implements Screen, InputProcessor
 		Gdx.input.setInputProcessor(this);
 	}
 
+    /**
+     * Called when this screen is no longer the current screen for the game.
+     */
 	@Override
 	public void hide()
 	{
