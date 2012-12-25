@@ -81,19 +81,12 @@ public class WorldController
 	 */
 	private void checkTrainValidity()
 	{
-		Array<Train> toKill = new Array<Train>();
-
 		for(Train train : trains)
 		{
 			if(train.getPosition().y + Train.SIZEY <  0)
 			{
-				toKill.add(train);
+				trains.removeValue(train, true);
 			}
-		}
-
-		for(Train train : toKill)
-		{
-			trains.removeValue(train, true);
 		}
 
 		while(trains.size < Train.NUMBER_OF_TRAINS)
