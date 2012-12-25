@@ -65,7 +65,7 @@ public class WorldController
 		{
 			train.update(delta);
 
-            if(train.getPosition().y <  0)
+            if(train.getPosition().y + Train.SIZEY <  0)
 			{
                 toKill.add(train);
 			}
