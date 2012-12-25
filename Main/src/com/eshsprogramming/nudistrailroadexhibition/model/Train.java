@@ -24,7 +24,7 @@ public class Train
     /**
      * The trains's height in units
      */
-    public static final float SIZEY = 0.5f;
+    public static final float SIZEY = 1f;
     /**
      * The 2 d location of the train
      */
