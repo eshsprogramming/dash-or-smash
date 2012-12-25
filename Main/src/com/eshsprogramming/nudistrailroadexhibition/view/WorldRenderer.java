@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -37,7 +38,7 @@ public class WorldRenderer
 	 * The world itself.
 	 */
 	private World world;
-	/**
+	/**                     
 	 * The camera used in rendering.
 	 */
 	private OrthographicCamera camera;
@@ -129,7 +130,10 @@ public class WorldRenderer
 	 * Pixels per unit on the Y axis
 	 */
 	private float ppuY;
-
+	/**
+	 * Basic font
+	 */
+	private BitmapFont font = new BitmapFont();
 	/**
 	 * Creates a new world renderer.
 	 *
@@ -143,11 +147,14 @@ public class WorldRenderer
 		this.camera.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
 		this.camera.update();
 		this.debug = debug;
+		
 		spriteBatch = new SpriteBatch();
-
+		
 		loadTextures();
 		initTextureRegions();
 		initAnimations();
+
+		font.setScale(4f);
 
 		stateTime = 0;
 	}
@@ -240,8 +247,8 @@ public class WorldRenderer
 		drawBlocks();
 		drawTrains();
 		drawNudists();
+		drawScore();
 		spriteBatch.end();
-
 		if(debug)
 		{
 			drawDebug();
@@ -363,5 +370,10 @@ public class WorldRenderer
 		this.height = height;
 		ppuX = (float)width / CAMERA_WIDTH;
 		ppuY = (float)height / CAMERA_HEIGHT;
+	}
+	
+	private void drawScore()
+	{
+		  font.draw(spriteBatch, "" + world.getScore().getScore(), 1000, 800);
 	}
 }

@@ -9,15 +9,23 @@ import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
 import com.eshsprogramming.nudistrailroadexhibition.model.Train;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
+import com.eshsprogramming.nudistrailroadexhibition.model.Score;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 /**
  * The controller for the world. Manages sprite properties.
  *
- * @author Zachary Latta
+ * @author Zachary Latta, Benjamin Landers
  */
 public class WorldController
 {
+	/**
+	 * used to count how long since the player hit a train
+	 */
+	private float respawnCounter = 0;
+	/**
+	 * used to tell if player selected a nudist
+	 */
 	private boolean selected = false;
 	/**
 	 * The world.
@@ -39,7 +47,10 @@ public class WorldController
 	 * The hurt sound. Played when a nudist dies.
 	 */
 	private Sound hurtSound = null;
-
+	/**
+	 * The Score object
+	 */
+	private Score score =null;
 	/**
 	 * Creates a new world controller.
 	 *
@@ -50,6 +61,7 @@ public class WorldController
 		this.world = world;
 		this.nudists = world.getNudists();
 		this.trains = world.getTrains();
+		this.score = world.getScore();
 		this.touchPosition = world.getNudists().get(0).getPosition();
 		this.hurtSound = Gdx.audio.newSound(Gdx.files.internal("sounds/hurt.wav"));
 	}
@@ -60,7 +72,7 @@ public class WorldController
 	public void update(float delta)
 	{
 		processInput();
-
+		respawnCounter+=delta;
 		// Calls update methods of nudists
 		for(Nudist nudist : nudists)
 		{
@@ -75,6 +87,11 @@ public class WorldController
 
 		checkCollision();
 		checkTrainValidity();
+		if(respawnCounter>5)
+		{
+			respawnCounter = 0;
+			spawnNudist();
+		}
 	}
 
 	/**
@@ -84,6 +101,7 @@ public class WorldController
 	{
 		float temp = (touchPosition.x-nudists.get(0).getPosition().x)*1f;
 		temp = (selected)?temp:0;
+		temp = (-1f < temp&&temp < 1f)?temp:0;
 		nudists.get(0).getPosition().x += temp;
 	}
 
@@ -97,6 +115,7 @@ public class WorldController
 			if(train.getPosition().y + Train.SIZEY <  0)
 			{
 				trains.removeValue(train, true);
+				score.increment();
 			}
 		}
 
@@ -118,6 +137,7 @@ public class WorldController
 					hurtSound.play();
 					nudists.removeIndex(index2);
 					touchPosition = nudists.get(0).getPosition();
+					respawnCounter = 0;
 					if(index2 == 0)
 				    selected = false;
 				}
@@ -142,5 +162,9 @@ public class WorldController
 	public void setSelected(boolean isSelected)
 	{
 		selected = isSelected;
+	}
+	private void spawnNudist()
+	{
+		nudists.add(new Nudist(new Vector2(nudists.first().getPosition().x+Nudist.SIZE,nudists.first().getPosition().y )));
 	}
 }
