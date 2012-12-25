@@ -136,7 +136,7 @@ public class WorldRenderer
 	/**
 	 * Basic font
 	 */
-	private BitmapFont font = new BitmapFont(new FileHandle("fonts/arial/font.fnt"), false);
+	private BitmapFont font = new BitmapFont(Gdx.files.internal("fonts/arial/font.fnt"), false);
 	/**
 	 * Creates a new world renderer.
 	 *
@@ -377,6 +377,6 @@ public class WorldRenderer
 	
 	private void drawScore()
 	{
-		  font.draw(spriteBatch, "" + world.getScore().getScore(), 1000, 800);
+		  font.draw(spriteBatch, "" + world.getScore().getScore(), 6.25f * ppuX, 4.75f * ppuY);
 	}
 }
