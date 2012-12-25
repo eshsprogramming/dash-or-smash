@@ -56,8 +56,8 @@ public class MainMenuRenderer
      */
     public MainMenuRenderer()
     {
-        titleText = new Text("fonts/arial/font.fnt", false, new Vector2(1, 1), "Nudist Railroad Exhibition");
-        playText = new Text("fonts/arial/font.fnt", false, new Vector2(4, 1), "Play");
+        titleText = new Text("fonts/arial/font.fnt", false, 5f, new Vector2(1, 4.5f), "Nudist Railroad Exhibition");
+        playText = new Text("fonts/arial/font.fnt", false, 3f, new Vector2(1, 3), "Play");
 
         spriteBatch = new SpriteBatch();
     }
