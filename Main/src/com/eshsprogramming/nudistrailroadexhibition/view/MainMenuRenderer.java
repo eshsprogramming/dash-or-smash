@@ -2,6 +2,7 @@ package com.eshsprogramming.nudistrailroadexhibition.view;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.eshsprogramming.nudistrailroadexhibition.model.MainMenu;
 import com.eshsprogramming.nudistrailroadexhibition.model.Text;
 
 /**
@@ -21,18 +22,14 @@ public class MainMenuRenderer
     public static final float CAMERA_HEIGHT = 5f;
 
     /**
-     * The title text.
+     * The main menu instance.
      */
-    Text titleText;
-    /**
-     * The play text.
-     */
-    Text playText;
+    private MainMenu mainMenu;
 
     /**
      * The sprite batch. Used for rendering sprites.
      */
-    SpriteBatch spriteBatch;
+    private SpriteBatch spriteBatch;
 
     /**
      * The width of the screen in pixels.
@@ -56,16 +53,14 @@ public class MainMenuRenderer
      */
     public MainMenuRenderer()
     {
-        titleText = new Text("fonts/arial/font.fnt", false, 5f, new Vector2(1, 4.5f), "Nudist Railroad Exhibition");
-        playText = new Text("fonts/arial/font.fnt", false, 3f, new Vector2(1, 3), "Play");
-
+        mainMenu = new MainMenu();
         spriteBatch = new SpriteBatch();
     }
 
     /**
      * Renders the contents of main menu renderer.
      *
-     * @param delta The time in milleseconds between frames.
+     * @param delta The time in milliseconds between frames.
      */
     public void render(float delta)
     {
@@ -79,8 +74,8 @@ public class MainMenuRenderer
      */
     private void drawText()
     {
-        titleText.render(spriteBatch, ppuX, ppuY);
-        playText.render(spriteBatch, ppuX, ppuY);
+        mainMenu.getTitleText().render(spriteBatch, ppuX, ppuY);
+        mainMenu.getPlayText().render(spriteBatch, ppuX, ppuY);
     }
 
     /**

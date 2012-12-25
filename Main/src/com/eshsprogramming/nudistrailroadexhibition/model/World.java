@@ -22,6 +22,7 @@ public class World
      * An array of all the trains
      */
     private Array<Train> trains = new Array<Train>();
+    // todo-ben Instead of using the score class for score, just use a Text instance. It makes things simpler when playing with multiple classes.
     /**
      * The player's score.
      */
