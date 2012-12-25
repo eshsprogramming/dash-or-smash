@@ -58,31 +58,14 @@ public class WorldController
 			nudist.update(delta);
 		}
 
-		// Calls update methods of trains and kills if necessary
-        Array<Train> toKill = new Array<Train>();
-
+		// Calls update methods of trains
 		for(Train train : trains)
 		{
 			train.update(delta);
-
-            if(train.getPosition().y + Train.SIZEY <  0)
-			{
-                toKill.add(train);
-			}
 		}
-
-        for(Train temp: toKill)
-        {
-        	trains.removeValue(temp,true);
-        }
 
 		checkCollision();
-
-		while(trains.size < Train.NUMBER_OF_TRAINS)
-		{
-			trains.add(new Train(new Vector2(MathUtils.random(.5f,7f),
-					MathUtils.random(5f,7f)), MathUtils.random(-.3f,-.7f)));
-		}
+		checkTrainValidity();
 	}
 
 	/**
@@ -91,6 +74,33 @@ public class WorldController
 	private void processInput()
 	{
 		nudists.get(0).getPosition().x = touchPosition.x;
+	}
+
+	/**
+	 * Checks if trains are allowed to be on the screen. Removes them if they aren't and creates a new one.
+	 */
+	private void checkTrainValidity()
+	{
+		Array<Train> toKill = new Array<Train>();
+
+		for(Train train : trains)
+		{
+			if(train.getPosition().y + Train.SIZEY <  0)
+			{
+				toKill.add(train);
+			}
+		}
+
+		for(Train train : toKill)
+		{
+			trains.removeValue(train, true);
+		}
+
+		while(trains.size < Train.NUMBER_OF_TRAINS)
+		{
+			trains.add(new Train(new Vector2(MathUtils.random(.5f,7f),
+					MathUtils.random(5f,7f)), MathUtils.random(-.3f,-.7f)));
+		}
 	}
 
 	private void checkCollision()
