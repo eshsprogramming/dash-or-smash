@@ -9,7 +9,7 @@ public class Score
      * The score coefficient. The amount used to increment the score.
      */
     public static final int SCORE_COEFF = 10;
-	public static final int DEATH_COEFF = -30;
+	public static final int DEATH_COEFF = -100;
     /**
      * The current score.
      */
