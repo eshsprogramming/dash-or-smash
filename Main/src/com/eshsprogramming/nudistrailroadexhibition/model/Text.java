@@ -23,7 +23,7 @@ public class Text
     /**
      * The text to display.
      */
-    private String text;
+    private String text = null;
 
     /**
      * Creates a new Text object.
@@ -128,6 +128,26 @@ public class Text
     public String getText()
     {
         return this.text;
+    }
+
+    /**
+     * Returns the width of the text in pixels.
+     *
+     * @return The width of the text in pixels.
+     */
+    public float getWidth()
+    {
+        return bitmapFont.getBounds(text).width;
+    }
+
+    /**
+     * Returns the height of the text in pixels.
+     *
+     * @return The height of the text in pixels.
+     */
+    public float getHeight()
+    {
+        return bitmapFont.getBounds(text).height;
     }
 
     /**
