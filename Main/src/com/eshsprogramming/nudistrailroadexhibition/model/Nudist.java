@@ -19,9 +19,13 @@ public class Nudist
     }
 
     /**
-     * The nudist's size in units
+     * The nudist's width in units
      */
-    public static final float SIZE = 0.5f;
+    public static final float SIZEX = 0.33f;
+    /**
+     * The nudist's height in units
+     */
+    public static final float SIZEY = 0.5f;
 
     /**
      * The nudist's position on the x and y plane.
@@ -44,8 +48,8 @@ public class Nudist
     public Nudist(Vector2 position)
     {
         this.position = position;
-        this.bounds.height = SIZE;
-        this.bounds.width = SIZE;
+        this.bounds.height = SIZEY;
+        this.bounds.width = SIZEX;
     }
 
     /**

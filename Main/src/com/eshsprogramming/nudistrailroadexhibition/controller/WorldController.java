@@ -190,6 +190,6 @@ public class WorldController
     private void spawnNudist()
     {
         nudists.add(new Nudist(new Vector2(nudists.first().getPosition().x +
-                Nudist.SIZE, nudists.first().getPosition().y)));
+                Nudist.SIZEX, nudists.first().getPosition().y)));
     }
 }
