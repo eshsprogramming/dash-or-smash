@@ -34,7 +34,7 @@ public class GameOver
 	{
 		this.gameOverScreen = gameOverScreen;
 
-		messageText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f, new Vector2(1, 4.5f), "Your score was ...");
+		messageText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f, new Vector2(1f, 4.5f), "Your score was ...");
 		scoreText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.003f, new Vector2(1, 3), "" + score);
 
 		fillBlockArray();

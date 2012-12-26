@@ -23,7 +23,7 @@ public class GameScreen implements Screen, InputProcessor
     /**
      * The game instance. Used for switching screens.
      */
-    private Game game;
+    private NudistRailroadExhibition game;
 
     /**
      * The game's world.
@@ -95,7 +95,7 @@ public class GameScreen implements Screen, InputProcessor
     {
         world = new World();
         renderer = new WorldRenderer(world, false);
-        controller = new WorldController(world);
+        controller = new WorldController(world, game);
         music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
 
         music.setLooping(true);

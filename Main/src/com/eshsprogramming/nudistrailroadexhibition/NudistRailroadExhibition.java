@@ -1,6 +1,7 @@
 package com.eshsprogramming.nudistrailroadexhibition;
 
 import com.badlogic.gdx.Game;
+import com.eshsprogramming.nudistrailroadexhibition.screens.GameOverScreen;
 import com.eshsprogramming.nudistrailroadexhibition.screens.GameScreen;
 import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
 
@@ -20,11 +21,16 @@ public class NudistRailroadExhibition extends Game
      */
     public GameScreen gameScreen = null;
 
+	/**
+	 * the game over screen
+	 */
+	public GameOverScreen gameOverScreen = null;
     @Override
     public void create()
     {
         mainMenuScreen = new MainMenuScreen(this);
         gameScreen = new GameScreen(this);
+		gameOverScreen = new GameOverScreen(this);
 
         setScreen(mainMenuScreen);
     }

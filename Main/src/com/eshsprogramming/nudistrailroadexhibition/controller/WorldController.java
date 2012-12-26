@@ -1,5 +1,6 @@
 package com.eshsprogramming.nudistrailroadexhibition.controller;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Intersector;
@@ -11,6 +12,7 @@ import com.eshsprogramming.nudistrailroadexhibition.model.Score;
 import com.eshsprogramming.nudistrailroadexhibition.model.Train;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
+import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 
 /**
  * The controller for the world. Manages sprite properties.
@@ -19,6 +21,10 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
  */
 public class WorldController
 {
+	/**
+	 * the game
+	 */
+	private NudistRailroadExhibition game = null;
     /**
      * Used to count how long since the player hit a train
      */
@@ -60,10 +66,12 @@ public class WorldController
      * Creates a new world controller.
      *
      * @param world The world to be used in the world controller.
+	 * @param game a reference to the game (did you win)
      */
-    public WorldController(World world)
+    public WorldController(World world, NudistRailroadExhibition game)
     {
         this.world = world;
+		this.game = game;
         this.nudists = world.getNudists();
         this.trains = world.getTrains();
         this.score = world.getScore();
@@ -106,11 +114,14 @@ public class WorldController
      * Changes the nudists' state and position based on input controls
      */
     private void processInput()
-    {
+    {   try{
         float temp = (touchPosition.x - nudists.get(0).getPosition().x) * 1f;
         temp = (selected) ? temp : 0;
         temp = (-1f < temp && temp < 1f) ? temp : 0;
         nudists.get(0).getPosition().x += temp;
+		}catch(Exception e){
+		game.setScreen(game.gameOverScreen);
+		}
     }
 
     /**
@@ -147,7 +158,6 @@ public class WorldController
                 {
                     hurtSound.play();
                     nudists.removeIndex(index2);
-                    touchPosition = nudists.get(0).getPosition();
                     respawnCounter = 0;
                     score.nudistDeath();
                     if(index2 == 0)

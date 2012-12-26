@@ -1,5 +1,6 @@
 package com.eshsprogramming.nudistrailroadexhibition.view;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.eshsprogramming.nudistrailroadexhibition.model.Block;
@@ -60,6 +61,7 @@ public class GameOverRenderer
 	{
 		this.gameOver = gameOver;
 		this.spriteBatch = new SpriteBatch();
+		loadTextures();
 	}
 	/**
 	 * Renders the contents of main menu renderer.
@@ -106,5 +108,12 @@ public class GameOverRenderer
 		this.height = height;
 		ppuX = (float) width / CAMERA_WIDTH;
 		ppuY = (float) height / CAMERA_HEIGHT;
+	}
+	/**
+	 * Loads the textures from files.
+	 */
+	private void loadTextures()
+	{
+		blockTexture = new Texture(Gdx.files.internal("images/block.png"));
 	}
 }
