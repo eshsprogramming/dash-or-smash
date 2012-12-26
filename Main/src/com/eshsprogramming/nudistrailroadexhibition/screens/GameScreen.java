@@ -1,11 +1,13 @@
 package com.eshsprogramming.nudistrailroadexhibition.screens;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.math.Vector2;
+import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 import com.eshsprogramming.nudistrailroadexhibition.controller.WorldController;
 import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
 import com.eshsprogramming.nudistrailroadexhibition.model.World;
@@ -18,6 +20,11 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
  */
 public class GameScreen implements Screen, InputProcessor
 {
+    /**
+     * The game instance. Used for switching screens.
+     */
+    private Game game;
+
 	/**
 	 * The game's world.
 	 */
@@ -44,6 +51,11 @@ public class GameScreen implements Screen, InputProcessor
 	 * The height of the world in pixels.
 	 */
 	private float height;
+
+    public GameScreen(NudistRailroadExhibition game)
+    {
+        this.game = game;
+    }
 
 	/**
 	 * Called each frame to render and update the game.
@@ -167,6 +179,7 @@ public class GameScreen implements Screen, InputProcessor
 					// Swap the nudist into index 0 of the array
 					world.getNudists().swap(0, index);
 				}
+
 				controller.setSelected(true);
 				break;
 			}

@@ -21,6 +21,7 @@ public class MainMenu
      */
     public MainMenu()
     {
+        // todo-zach Make size of text relative
         titleText = new Text("fonts/arial/font.fnt", false, 5f, new Vector2(1, 4.5f), "Nudist Railroad Exhibition");
         playText = new Text("fonts/arial/font.fnt", false, 3f, new Vector2(1, 3), "Play");
     }
