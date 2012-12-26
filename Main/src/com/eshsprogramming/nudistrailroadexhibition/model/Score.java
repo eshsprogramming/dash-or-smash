@@ -21,7 +21,7 @@ public class Score
     /**
      * A getter for score
      *
-     * @return scrore the score the player currently has
+     * @return score the score the player currently has
      */
     public int getScore()
     {
