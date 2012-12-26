@@ -28,7 +28,13 @@ public class WorldRenderer
      */
     public static final float CAMERA_HEIGHT = 5f;
 
+    /**
+     * The columns in the spritesheets
+     */
     private static final int FRAME_COLUMNS = 2;
+    /**
+     * The rows in the spritesheets.
+     */
     private static final int FRAME_ROWS = 2;
 
     /**
