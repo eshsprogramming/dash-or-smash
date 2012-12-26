@@ -1,6 +1,9 @@
 package com.eshsprogramming.nudistrailroadexhibition.view;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.eshsprogramming.nudistrailroadexhibition.model.Block;
 import com.eshsprogramming.nudistrailroadexhibition.model.MainMenu;
 
 /**
@@ -30,6 +33,11 @@ public class MainMenuRenderer
     private SpriteBatch spriteBatch;
 
     /**
+     * The texture for the blocks.
+     */
+    private Texture blockTexture;
+
+    /**
      * The width of the screen in pixels.
      */
     private int width;
@@ -53,6 +61,8 @@ public class MainMenuRenderer
     {
         this.mainMenu = mainMenu;
         this.spriteBatch = new SpriteBatch();
+
+        this.loadTextures();
     }
 
     /**
@@ -63,8 +73,21 @@ public class MainMenuRenderer
     public void render(float delta)
     {
         spriteBatch.begin();
+        drawBlocks();
         drawText();
         spriteBatch.end();
+    }
+
+    /**
+     * Draws blocks on the screen.
+     */
+    private void drawBlocks()
+    {
+        for(Block block : mainMenu.getBlocks())
+        {
+            spriteBatch.draw(blockTexture, block.getPosition().x * ppuX, block.getPosition().y * ppuY,
+                    Block.SIZE * ppuX, Block.SIZE * ppuY);
+        }
     }
 
     /**
@@ -88,5 +111,13 @@ public class MainMenuRenderer
         this.height = height;
         ppuX = (float) width / CAMERA_WIDTH;
         ppuY = (float) height / CAMERA_HEIGHT;
+    }
+
+    /**
+     * Loads the textures from files.
+     */
+    private void loadTextures()
+    {
+        blockTexture = new Texture(Gdx.files.internal("images/block.png"));
     }
 }

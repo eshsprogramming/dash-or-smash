@@ -144,7 +144,7 @@ public class WorldController
                     nudists.removeIndex(index2);
                     touchPosition = nudists.get(0).getPosition();
                     respawnCounter = 0;
-					score.nudistDeath();
+                    score.nudistDeath();
                     if(index2 == 0)
                         selected = false;
                 }
