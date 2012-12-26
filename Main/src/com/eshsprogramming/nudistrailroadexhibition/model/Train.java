@@ -5,17 +5,18 @@ import com.badlogic.gdx.math.Vector2;
 
 /**
  * A train class to exhibit all behavior of a train
+ *
  * @author Benjamin Landers
  */
 public class Train
 {
-	/**
-	 * The total number of trains.
-	 */
-	public static int NUMBER_OF_TRAINS = 5;
-	/**
-	 * The velocity of the train on the Y axis.
-	 */
+    /**
+     * The total number of trains.
+     */
+    public static int NUMBER_OF_TRAINS = 5;
+    /**
+     * The velocity of the train on the Y axis.
+     */
     private float vY = 0f;
     /**
      * The train's width in units
@@ -34,18 +35,18 @@ public class Train
      */
     private Rectangle bounds = new Rectangle();
 
-	/**
-	 * Creates a new train.
-	 *
-	 * @param position The train's starting position
-	 * @param vY The train's velocity on the Y axis
-	 */
+    /**
+     * Creates a new train.
+     *
+     * @param position The train's starting position
+     * @param vY       The train's velocity on the Y axis
+     */
     public Train(Vector2 position, float vY)
     {
         this.position = position;
         this.bounds.height = SIZEY;
         this.bounds.width = SIZEX;
-		this.bounds.setX(position.x);
+        this.bounds.setX(position.x);
         this.vY = vY;
     }
 
@@ -54,7 +55,7 @@ public class Train
      */
     public void update(float delta)
     {
-        position.add(0,delta*vY);
+        position.add(0, delta * vY);
         bounds.setY(position.y);
     }
 

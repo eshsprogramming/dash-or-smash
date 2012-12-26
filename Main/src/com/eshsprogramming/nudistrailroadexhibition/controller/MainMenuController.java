@@ -1,8 +1,8 @@
 package com.eshsprogramming.nudistrailroadexhibition.controller;
 
+import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 import com.eshsprogramming.nudistrailroadexhibition.model.MainMenu;
-import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.model.Text;
 import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
 import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
@@ -51,7 +51,7 @@ public class MainMenuController
     {
         if(textTouched(touchPosition, mainMenu.getPlayText()))
         {
-            game.setScreen(game.gameScreen) ;
+            game.setScreen(game.gameScreen);
         }
     }
 
@@ -69,14 +69,14 @@ public class MainMenuController
      * Returns whether or not the text is touched.
      *
      * @param touchPosition The current touch position.
-     * @param text The text to test.
+     * @param text          The text to test.
      * @return Whether or not the text is touched.
      */
     private boolean textTouched(Vector2 touchPosition, Text text)
     {
         // Makes width and height relative.
-        float width = (text.getWidth()/mainMenuScreen.getWidth()) * MainMenuRenderer.CAMERA_WIDTH;
-        float height = (text.getHeight()/mainMenuScreen.getHeight()) * MainMenuRenderer.CAMERA_HEIGHT;
+        float width = (text.getWidth() / mainMenuScreen.getWidth()) * MainMenuRenderer.CAMERA_WIDTH;
+        float height = (text.getHeight() / mainMenuScreen.getHeight()) * MainMenuRenderer.CAMERA_HEIGHT;
 
         if(touchPosition.x > text.getPosition().x)
         {

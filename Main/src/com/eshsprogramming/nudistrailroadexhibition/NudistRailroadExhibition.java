@@ -1,11 +1,8 @@
 package com.eshsprogramming.nudistrailroadexhibition;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.screens.GameScreen;
 import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
-
-import java.util.Map;
 
 /**
  * The entry point of Nudist Railroad Exhibition.
@@ -23,12 +20,12 @@ public class NudistRailroadExhibition extends Game
      */
     public GameScreen gameScreen = null;
 
-	@Override
-	public void create()
-	{
+    @Override
+    public void create()
+    {
         mainMenuScreen = new MainMenuScreen(this);
         gameScreen = new GameScreen(this);
 
-		setScreen(mainMenuScreen);
-	}
+        setScreen(mainMenuScreen);
+    }
 }

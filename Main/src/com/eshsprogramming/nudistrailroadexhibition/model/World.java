@@ -10,14 +10,14 @@ import com.badlogic.gdx.utils.Array;
  */
 public class World
 {
-	/**
-	 * An array of the blocks which make up the world.
-	 */
-	private Array<Block> blocks = new Array<Block>();
-	/**
-	 * An array of the nudists in the world.
-	 */
-	private Array<Nudist> nudists = new Array<Nudist>();
+    /**
+     * An array of the blocks which make up the world.
+     */
+    private Array<Block> blocks = new Array<Block>();
+    /**
+     * An array of the nudists in the world.
+     */
+    private Array<Nudist> nudists = new Array<Nudist>();
     /**
      * An array of all the trains
      */
@@ -26,62 +26,62 @@ public class World
     /**
      * The player's score.
      */
-	private Score score = new Score();
+    private Score score = new Score();
 
-	/**
-	 * Creates a new world.
-	 */
-	public World()
-	{
-		createBlankWorld();
-	}
+    /**
+     * Creates a new world.
+     */
+    public World()
+    {
+        createBlankWorld();
+    }
 
-	/**
-	 * Fills the world with blocks.
-	 */
-	private void createBlankWorld()
-	{
-		// Adds nudists to the array of them
-		for(int index = 0; index < 8; index++)
-		{
-			nudists.add(new Nudist(new Vector2(index, 0)));
-		}
+    /**
+     * Fills the world with blocks.
+     */
+    private void createBlankWorld()
+    {
+        // Adds nudists to the array of them
+        for(int index = 0; index < 8; index++)
+        {
+            nudists.add(new Nudist(new Vector2(index, 0)));
+        }
 
-		// Adds blocks to the world
-		for(int index1 = 0; index1 < 8; index1++)
-		{
-			for(int index2 = 0; index2 < 5; index2++)
-			{
-				blocks.add(new Block(new Vector2(index1, index2)));
-			}
-		}
-	}
+        // Adds blocks to the world
+        for(int index1 = 0; index1 < 8; index1++)
+        {
+            for(int index2 = 0; index2 < 5; index2++)
+            {
+                blocks.add(new Block(new Vector2(index1, index2)));
+            }
+        }
+    }
 
-	/**
-	 * Returns the array of blocks in the world.
-	 *
-	 * @return The array of blocks in the world.
-	 */
-	public Array<Block> getBlocks()
-	{
-		return blocks;
-	}
+    /**
+     * Returns the array of blocks in the world.
+     *
+     * @return The array of blocks in the world.
+     */
+    public Array<Block> getBlocks()
+    {
+        return blocks;
+    }
 
-	/**
-	 * Returns the array of nudists in the world.
-	 *
-	 * @return The array of nudists in the world.
-	 */
-	public Array<Nudist> getNudists()
-	{
-		return nudists;
-	}
+    /**
+     * Returns the array of nudists in the world.
+     *
+     * @return The array of nudists in the world.
+     */
+    public Array<Nudist> getNudists()
+    {
+        return nudists;
+    }
 
-	/**
-	 * Returns the array of trains in the world.
-	 *
-	 * @return The array of trains in the world.
-	 */
+    /**
+     * Returns the array of trains in the world.
+     *
+     * @return The array of trains in the world.
+     */
     public Array<Train> getTrains()
     {
         return trains;
@@ -92,8 +92,8 @@ public class World
      *
      * @return The current score.
      */
-	public Score getScore()
-	{
-		return score;
-	}
+    public Score getScore()
+    {
+        return score;
+    }
 }

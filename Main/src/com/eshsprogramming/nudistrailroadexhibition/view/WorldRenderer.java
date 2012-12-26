@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -20,272 +19,272 @@ import com.eshsprogramming.nudistrailroadexhibition.model.*;
  */
 public class WorldRenderer
 {
-	/**
-	 * The width of the screen in relative units.
-	 */
-	public static final float CAMERA_WIDTH = 8f;
-	/**
-	 * The height of the screen in relative units.
-	 */
-	public static final float CAMERA_HEIGHT = 5f;
+    /**
+     * The width of the screen in relative units.
+     */
+    public static final float CAMERA_WIDTH = 8f;
+    /**
+     * The height of the screen in relative units.
+     */
+    public static final float CAMERA_HEIGHT = 5f;
 
-	private static final int FRAME_COLUMNS = 2;
-	private static final int FRAME_ROWS = 2;
+    private static final int FRAME_COLUMNS = 2;
+    private static final int FRAME_ROWS = 2;
 
-	/**
-	 * The world itself.
-	 */
-	private World world;
-	/**                     
-	 * The camera used in rendering.
-	 */
-	private OrthographicCamera camera;
+    /**
+     * The world itself.
+     */
+    private World world;
+    /**
+     * The camera used in rendering.
+     */
+    private OrthographicCamera camera;
 
-	/**
-	 * For debug rendering
-	 */
-	ShapeRenderer debugRenderer = new ShapeRenderer();
+    /**
+     * For debug rendering
+     */
+    ShapeRenderer debugRenderer = new ShapeRenderer();
 
-	/**
-	 * The idle animation of the nudists.
-	 */
-	private Animation nudistIdleAnimation;
-	/**
-	 * The dying animation of the nudists.
-	 */
-	private Animation nudistDyingAnimation;
-	/**
-	 * The animation for the trains.
-	 */
-	private Animation trainAnimation;
+    /**
+     * The idle animation of the nudists.
+     */
+    private Animation nudistIdleAnimation;
+    /**
+     * The dying animation of the nudists.
+     */
+    private Animation nudistDyingAnimation;
+    /**
+     * The animation for the trains.
+     */
+    private Animation trainAnimation;
 
-	/**
-	 * The texture for the nudist idle animation.
-	 */
-	private Texture nudistIdleSheet;
-	/**
-	 * The texture for the nudist dying animation.
-	 */
-	private Texture nudistDyingSheet;
-	/**
-	 * The texture for the train animation.
-	 */
-	private Texture trainSheet;
+    /**
+     * The texture for the nudist idle animation.
+     */
+    private Texture nudistIdleSheet;
+    /**
+     * The texture for the nudist dying animation.
+     */
+    private Texture nudistDyingSheet;
+    /**
+     * The texture for the train animation.
+     */
+    private Texture trainSheet;
 
-	/**
-	 * The frames of the nudist idle animation.
-	 */
-	private TextureRegion[] nudistIdleFrames;
-	/**
-	 * The frames of the nudist dying animation.
-	 */
-	private TextureRegion[] nudistDyingFrames;
-	/**
-	 * The current frame of animation for the nudists.
-	 */
-	private TextureRegion nudistCurrentFrame;
-	/**
-	 * The frames of the train animation.
-	 */
-	private TextureRegion[] trainFrames;
-	/**
-	 * The current frame of the train animation.
-	 */
-	private TextureRegion trainCurrentFrame;
+    /**
+     * The frames of the nudist idle animation.
+     */
+    private TextureRegion[] nudistIdleFrames;
+    /**
+     * The frames of the nudist dying animation.
+     */
+    private TextureRegion[] nudistDyingFrames;
+    /**
+     * The current frame of animation for the nudists.
+     */
+    private TextureRegion nudistCurrentFrame;
+    /**
+     * The frames of the train animation.
+     */
+    private TextureRegion[] trainFrames;
+    /**
+     * The current frame of the train animation.
+     */
+    private TextureRegion trainCurrentFrame;
 
-	/**
-	 * A summation of the time between frames during the animation.
-	 */
-	float stateTime;
+    /**
+     * A summation of the time between frames during the animation.
+     */
+    float stateTime;
 
-	/**
-	 * The texture for the blocks.
-	 */
-	private Texture blockTexture;
+    /**
+     * The texture for the blocks.
+     */
+    private Texture blockTexture;
 
-	/**
-	 * Used for rendering sprites.
-	 */
-	private SpriteBatch spriteBatch;
-	/**
-	 * Whether or not debug information should be rendered.
-	 */
-	private boolean debug = false;
+    /**
+     * Used for rendering sprites.
+     */
+    private SpriteBatch spriteBatch;
+    /**
+     * Whether or not debug information should be rendered.
+     */
+    private boolean debug = false;
 
-	/**
-	 * The width of the screen in pixels.
-	 */
-	private int width;
-	/**
-	 * The height of the screen in pixels.
-	 */
-	private int height;
-	/**
-	 * Pixels per unit on the X axis
-	 */
-	private float ppuX;
-	/**
-	 * Pixels per unit on the Y axis
-	 */
-	private float ppuY;
-	/**
-	 * Text used for displaying score.
-	 */
-	private Text scoreText;
+    /**
+     * The width of the screen in pixels.
+     */
+    private int width;
+    /**
+     * The height of the screen in pixels.
+     */
+    private int height;
+    /**
+     * Pixels per unit on the X axis
+     */
+    private float ppuX;
+    /**
+     * Pixels per unit on the Y axis
+     */
+    private float ppuY;
+    /**
+     * Text used for displaying score.
+     */
+    private Text scoreText;
 
-	/**
-	 * Creates a new world renderer.
-	 *
-	 * @param world The world to be rendered.
-	 * @param debug Whether or not debug information should be rendered.
-	 */
-	public WorldRenderer(World world, boolean debug)
-	{
-		this.world = world;
-		this.camera = new OrthographicCamera(CAMERA_WIDTH, CAMERA_HEIGHT);
-		this.camera.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
-		this.camera.update();
-		this.debug = debug;
+    /**
+     * Creates a new world renderer.
+     *
+     * @param world The world to be rendered.
+     * @param debug Whether or not debug information should be rendered.
+     */
+    public WorldRenderer(World world, boolean debug)
+    {
+        this.world = world;
+        this.camera = new OrthographicCamera(CAMERA_WIDTH, CAMERA_HEIGHT);
+        this.camera.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
+        this.camera.update();
+        this.debug = debug;
         this.scoreText = new Text("fonts/arial/font.fnt", false, 4f, new Vector2(6.25f, 4.75f),
                 Integer.toString(world.getScore().getScore()));
-		
-		spriteBatch = new SpriteBatch();
-		
-		loadTextures();
-		initTextureRegions();
-		initAnimations();
 
-		stateTime = 0;
-	}
+        spriteBatch = new SpriteBatch();
 
-	/**
-	 * Loads the textures from files.
-	 */
-	private void loadTextures()
-	{
-		nudistIdleSheet = new Texture(Gdx.files.internal("images/nudist_idle_sheet.png"));
-		nudistDyingSheet = new Texture(Gdx.files.internal("images/nudist_dying_sheet.png"));
-		trainSheet = new Texture(Gdx.files.internal("images/train_sheet.png"));
-		blockTexture = new Texture(Gdx.files.internal("images/block.png"));
-	}
+        loadTextures();
+        initTextureRegions();
+        initAnimations();
 
-	/**
-	 * Sets up and populates the texture regions.
-	 */
-	private void initTextureRegions()
-	{
-		nudistIdleFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
-		nudistDyingFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
+        stateTime = 0;
+    }
 
-		trainFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
+    /**
+     * Loads the textures from files.
+     */
+    private void loadTextures()
+    {
+        nudistIdleSheet = new Texture(Gdx.files.internal("images/nudist_idle_sheet.png"));
+        nudistDyingSheet = new Texture(Gdx.files.internal("images/nudist_dying_sheet.png"));
+        trainSheet = new Texture(Gdx.files.internal("images/train_sheet.png"));
+        blockTexture = new Texture(Gdx.files.internal("images/block.png"));
+    }
 
-		{
-			TextureRegion[][] tmp = TextureRegion.split(nudistIdleSheet, nudistIdleSheet.getWidth() / FRAME_COLUMNS,
-					nudistIdleSheet.getHeight() / FRAME_ROWS);
+    /**
+     * Sets up and populates the texture regions.
+     */
+    private void initTextureRegions()
+    {
+        nudistIdleFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
+        nudistDyingFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
 
-			int index = 0;
-			for(int i = 0; i < FRAME_ROWS; i++)
-			{
-				for(int j = 0; j < FRAME_COLUMNS; j++)
-				{
-					nudistIdleFrames[index++] = tmp[i][j];
-				}
-			}
-		}
+        trainFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
 
-		{
-			TextureRegion[][] tmp = TextureRegion.split(nudistDyingSheet, nudistDyingSheet.getWidth() / FRAME_COLUMNS,
-					nudistDyingSheet.getHeight() / FRAME_ROWS);
+        {
+            TextureRegion[][] tmp = TextureRegion.split(nudistIdleSheet, nudistIdleSheet.getWidth() / FRAME_COLUMNS,
+                    nudistIdleSheet.getHeight() / FRAME_ROWS);
 
-			int index = 0;
-			for(int i = 0; i < FRAME_ROWS; i++)
-			{
-				for(int j = 0; j < FRAME_COLUMNS; j++)
-				{
-					nudistDyingFrames[index++] = tmp[i][j];
-				}
-			}
-		}
+            int index = 0;
+            for(int i = 0; i < FRAME_ROWS; i++)
+            {
+                for(int j = 0; j < FRAME_COLUMNS; j++)
+                {
+                    nudistIdleFrames[index++] = tmp[i][j];
+                }
+            }
+        }
 
-		{
-			TextureRegion[][] tmp = TextureRegion.split(trainSheet, trainSheet.getWidth() / FRAME_COLUMNS,
-					trainSheet.getHeight() / FRAME_ROWS);
+        {
+            TextureRegion[][] tmp = TextureRegion.split(nudistDyingSheet, nudistDyingSheet.getWidth() / FRAME_COLUMNS,
+                    nudistDyingSheet.getHeight() / FRAME_ROWS);
 
-			int index = 0;
-			for(int i = 0; i < FRAME_ROWS; i++)
-			{
-				for(int j = 0; j < FRAME_COLUMNS; j++)
-				{
-					trainFrames[index++] = tmp[i][j];
-				}
-			}
-		}
-	}
+            int index = 0;
+            for(int i = 0; i < FRAME_ROWS; i++)
+            {
+                for(int j = 0; j < FRAME_COLUMNS; j++)
+                {
+                    nudistDyingFrames[index++] = tmp[i][j];
+                }
+            }
+        }
 
-	/**
-	 * Sets up animations
-	 */
-	private void initAnimations()
-	{
-		nudistIdleAnimation = new Animation(0.25f, nudistIdleFrames);
-		nudistDyingAnimation = new Animation(0.25f, nudistDyingFrames);
+        {
+            TextureRegion[][] tmp = TextureRegion.split(trainSheet, trainSheet.getWidth() / FRAME_COLUMNS,
+                    trainSheet.getHeight() / FRAME_ROWS);
 
-		trainAnimation = new Animation(0.25f, trainFrames);
-	}
+            int index = 0;
+            for(int i = 0; i < FRAME_ROWS; i++)
+            {
+                for(int j = 0; j < FRAME_COLUMNS; j++)
+                {
+                    trainFrames[index++] = tmp[i][j];
+                }
+            }
+        }
+    }
 
-	/**
-	 * Renders things to be rendered on the screen.
-	 */
-	public void render(float delta)
-	{
-		stateTime += delta;
+    /**
+     * Sets up animations
+     */
+    private void initAnimations()
+    {
+        nudistIdleAnimation = new Animation(0.25f, nudistIdleFrames);
+        nudistDyingAnimation = new Animation(0.25f, nudistDyingFrames);
 
-		setCurrentFrames();
+        trainAnimation = new Animation(0.25f, trainFrames);
+    }
 
-		spriteBatch.begin();
-		drawBlocks();
-		drawTrains();
-		drawNudists();
-		drawScore();
-		spriteBatch.end();
+    /**
+     * Renders things to be rendered on the screen.
+     */
+    public void render(float delta)
+    {
+        stateTime += delta;
 
-		if(debug)
-		{
-			drawDebug();
-		}
-	}
+        setCurrentFrames();
 
-	/**
-	 * Sets the current frames for nudists and trains
-	 */
-	private void setCurrentFrames()
-	{
-		for(Nudist nudist : world.getNudists())
-		{
-			if(nudist.getState() == Nudist.State.IDLE)
-			{
-				nudistCurrentFrame = nudistIdleAnimation.getKeyFrame(stateTime, true);
-			}
-			else if(nudist.getState() == Nudist.State.DYING)
-			{
-				nudistCurrentFrame = nudistDyingAnimation.getKeyFrame(stateTime, true);
-			}
-		}
+        spriteBatch.begin();
+        drawBlocks();
+        drawTrains();
+        drawNudists();
+        drawScore();
+        spriteBatch.end();
 
-		trainCurrentFrame = trainAnimation.getKeyFrame(stateTime, true);
-	}
+        if(debug)
+        {
+            drawDebug();
+        }
+    }
 
-	/**
-	 * Draws blocks on the screen.
-	 */
-	private void drawBlocks()
-	{
-		for(Block block : world.getBlocks())
-		{
-			spriteBatch.draw(blockTexture, block.getPosition().x * ppuX, block.getPosition().y * ppuY,
-					Block.SIZE * ppuX, Block.SIZE * ppuY);
-		}
-	}
+    /**
+     * Sets the current frames for nudists and trains
+     */
+    private void setCurrentFrames()
+    {
+        for(Nudist nudist : world.getNudists())
+        {
+            if(nudist.getState() == Nudist.State.IDLE)
+            {
+                nudistCurrentFrame = nudistIdleAnimation.getKeyFrame(stateTime, true);
+            }
+            else if(nudist.getState() == Nudist.State.DYING)
+            {
+                nudistCurrentFrame = nudistDyingAnimation.getKeyFrame(stateTime, true);
+            }
+        }
+
+        trainCurrentFrame = trainAnimation.getKeyFrame(stateTime, true);
+    }
+
+    /**
+     * Draws blocks on the screen.
+     */
+    private void drawBlocks()
+    {
+        for(Block block : world.getBlocks())
+        {
+            spriteBatch.draw(blockTexture, block.getPosition().x * ppuX, block.getPosition().y * ppuY,
+                    Block.SIZE * ppuX, Block.SIZE * ppuY);
+        }
+    }
 
     /**
      * Draws trains on the screen.
@@ -299,17 +298,17 @@ public class WorldRenderer
         }
     }
 
-	/**
-	 * Draws nudists on the screen.
-	 */
-	private void drawNudists()
-	{
-		for(Nudist nudist : world.getNudists())
-		{
-			spriteBatch.draw(nudistCurrentFrame, nudist.getPosition().x * ppuX, nudist.getPosition().y * ppuY,
-					Nudist.SIZE * ppuX, Nudist.SIZE * ppuY);
-		}
-	}
+    /**
+     * Draws nudists on the screen.
+     */
+    private void drawNudists()
+    {
+        for(Nudist nudist : world.getNudists())
+        {
+            spriteBatch.draw(nudistCurrentFrame, nudist.getPosition().x * ppuX, nudist.getPosition().y * ppuY,
+                    Nudist.SIZE * ppuX, Nudist.SIZE * ppuY);
+        }
+    }
 
     /**
      * Draws the score on the screen.
@@ -320,61 +319,61 @@ public class WorldRenderer
         scoreText.render(spriteBatch, ppuX, ppuY);
     }
 
-	/**
-	 * Draws debug information on the screen.
-	 */
-	private void drawDebug()
-	{
-		debugRenderer.setProjectionMatrix(camera.combined);
-		debugRenderer.begin(ShapeRenderer.ShapeType.Rectangle);
+    /**
+     * Draws debug information on the screen.
+     */
+    private void drawDebug()
+    {
+        debugRenderer.setProjectionMatrix(camera.combined);
+        debugRenderer.begin(ShapeRenderer.ShapeType.Rectangle);
 
-		for(Block block : world.getBlocks())
-		{
-			Rectangle rect = block.getBounds();
+        for(Block block : world.getBlocks())
+        {
+            Rectangle rect = block.getBounds();
 
-			float x1 = block.getPosition().x + rect.x;
-			float y1 = block.getPosition().y + rect.y;
+            float x1 = block.getPosition().x + rect.x;
+            float y1 = block.getPosition().y + rect.y;
 
-			debugRenderer.setColor(new Color(1, 0, 0, 1));
-			debugRenderer.rect(x1, y1, rect.width, rect.height);
-		}
+            debugRenderer.setColor(new Color(1, 0, 0, 1));
+            debugRenderer.rect(x1, y1, rect.width, rect.height);
+        }
 
-		for(Train train : world.getTrains())
-		{
-			Rectangle rect = train.getBounds();
+        for(Train train : world.getTrains())
+        {
+            Rectangle rect = train.getBounds();
 
-			float x1 = rect.x;
-			float y1 = rect.y;
+            float x1 = rect.x;
+            float y1 = rect.y;
 
-			debugRenderer.setColor(new Color(0, 1, 1, 0));
-			debugRenderer.rect(x1, y1, rect.width, rect.height);
-		}
+            debugRenderer.setColor(new Color(0, 1, 1, 0));
+            debugRenderer.rect(x1, y1, rect.width, rect.height);
+        }
 
-		for(Nudist nudist : world.getNudists())
-		{
-			Rectangle rect = nudist.getBounds();
+        for(Nudist nudist : world.getNudists())
+        {
+            Rectangle rect = nudist.getBounds();
 
-			float x1 = rect.x;
-			float y1 = rect.y;
+            float x1 = rect.x;
+            float y1 = rect.y;
 
-			debugRenderer.setColor(new Color(0, 1, 0, 1));
-			debugRenderer.rect(x1, y1, rect.width, rect.height);
-		}
+            debugRenderer.setColor(new Color(0, 1, 0, 1));
+            debugRenderer.rect(x1, y1, rect.width, rect.height);
+        }
 
-		debugRenderer.end();
-	}
+        debugRenderer.end();
+    }
 
-	/**
-	 * Sets the size of the window in pixels.
-	 *
-	 * @param width The width of the window in pixels.
-	 * @param height The height of the window in pixels.
-	 */
-	public void setSize(int width, int height)
-	{
-		this.width = width;
-		this.height = height;
-		ppuX = (float)width / CAMERA_WIDTH;
-		ppuY = (float)height / CAMERA_HEIGHT;
-	}
+    /**
+     * Sets the size of the window in pixels.
+     *
+     * @param width  The width of the window in pixels.
+     * @param height The height of the window in pixels.
+     */
+    public void setSize(int width, int height)
+    {
+        this.width = width;
+        this.height = height;
+        ppuX = (float) width / CAMERA_WIDTH;
+        ppuY = (float) height / CAMERA_HEIGHT;
+    }
 }

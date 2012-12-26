@@ -28,7 +28,7 @@ public class Text
     /**
      * Creates a new Text object.
      *
-     * @param ref The location of the .fnt file to use.
+     * @param ref  The location of the .fnt file to use.
      * @param flip Whether or not the text should be flipped.
      */
     public Text(String ref, boolean flip)
@@ -39,7 +39,7 @@ public class Text
     /**
      * Creates a new Text object.
      *
-     * @param ref The location of the .fnt file to use.
+     * @param ref  The location of the .fnt file to use.
      * @param flip Whether or not the text should be flipped.
      * @param text The text to be displayed.
      */
@@ -53,7 +53,7 @@ public class Text
     /**
      * Creates a new Text object.
      *
-     * @param ref The location of the .fnt file to use.
+     * @param ref      The location of the .fnt file to use.
      * @param position The position of the text.
      */
     public Text(String ref, boolean flip, Vector2 position)
@@ -64,10 +64,10 @@ public class Text
     /**
      * Creates a new Text object.
      *
-     * @param ref The location of the .fnt file to use.
-     * @param flip Whether or not the text should be flipped.
+     * @param ref      The location of the .fnt file to use.
+     * @param flip     Whether or not the text should be flipped.
      * @param position The position of the text.
-     * @param text The text to be displayed.
+     * @param text     The text to be displayed.
      */
     public Text(String ref, boolean flip, float scale, Vector2 position, String text)
     {
@@ -82,8 +82,8 @@ public class Text
      * Draws the text on the screen.
      *
      * @param spriteBatch The spritebatch to use for drawing.
-     * @param ppuX Pixels per unit on the x axis.
-     * @param ppuY Pixels per unit on the y axis.
+     * @param ppuX        Pixels per unit on the x axis.
+     * @param ppuY        Pixels per unit on the y axis.
      */
     public void render(SpriteBatch spriteBatch, float ppuX, float ppuY)
     {

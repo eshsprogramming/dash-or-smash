@@ -2,7 +2,6 @@ package com.eshsprogramming.nudistrailroadexhibition.model;
 
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
-import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
 
 /**
  * @author Zachary Latta

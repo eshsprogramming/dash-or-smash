@@ -129,8 +129,8 @@ public class MainMenuScreen implements Screen, InputProcessor
         float touchX = screenX;
         float touchY = height - screenY;
 
-        float x = (touchX/width) * WorldRenderer.CAMERA_WIDTH;
-        float y = (touchY/height) * WorldRenderer.CAMERA_HEIGHT;
+        float x = (touchX / width) * WorldRenderer.CAMERA_WIDTH;
+        float y = (touchY / height) * WorldRenderer.CAMERA_HEIGHT;
 
         controller.setTouchPosition(new Vector2(x, y));
 

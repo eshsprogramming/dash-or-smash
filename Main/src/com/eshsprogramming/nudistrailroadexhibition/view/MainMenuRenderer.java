@@ -1,9 +1,7 @@
 package com.eshsprogramming.nudistrailroadexhibition.view;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.model.MainMenu;
-import com.eshsprogramming.nudistrailroadexhibition.model.Text;
 
 /**
  * Renders the main menu.
@@ -81,14 +79,14 @@ public class MainMenuRenderer
     /**
      * Sets the size of the window in pixels.
      *
-     * @param width The width of the window in pixels.
+     * @param width  The width of the window in pixels.
      * @param height The height of the window in pixels.
      */
     public void setSize(int width, int height)
     {
         this.width = width;
         this.height = height;
-        ppuX = (float)width / CAMERA_WIDTH;
-        ppuY = (float)height / CAMERA_HEIGHT;
+        ppuX = (float) width / CAMERA_WIDTH;
+        ppuY = (float) height / CAMERA_HEIGHT;
     }
 }
