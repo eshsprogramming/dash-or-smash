@@ -33,7 +33,7 @@ public class Score
      */
     public void increment(int nudistCount)
     {
-        score += Score.SCORE_COEFF + 3 * (nudistCount - 1);
+        score += Score.SCORE_COEFF + 7 * (nudistCount - 1);
     }
 
     /**
