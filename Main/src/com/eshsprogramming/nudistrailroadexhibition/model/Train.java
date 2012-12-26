@@ -21,11 +21,11 @@ public class Train
     /**
      * The train's width in units
      */
-    public static final float SIZEX = 0.5f;
+    public static final float SIZEX = 0.7f;
     /**
      * The trains's height in units
      */
-    public static final float SIZEY = 1f;
+    public static final float SIZEY = 1.4f;
     /**
      * The location of the train on the relative cartesian coordinate plane.
      */
