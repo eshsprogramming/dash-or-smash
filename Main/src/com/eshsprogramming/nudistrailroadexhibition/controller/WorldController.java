@@ -206,8 +206,14 @@ public class WorldController
      * Spawns a new nudist into the world.
      */
     private void spawnNudist()
-    {
-        nudists.add(new Nudist(new Vector2(nudists.first().getPosition().x +
-                Nudist.SIZEX, nudists.first().getPosition().y)));
+    {   Nudist temp = new Nudist(new Vector2(nudists.first().getPosition().x +
+			Nudist.SIZEX, nudists.first().getPosition().y));
+		if(temp.getPosition().x < 0 || temp.getPosition().x > WorldRenderer.CAMERA_WIDTH - Nudist.SIZEX)
+		{
+			temp.getPosition().x = (temp.getPosition().x > 0 )?temp.getPosition().x:0;
+			temp.getPosition().x = (temp.getPosition().x < WorldRenderer.CAMERA_WIDTH - Nudist.SIZEX)
+					?temp.getPosition().x:WorldRenderer.CAMERA_WIDTH - Nudist.SIZEX;
+		}
+        nudists.add(temp);
     }
 }
