@@ -28,14 +28,14 @@ public class Score
     /**
      * Increments the score by the points for each train
      */
-    public void increment(int number)
+    public void increment(int nudistCount)
     {
-        score += Score.SCORE_COEFF * number;
+        score += Score.SCORE_COEFF + 3 * (nudistCount - 1);
     }
 
     public void nudistDeath()
     {
-        score += Score.DEATH_COEFF;
+        score += (Score.DEATH_COEFF);
     }
 
 }
