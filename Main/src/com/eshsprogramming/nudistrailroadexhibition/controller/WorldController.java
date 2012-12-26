@@ -118,7 +118,7 @@ public class WorldController
             if(train.getPosition().y + Train.SIZEY < 0)
             {
                 trains.removeValue(train, true);
-                score.increment();
+                score.increment(nudists.size);
             }
         }
 
@@ -144,6 +144,7 @@ public class WorldController
                     nudists.removeIndex(index2);
                     touchPosition = nudists.get(0).getPosition();
                     respawnCounter = 0;
+					score.nudistDeath();
                     if(index2 == 0)
                         selected = false;
                 }
