@@ -118,6 +118,9 @@ public class WorldController
         float temp = (touchPosition.x - nudists.get(0).getPosition().x) * 1f;
         temp = (selected) ? temp : 0;
         temp = (-1f < temp && temp < 1f) ? temp : 0;
+		temp = (touchPosition.x > 0)? temp : 0;
+		temp = (touchPosition.x < WorldRenderer.CAMERA_WIDTH - Nudist.SIZEX)?
+				temp:WorldRenderer.CAMERA_WIDTH - Nudist.SIZEX- nudists.get(0).getPosition().x;
         nudists.get(0).getPosition().x += temp;
 		}catch(Exception e){
 		game.setScreen(game.gameOverScreen);
