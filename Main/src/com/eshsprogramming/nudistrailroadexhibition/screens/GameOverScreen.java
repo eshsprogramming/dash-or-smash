@@ -44,6 +44,7 @@ public class GameOverScreen implements Screen, InputProcessor
 	{
 		this.game = game;
 	}
+	//todo-zach make the game over screen actually work (I cant seem to get text to display)
 	public void render(float delta)
 	{
 		Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
