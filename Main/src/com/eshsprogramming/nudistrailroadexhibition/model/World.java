@@ -44,7 +44,7 @@ public class World
         // Adds nudists to the array of them
         for(int index = 0; index < 1; index++)
         {
-            nudists.add(new Nudist(new Vector2((int)(Math.random() * 6), 0)));
+            nudists.add(new Nudist(new Vector2((int) (Math.random() * 6), 0)));
         }
 
         // Adds blocks to the world
