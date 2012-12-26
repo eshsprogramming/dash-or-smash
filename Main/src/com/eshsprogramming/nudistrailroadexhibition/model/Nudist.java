@@ -21,11 +21,11 @@ public class Nudist
     /**
      * The nudist's width in units
      */
-    public static final float SIZEX = 0.33f;
+    public static final float SIZEX = 0.4f;
     /**
      * The nudist's height in units
      */
-    public static final float SIZEY = 0.5f;
+    public static final float SIZEY = 0.6f;
 
     /**
      * The nudist's position on the x and y plane.
