@@ -23,6 +23,10 @@ public class WorldController
      * Used to count how long since the player hit a train
      */
     private float respawnCounter = 0;
+	/**
+	 * timer
+	 */
+	private float timer=0;
     /**
      * Used to tell if player selected a nudist
      */
@@ -74,6 +78,7 @@ public class WorldController
     {
         processInput();
         respawnCounter += delta;
+		timer+=delta;
 
         // Calls update methods of nudists
         for(Nudist nudist : nudists)
@@ -125,7 +130,7 @@ public class WorldController
         while(trains.size < Train.NUMBER_OF_TRAINS)
         {
             trains.add(new Train(new Vector2(MathUtils.random(0f, WorldRenderer.CAMERA_WIDTH - Train.SIZEX),
-                    MathUtils.random(5f, 10f)), MathUtils.random(-0.8f, -3f)));
+                    MathUtils.random(5f, 10f)), MathUtils.random( -2.2f)*timer*.01f-.8f));
         }
     }
 
