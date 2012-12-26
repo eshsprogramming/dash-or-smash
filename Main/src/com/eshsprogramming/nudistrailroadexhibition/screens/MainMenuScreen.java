@@ -69,7 +69,10 @@ public class MainMenuScreen implements Screen, InputProcessor
     @Override
     public void show()
     {
-        mainMenu = new MainMenu();
+        this.width = Gdx.graphics.getWidth();
+        this.height = Gdx.graphics.getHeight();
+
+        mainMenu = new MainMenu(this);
         renderer = new MainMenuRenderer(mainMenu);
         controller = new MainMenuController(mainMenu, this);
 

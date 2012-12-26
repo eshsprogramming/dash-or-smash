@@ -1,6 +1,8 @@
 package com.eshsprogramming.nudistrailroadexhibition.model;
 
 import com.badlogic.gdx.math.Vector2;
+import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
+import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
 
 /**
  * @author Zachary Latta
@@ -8,22 +10,27 @@ import com.badlogic.gdx.math.Vector2;
 public class MainMenu
 {
     /**
+     * The main menu screen. Used for relative sizing of text.
+     */
+    MainMenuScreen mainMenuScreen = null;
+    /**
      * The title text.
      */
-    Text titleText;
+    Text titleText = null;
     /**
      * The play text.
      */
-    Text playText;
+    Text playText = null;
 
     /**
      * Creates a new main menu
      */
-    public MainMenu()
+    public MainMenu(MainMenuScreen mainMenuScreen)
     {
-        // todo-zach Make size of text relative
-        titleText = new Text("fonts/arial/font.fnt", false, 5f, new Vector2(1, 4.5f), "Nudist Railroad Exhibition");
-        playText = new Text("fonts/arial/font.fnt", false, 3f, new Vector2(1, 3), "Play");
+        this.mainMenuScreen = mainMenuScreen;
+
+        titleText = new Text("fonts/arial/font.fnt", false, mainMenuScreen.getWidth() * 0.0035f, new Vector2(1, 4.5f), "Nudist Railroad Exhibition");
+        playText = new Text("fonts/arial/font.fnt", false, mainMenuScreen.getWidth() * 0.003f, new Vector2(1, 3), "Play");
     }
 
     /**
