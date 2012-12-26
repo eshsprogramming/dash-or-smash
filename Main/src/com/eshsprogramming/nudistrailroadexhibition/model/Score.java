@@ -9,6 +9,9 @@ public class Score
      * The score coefficient. The amount used to increment the score.
      */
     public static final int SCORE_COEFF = 10;
+    /**
+     * The death coefficient. The amount subtracted on nudist death.
+     */
     public static final int DEATH_COEFF = -100;
     /**
      * The current score.
@@ -33,9 +36,11 @@ public class Score
         score += Score.SCORE_COEFF + 3 * (nudistCount - 1);
     }
 
+    /**
+     * Should be called when a nudist dies. Adds the death coefficient to the score.
+     */
     public void nudistDeath()
     {
         score += (Score.DEATH_COEFF);
     }
-
 }
