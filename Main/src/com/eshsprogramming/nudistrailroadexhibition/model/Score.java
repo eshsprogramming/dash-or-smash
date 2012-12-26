@@ -9,6 +9,7 @@ public class Score
      * The score coefficient. The amount used to increment the score.
      */
     public static final int SCORE_COEFF = 10;
+	public static final int DEATH_COEFF = -30;
     /**
      * The current score.
      */
@@ -27,9 +28,13 @@ public class Score
     /**
      * Increments the score by the points for each train
      */
-    public void increment()
+    public void increment(int number)
     {
-        score += Score.SCORE_COEFF;
+        score += Score.SCORE_COEFF*number;
     }
+	public void nudistDeath()
+	{
+		score += Score.DEATH_COEFF;
+	}
 
 }

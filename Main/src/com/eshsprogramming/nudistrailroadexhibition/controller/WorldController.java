@@ -118,7 +118,7 @@ public class WorldController
             if(train.getPosition().y + Train.SIZEY < 0)
             {
                 trains.removeValue(train, true);
-                score.increment();
+                score.increment(nudists.size);
             }
         }
 
