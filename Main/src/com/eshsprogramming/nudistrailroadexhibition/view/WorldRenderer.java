@@ -226,7 +226,7 @@ public class WorldRenderer
      */
     private void initAnimations()
     {
-        nudistIdleAnimation = new Animation(0.25f, nudistIdleFrames);
+        nudistIdleAnimation = new Animation(0.5f, nudistIdleFrames);
         nudistDyingAnimation = new Animation(0.25f, nudistDyingFrames);
 
         trainAnimation = new Animation(0.25f, trainFrames);
@@ -306,7 +306,7 @@ public class WorldRenderer
         for(Nudist nudist : world.getNudists())
         {
             spriteBatch.draw(nudistCurrentFrame, nudist.getPosition().x * ppuX, nudist.getPosition().y * ppuY,
-                    Nudist.SIZE * ppuX, Nudist.SIZE * ppuY);
+                    Nudist.SIZEX * ppuX, Nudist.SIZEY * ppuY);
         }
     }
 
