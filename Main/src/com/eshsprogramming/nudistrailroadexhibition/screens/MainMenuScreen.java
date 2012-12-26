@@ -58,6 +58,7 @@ public class MainMenuScreen implements Screen, InputProcessor
     }
 
     @Override
+    // todo-ben Fix resizing issue with main menu screen
     public void resize(int width, int height)
     {
         renderer.setSize(width, height);

@@ -79,6 +79,7 @@ public class GameScreen implements Screen, InputProcessor
 	 * @param height The new height of the screen in pixels.
 	 */
 	@Override
+    // todo-ben Fix resizing issues for the game screen
 	public void resize(int width, int height)
 	{
 		renderer.setSize(width, height);

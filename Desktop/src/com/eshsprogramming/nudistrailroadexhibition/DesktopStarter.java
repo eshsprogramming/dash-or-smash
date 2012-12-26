@@ -10,6 +10,6 @@ public class DesktopStarter
 {
 	public static void main(String[] args)
 	{
-		new LwjglApplication(new NudistRailroadExhibition(), "Nudist Railroad Exhibition", 1280, 800, true);
+		new LwjglApplication(new NudistRailroadExhibition(), "Nudist Railroad Exhibition", 128, 80, true);
 	}
 }
