@@ -7,24 +7,27 @@ import com.eshsprogramming.nudistrailroadexhibition.view.GameOverRenderer;
 import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
 
 /**
- * controls the gameover screen
+ * Controller for the game over screen. Handles input and potentially other changes that occur.
  *
  * @author Benjamin Landers
  */
 public class GameOverController extends Controller
 {
-	/**
-	 *
-	 * @param game a ref to the main game class
-	 */
+    /**
+     * Creates a new GameOverController.
+     *
+     * @param game A reference to the actual Game instance
+     */
     public GameOverController(NudistRailroadExhibition game)
     {
-       super(game);
+        super(game);
         setTouchPosition(new Vector2(0, 0)); // to avoid a null pointer exception
     }
 
     /**
-     * @param delta time in milisecs
+     * The main update method. Called each frame.
+     *
+     * @param delta time in milliseconds between frames.
      */
     public void update(float delta)
     {
@@ -40,6 +43,7 @@ public class GameOverController extends Controller
             getGame().setScreen(getGame().gameScreen);
         }
     }
+
     /**
      * Returns whether or not the text is touched.
      *

@@ -30,7 +30,7 @@ public class MainMenuController extends Controller
      */
     public MainMenuController(MainMenuWorld mainMenuWorld, MainMenuScreen mainMenuScreen, NudistRailroadExhibition game)
     {
-		super(game);
+        super(game);
         this.mainMenuWorld = mainMenuWorld;
         this.mainMenuScreen = mainMenuScreen;
 
@@ -50,6 +50,7 @@ public class MainMenuController extends Controller
             getGame().setScreen(getGame().gameScreen);
         }
     }
+
     /**
      * Returns whether or not the text is touched.
      *

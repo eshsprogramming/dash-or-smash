@@ -61,7 +61,7 @@ public class WorldController extends Controller
      */
     public WorldController(GameWorld gameWorld, NudistRailroadExhibition game)
     {
-		super(game);
+        super(game);
         this.gameWorld = gameWorld;
         this.nudists = gameWorld.getNudists();
         this.trains = gameWorld.getTrains();
@@ -118,7 +118,7 @@ public class WorldController extends Controller
         } catch(Exception e)
         {
             getGame().gameOverScreen.setScore(this.gameWorld.getScore().getScore());
-			getGame().setScreen( getGame().gameOverScreen);
+            getGame().setScreen(getGame().gameOverScreen);
         }
     }
 
@@ -228,5 +228,4 @@ public class WorldController extends Controller
         }
         return false;
     }
-
 }
