@@ -1,4 +1,4 @@
-package com.eshsprogramming.nudistrailroadexhibition.model;
+package com.eshsprogramming.nudistrailroadexhibition.model.gui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

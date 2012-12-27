@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
-import com.eshsprogramming.nudistrailroadexhibition.model.Score;
+import com.eshsprogramming.nudistrailroadexhibition.model.gui.Score;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.NudistEntity;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.TrainEntity;
 import com.eshsprogramming.nudistrailroadexhibition.model.world.GameWorld;

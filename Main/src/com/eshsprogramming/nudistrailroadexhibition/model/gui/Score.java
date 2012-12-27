@@ -1,4 +1,4 @@
-package com.eshsprogramming.nudistrailroadexhibition.model;
+package com.eshsprogramming.nudistrailroadexhibition.model.gui;
 
 /**
  * @author Zachary Latta

@@ -2,7 +2,7 @@ package com.eshsprogramming.nudistrailroadexhibition.controller;
 
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
-import com.eshsprogramming.nudistrailroadexhibition.model.Text;
+import com.eshsprogramming.nudistrailroadexhibition.model.gui.Text;
 import com.eshsprogramming.nudistrailroadexhibition.model.world.MainMenuWorld;
 import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
 import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;

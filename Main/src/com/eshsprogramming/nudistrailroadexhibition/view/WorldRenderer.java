@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.eshsprogramming.nudistrailroadexhibition.model.Text;
+import com.eshsprogramming.nudistrailroadexhibition.model.gui.Text;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.BlockEntity;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.NudistEntity;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.TrainEntity;

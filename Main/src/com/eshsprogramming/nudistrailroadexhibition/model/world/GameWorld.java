@@ -2,7 +2,7 @@ package com.eshsprogramming.nudistrailroadexhibition.model.world;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.eshsprogramming.nudistrailroadexhibition.model.Score;
+import com.eshsprogramming.nudistrailroadexhibition.model.gui.Score;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.BlockEntity;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.NudistEntity;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.TrainEntity;
