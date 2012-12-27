@@ -21,7 +21,7 @@ import com.eshsprogramming.nudistrailroadexhibition.model.world.GameWorld;
  *
  * @author Zachary Latta
  */
-public class WorldRenderer
+public class WorldRenderer extends Renderer
 {
     /**
      * The width of the gameWorld in relative units.
@@ -120,23 +120,6 @@ public class WorldRenderer
      * Whether or not debug information should be rendered.
      */
     private boolean debug = false;
-
-    /**
-     * The width of the gameWorld in pixels.
-     */
-    private int width;
-    /**
-     * The height of the gameWorld in pixels.
-     */
-    private int height;
-    /**
-     * Pixels per unit on the X axis
-     */
-    private float ppuX;
-    /**
-     * Pixels per unit on the Y axis
-     */
-    private float ppuY;
     /**
      * Text used for displaying score.
      */
@@ -290,8 +273,8 @@ public class WorldRenderer
     {
         for(BlockEntity blockEntity : gameWorld.getBlocks())
         {
-            spriteBatch.draw(blockTexture, blockEntity.getPosition().x * ppuX, blockEntity.getPosition().y * ppuY,
-                    BlockEntity.SIZE * ppuX, BlockEntity.SIZE * ppuY);
+            spriteBatch.draw(blockTexture, blockEntity.getPosition().x * getPPuX(), blockEntity.getPosition().y * getPPuY(),
+                    BlockEntity.SIZE * getPPuX(), BlockEntity.SIZE * getPPuY());
         }
     }
 
@@ -302,8 +285,8 @@ public class WorldRenderer
     {
         for(TrainEntity trainEntity : gameWorld.getTrains())
         {
-            spriteBatch.draw(trainCurrentFrame, trainEntity.getPosition().x * ppuX, trainEntity.getPosition().y * ppuY,
-                    TrainEntity.SIZEX * ppuX, TrainEntity.SIZEY * ppuY);
+            spriteBatch.draw(trainCurrentFrame, trainEntity.getPosition().x * getPPuX(), trainEntity.getPosition().y * getPPuY(),
+                    TrainEntity.SIZEX * getPPuX(), TrainEntity.SIZEY * getPPuY());
         }
     }
 
@@ -314,8 +297,8 @@ public class WorldRenderer
     {
         for(NudistEntity nudistEntity : gameWorld.getNudists())
         {
-            spriteBatch.draw(nudistCurrentFrame, nudistEntity.getPosition().x * ppuX, nudistEntity.getPosition().y * ppuY,
-                    NudistEntity.SIZEX * ppuX, NudistEntity.SIZEY * ppuY);
+            spriteBatch.draw(nudistCurrentFrame, nudistEntity.getPosition().x * getPPuX(), nudistEntity.getPosition().y * getPPuY(),
+                    NudistEntity.SIZEX * getPPuX(), NudistEntity.SIZEY * getPPuY());
         }
     }
 
@@ -325,7 +308,7 @@ public class WorldRenderer
     private void drawScore()
     {
         scoreText.setText(Integer.toString(gameWorld.getScore().getScore()));
-        scoreText.render(spriteBatch, ppuX, ppuY);
+        scoreText.render(spriteBatch, getPPuX(), getPPuY());
     }
 
     /**
@@ -370,19 +353,5 @@ public class WorldRenderer
         }
 
         debugRenderer.end();
-    }
-
-    /**
-     * Sets the size of the window in pixels.
-     *
-     * @param width  The width of the window in pixels.
-     * @param height The height of the window in pixels.
-     */
-    public void setSize(int width, int height)
-    {
-        this.width = width;
-        this.height = height;
-        ppuX = (float) width / CAMERA_WIDTH;
-        ppuY = (float) height / CAMERA_HEIGHT;
     }
 }

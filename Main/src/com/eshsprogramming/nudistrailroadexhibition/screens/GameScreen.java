@@ -17,22 +17,13 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
  *
  * @author Zachary Latta, Benjamin Landers
  */
-public class GameScreen implements Screen, InputProcessor
+public class GameScreen extends BaseScreen
 {
-    /**
-     * The game instance. Used for switching screens.
-     */
-    private NudistRailroadExhibition game;
-
     /**
      * The game's world.
      */
     private GameWorld gameWorld;
-    /**
-     * The game's renderer.
-     */
-    private WorldRenderer renderer;
-    /**
+	/**
      * The game's controller.
      */
     private WorldController controller;
@@ -42,18 +33,9 @@ public class GameScreen implements Screen, InputProcessor
      */
     private Music music;
 
-    /**
-     * The width of the gameWorld in pixels.
-     */
-    private float width;
-    /**
-     * The height of the gameWorld in pixels.
-     */
-    private float height;
-
     public GameScreen(NudistRailroadExhibition game)
     {
-        this.game = game;
+        super(game);
     }
 
     /**
@@ -64,26 +46,8 @@ public class GameScreen implements Screen, InputProcessor
     @Override
     public void render(float delta)
     {
-        Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
-        Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);
-
-        renderer.render(delta);
+        super.render(delta);
         controller.update(delta);
-    }
-
-    /**
-     * Called when the window is resized. Changes the width and size of the game.
-     *
-     * @param width  The new width of the gameWorld in pixels.
-     * @param height The new height of the gameWorld in pixels.
-     */
-    @Override
-    // todo-ben Fix resizing issues for the game gameWorld
-    public void resize(int width, int height)
-    {
-        renderer.setSize(width, height);
-        this.width = width;
-        this.height = height;
     }
 
     /**
@@ -92,18 +56,15 @@ public class GameScreen implements Screen, InputProcessor
     @Override
     public void show()
     {
-		this.width = Gdx.graphics.getWidth();
-		this.height = Gdx.graphics.getHeight();
-        gameWorld = new GameWorld(game);
+		super.show();
+        gameWorld = new GameWorld(getGame());
         renderer = new WorldRenderer(gameWorld, false);
-        controller = new WorldController(gameWorld, game);
+        controller = new WorldController(gameWorld, getGame());
         music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
 
         music.setLooping(true);
         music.setVolume(0.7f);
         music.play();
-
-        Gdx.input.setInputProcessor(this);
     }
 
     /**
@@ -115,17 +76,7 @@ public class GameScreen implements Screen, InputProcessor
         music.setLooping(false);
         music.stop();
 
-        Gdx.input.setInputProcessor(null);
-    }
-
-    @Override
-    public void pause()
-    {
-    }
-
-    @Override
-    public void resume()
-    {
+       super.hide();
     }
 
     @Override
@@ -134,39 +85,20 @@ public class GameScreen implements Screen, InputProcessor
         music.setLooping(false);
         music.stop();
 
-        Gdx.input.setInputProcessor(null);
+        super.dispose();
     }
 
     ////////////////////////////////
     //   InputProcessor Methods   //
     ////////////////////////////////
-
-    @Override
-    public boolean keyDown(int keycode)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean keyUp(int keycode)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean keyTyped(char character)
-    {
-        return false;
-    }
-
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button)
     {
         float touchX = screenX;
-        float touchY = height - screenY;
+        float touchY = getHeight() - screenY;
 
-        float x = (touchX / width) * WorldRenderer.CAMERA_WIDTH;
-        float y = (touchY / height) * WorldRenderer.CAMERA_HEIGHT;
+        float x = (touchX / getWidth()) * WorldRenderer.CAMERA_WIDTH;
+        float y = (touchY / getHeight()) * WorldRenderer.CAMERA_HEIGHT;
 
         for(int index = 0; index < gameWorld.getNudists().size; index++)
         {
@@ -203,44 +135,13 @@ public class GameScreen implements Screen, InputProcessor
     public boolean touchDragged(int screenX, int screenY, int pointer)
     {
         float touchX = screenX;
-        float touchY = height - screenY;
+        float touchY = getHeight() - screenY;
 
-        float x = (touchX / width) * WorldRenderer.CAMERA_WIDTH;
-        float y = (touchY / height) * WorldRenderer.CAMERA_HEIGHT;
+        float x = (touchX / getWidth()) * WorldRenderer.CAMERA_WIDTH;
+        float y = (touchY / getHeight()) * WorldRenderer.CAMERA_HEIGHT;
 
         controller.setTouchPosition(new Vector2(x - NudistEntity.SIZEX / 2, y));
 
         return true;
     }
-
-    @Override
-    public boolean mouseMoved(int screenX, int screenY)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean scrolled(int amount)
-    {
-        return false;
-    }
-	/**
-	 * Returns the width in pixels of the world.
-	 *
-	 * @return The width in pixels of the world.
-	 */
-	public float getWidth()
-	{
-		return width;
-	}
-
-	/**
-	 * Returns the height in pixels of the world.
-	 *
-	 * @return The height in pixels of the world.
-	 */
-	public float getHeight()
-	{
-		return height;
-	}
 }
