@@ -76,6 +76,7 @@ public class GameOverRenderer extends Renderer
     {
         gameOverWorld.getMessageText().render(spriteBatch, getPPuX(), getPPuY());
         gameOverWorld.getScoreText().render(spriteBatch, getPPuX(), getPPuY());
+		gameOverWorld.getReturnText().render(spriteBatch, getPPuX(), getPPuY());
     }
 
     /**
@@ -85,4 +86,8 @@ public class GameOverRenderer extends Renderer
     {
         blockTexture = new Texture(Gdx.files.internal("images/block.png"));
     }
+	public GameOverWorld getWorld()
+	{
+		return gameOverWorld;
+	}
 }

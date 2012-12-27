@@ -166,4 +166,8 @@ public class BaseScreen implements Screen, InputProcessor
 	{
 		return game;
 	}
+	public Renderer getRenderer()
+	{
+		return renderer;
+	}
 }

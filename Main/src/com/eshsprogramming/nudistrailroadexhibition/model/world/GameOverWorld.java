@@ -24,6 +24,10 @@ public class GameOverWorld
      * The play text.
      */
     Text scoreText = null;
+	/**
+	 * text to return
+	 */
+	Text returnText = null;
     /**
      * An array of the blocks which make up the background.
      */
@@ -40,6 +44,8 @@ public class GameOverWorld
                 new Vector2(1f, 4.5f), "Your score was ...");
         scoreText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f, new Vector2(5f, 4.5f),
                 "" + score);
+		returnText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f,
+				new Vector2(3f, 2.5f), "Return to MainMenu");
 
         fillBlockArray();
     }
@@ -87,4 +93,11 @@ public class GameOverWorld
     {
         return scoreText;
     }
+	/**
+	 *
+	 */
+	public Text getReturnText()
+	{
+	   return returnText;
+	}
 }
