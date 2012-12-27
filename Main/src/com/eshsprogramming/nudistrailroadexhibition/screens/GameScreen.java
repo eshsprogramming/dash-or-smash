@@ -1,10 +1,7 @@
 package com.eshsprogramming.nudistrailroadexhibition.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 import com.eshsprogramming.nudistrailroadexhibition.controller.WorldController;
@@ -23,7 +20,7 @@ public class GameScreen extends BaseScreen
      * The game's world.
      */
     private GameWorld gameWorld;
-	/**
+    /**
      * The game's controller.
      */
     private WorldController controller;
@@ -56,7 +53,7 @@ public class GameScreen extends BaseScreen
     @Override
     public void show()
     {
-		super.show();
+        super.show();
         gameWorld = new GameWorld(getGame());
         renderer = new WorldRenderer(gameWorld, false);
         controller = new WorldController(gameWorld, getGame());
@@ -76,7 +73,7 @@ public class GameScreen extends BaseScreen
         music.setLooping(false);
         music.stop();
 
-       super.hide();
+        super.hide();
     }
 
     @Override

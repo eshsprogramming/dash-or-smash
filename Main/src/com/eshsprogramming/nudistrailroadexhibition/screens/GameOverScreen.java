@@ -1,9 +1,5 @@
 package com.eshsprogramming.nudistrailroadexhibition.screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 import com.eshsprogramming.nudistrailroadexhibition.controller.GameOverController;
@@ -21,7 +17,8 @@ public class GameOverScreen extends BaseScreen
      * the score as an integer
      */
     private int score = 0;
-	GameOverController controller = null;
+    GameOverController controller = null;
+
     /**
      * the publicly accesable constructor
      *
@@ -30,29 +27,31 @@ public class GameOverScreen extends BaseScreen
     public GameOverScreen(NudistRailroadExhibition game)
     {
         super(game);
-		controller = new GameOverController(game);
+        controller = new GameOverController(game);
     }
-	public boolean touchDown(int screenX, int screenY, int pointer, int button)
-	{
-		float touchX = screenX;
-		float touchY = getHeight() - screenY;
 
-		float x = (touchX / getWidth()) * WorldRenderer.CAMERA_WIDTH;
-		float y = (touchY / getHeight()) * WorldRenderer.CAMERA_HEIGHT;
+    public boolean touchDown(int screenX, int screenY, int pointer, int button)
+    {
+        float touchX = screenX;
+        float touchY = getHeight() - screenY;
 
-		controller.setTouchPosition(new Vector2(x, y));
+        float x = (touchX / getWidth()) * WorldRenderer.CAMERA_WIDTH;
+        float y = (touchY / getHeight()) * WorldRenderer.CAMERA_HEIGHT;
 
-		return true;
-	}
+        controller.setTouchPosition(new Vector2(x, y));
+
+        return true;
+    }
+
     public void render(float delta)
     {
         super.render(delta);
-        controller.update(delta,getGame());
+        controller.update(delta, getGame());
     }
 
     public void resize(int width, int height)
     {
-       super.resize(width, height);
+        super.resize(width, height);
     }
 
     /**
@@ -61,13 +60,14 @@ public class GameOverScreen extends BaseScreen
     @Override
     public void show()
     {
-		super.show();
+        super.show();
         renderer = new GameOverRenderer(new GameOverWorld(this, score));
-		controller.setTouchPosition(new Vector2(0,0));
+        controller.setTouchPosition(new Vector2(0, 0));
     }
-	public void setScore(int x)
-	{
-		this.score = x;
-	}
+
+    public void setScore(int x)
+    {
+        this.score = x;
+    }
 
 }

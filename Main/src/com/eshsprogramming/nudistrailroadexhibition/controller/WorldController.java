@@ -7,12 +7,11 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
-import com.eshsprogramming.nudistrailroadexhibition.model.gui.Score;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.NudistEntity;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.TrainEntity;
+import com.eshsprogramming.nudistrailroadexhibition.model.gui.Score;
 import com.eshsprogramming.nudistrailroadexhibition.model.world.GameWorld;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
-import com.sun.xml.internal.bind.v2.runtime.reflect.opt.TransducedAccessor_field_Integer;
 
 /**
  * The controller for the gameWorld. Manages sprite properties.
@@ -126,7 +125,7 @@ public class WorldController
             nudists.get(0).getPosition().x += temp;
         } catch(Exception e)
         {
-			game.gameOverScreen.setScore(this.gameWorld.getScore().getScore());
+            game.gameOverScreen.setScore(this.gameWorld.getScore().getScore());
             game.setScreen(game.gameOverScreen);
         }
     }
@@ -144,15 +143,15 @@ public class WorldController
                 score.increment(nudists.size);
             }
         }
-		TrainEntity temp = null;
+        TrainEntity temp = null;
         while(trains.size < TrainEntity.NUMBER_OF_TRAINS)
         {
-			temp = new TrainEntity(new Vector2(MathUtils.random(0f, WorldRenderer.CAMERA_WIDTH - TrainEntity.SIZEX),
-					MathUtils.random(5f, 10f)), MathUtils.random(-2.2f) * timer * .01f - .8f);
-			while(checkTrain(temp))
-			{
-				temp.getPosition().x = MathUtils.random(0f, WorldRenderer.CAMERA_WIDTH - TrainEntity.SIZEX);
-			}
+            temp = new TrainEntity(new Vector2(MathUtils.random(0f, WorldRenderer.CAMERA_WIDTH - TrainEntity.SIZEX),
+                    MathUtils.random(5f, 10f)), MathUtils.random(-2.2f) * timer * .01f - .8f);
+            while(checkTrain(temp))
+            {
+                temp.getPosition().x = MathUtils.random(0f, WorldRenderer.CAMERA_WIDTH - TrainEntity.SIZEX);
+            }
             trains.add(temp);
         }
     }
@@ -227,24 +226,25 @@ public class WorldController
         nudists.add(temp);
     }
 
-	/**
-	 * Checks wether teh train is on the same track as another
-	 * @param train the train in question
-	 * @return wether the train fails the check or not
-	 */
-	private boolean checkTrain(TrainEntity train)
-	{
-		for(TrainEntity temp: trains)
-		{
-			if(train != temp)
-			{
-				if(train.getPosition().x>temp.getPosition().x-TrainEntity.SIZEX&&train.getPosition().x<temp.getPosition().x+TrainEntity.SIZEX)
-				{
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+    /**
+     * Checks wether teh train is on the same track as another
+     *
+     * @param train the train in question
+     * @return wether the train fails the check or not
+     */
+    private boolean checkTrain(TrainEntity train)
+    {
+        for(TrainEntity temp : trains)
+        {
+            if(train != temp)
+            {
+                if(train.getPosition().x > temp.getPosition().x - TrainEntity.SIZEX && train.getPosition().x < temp.getPosition().x + TrainEntity.SIZEX)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
 }

@@ -2,8 +2,8 @@ package com.eshsprogramming.nudistrailroadexhibition.model.world;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.eshsprogramming.nudistrailroadexhibition.model.gui.Text;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.BlockEntity;
+import com.eshsprogramming.nudistrailroadexhibition.model.gui.Text;
 import com.eshsprogramming.nudistrailroadexhibition.screens.GameOverScreen;
 
 
@@ -17,17 +17,17 @@ public class GameOverWorld
      */
     private GameOverScreen gameOverScreen = null;
     /**
-     * The title text.
-     */
-    Text messageText = null;
-    /**
-     * The play text.
+     * Text to display score
      */
     Text scoreText = null;
-	/**
-	 * text to return
-	 */
-	Text returnText = null;
+    /**
+     * Text to play again
+     */
+    Text playAgainText = null;
+    /**
+     * Text to return to main menu.
+     */
+    Text mainMenuText = null;
     /**
      * An array of the blocks which make up the background.
      */
@@ -40,12 +40,12 @@ public class GameOverWorld
     {
         this.gameOverScreen = gameOverScreen;
 
-        messageText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f,
-                new Vector2(1f, 4.5f), "Your score was ...");
-        scoreText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f, new Vector2(5f, 4.5f),
-                "" + score);
-		returnText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f,
-				new Vector2(3f, 2.5f), "Return to MainMenu");
+        scoreText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.005f,
+                new Vector2(1f, 4.5f), "Score: " + score);
+        playAgainText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f,
+                new Vector2(1f, 3f), "Play Again");
+        mainMenuText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f,
+                new Vector2(1f, 2f), "Main Menu");
 
         fillBlockArray();
     }
@@ -75,29 +75,32 @@ public class GameOverWorld
     }
 
     /**
-     * Returns the title text object.
+     * Returns the score text object.
      *
-     * @return The title text object.
-     */
-    public Text getMessageText()
-    {
-        return messageText;
-    }
-
-    /**
-     * Returns the play text object.
-     *
-     * @return The play text object.
+     * @return The score text object.
      */
     public Text getScoreText()
     {
         return scoreText;
     }
-	/**
-	 *
-	 */
-	public Text getReturnText()
-	{
-	   return returnText;
-	}
+
+    /**
+     * Returns the play again text object.
+     *
+     * @return The play again text object.
+     */
+    public Text getPlayAgainText()
+    {
+        return playAgainText;
+    }
+
+    /**
+     * Returns the main menu text object.
+     *
+     * @return The main menu text object.
+     */
+    public Text getMainMenuText()
+    {
+        return mainMenuText;
+    }
 }

@@ -34,6 +34,7 @@ public class GameOverRenderer extends Renderer
      * The texture for the blocks.
      */
     private Texture blockTexture;
+
     /**
      * Creates a new GameOverRenderer
      */
@@ -74,9 +75,10 @@ public class GameOverRenderer extends Renderer
      */
     private void drawText()
     {
-        gameOverWorld.getMessageText().render(spriteBatch, getPPuX(), getPPuY());
         gameOverWorld.getScoreText().render(spriteBatch, getPPuX(), getPPuY());
-		gameOverWorld.getReturnText().render(spriteBatch, getPPuX(), getPPuY());
+        gameOverWorld.getScoreText().render(spriteBatch, getPPuX(), getPPuY());
+        gameOverWorld.getPlayAgainText().render(spriteBatch, getPPuX(), getPPuY());
+        gameOverWorld.getMainMenuText().render(spriteBatch, getPPuX(), getPPuY());
     }
 
     /**
@@ -86,8 +88,9 @@ public class GameOverRenderer extends Renderer
     {
         blockTexture = new Texture(Gdx.files.internal("images/block.png"));
     }
-	public GameOverWorld getWorld()
-	{
-		return gameOverWorld;
-	}
+
+    public GameOverWorld getWorld()
+    {
+        return gameOverWorld;
+    }
 }

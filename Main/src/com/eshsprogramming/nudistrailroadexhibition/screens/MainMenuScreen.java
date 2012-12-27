@@ -1,8 +1,5 @@
 package com.eshsprogramming.nudistrailroadexhibition.screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 import com.eshsprogramming.nudistrailroadexhibition.controller.MainMenuController;
@@ -35,7 +32,7 @@ public class MainMenuScreen extends BaseScreen
     public void render(float delta)
     {
         super.render(delta);
-        controller.update(delta,getGame());
+        controller.update(delta, getGame());
     }
 
     @Override

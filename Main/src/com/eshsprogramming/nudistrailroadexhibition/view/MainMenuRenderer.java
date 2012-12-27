@@ -36,6 +36,7 @@ public class MainMenuRenderer extends Renderer
      * The texture for the blocks.
      */
     private Texture blockTexture;
+
     /**
      * Creates a new MainMenuRenderer
      */
@@ -80,6 +81,7 @@ public class MainMenuRenderer extends Renderer
         mainMenuWorld.getTitleText().render(spriteBatch, getPPuX(), getPPuY());
         mainMenuWorld.getPlayText().render(spriteBatch, getPPuX(), getPPuY());
     }
+
     /**
      * Loads the textures from files.
      */

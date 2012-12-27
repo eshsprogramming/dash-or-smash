@@ -10,7 +10,7 @@ public class DesktopStarter
 {
 	public static void main(String[] args)
 	{
-        // todo-zach Make screen size relative.
-		new LwjglApplication(new NudistRailroadExhibition(), "Nudist Railroad Exhibition", 640, 400, true);
+        // todo-zach Make world size relative.
+		new LwjglApplication(new NudistRailroadExhibition(), "NudistEntity Railroad Exhibition", 640, 400 , true);
 	}
 }

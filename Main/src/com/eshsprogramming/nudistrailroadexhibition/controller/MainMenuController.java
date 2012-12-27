@@ -75,8 +75,8 @@ public class MainMenuController
     private boolean textTouched(Vector2 touchPosition, Text text)
     {
         // Makes width and height relative.
-        float width = (text.getWidth() / mainMenuScreen.getWidth()) * MainMenuRenderer.CAMERA_WIDTH;
-        float height = (text.getHeight() / mainMenuScreen.getHeight()) * MainMenuRenderer.CAMERA_HEIGHT;
+        float width = (text.getPixelWidth() / mainMenuScreen.getWidth()) * MainMenuRenderer.CAMERA_WIDTH;
+        float height = (text.getPixelHeight() / mainMenuScreen.getHeight()) * MainMenuRenderer.CAMERA_HEIGHT;
 
         if(touchPosition.x > text.getPosition().x)
         {
@@ -96,7 +96,7 @@ public class MainMenuController
             return false;
         }
 
-        return touchPosition.x > text.getWidth() && touchPosition.x < text.getPosition().x + width &&
+        return touchPosition.x > text.getPixelWidth() && touchPosition.x < text.getPosition().x + width &&
                 touchPosition.y > text.getPosition().y && touchPosition.y < text.getPosition().y + height;
     }
 }

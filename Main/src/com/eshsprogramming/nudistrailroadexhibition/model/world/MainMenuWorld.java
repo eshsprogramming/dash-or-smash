@@ -2,8 +2,8 @@ package com.eshsprogramming.nudistrailroadexhibition.model.world;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.eshsprogramming.nudistrailroadexhibition.model.gui.Text;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.BlockEntity;
+import com.eshsprogramming.nudistrailroadexhibition.model.gui.Text;
 import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
 
 /**

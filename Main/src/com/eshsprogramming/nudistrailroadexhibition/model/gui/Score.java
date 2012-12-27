@@ -21,15 +21,17 @@ public class Score extends Text
      */
     private int score = 0;
 
-	/**
-	 * a contructor to provide the super construct the neccesary info
-	 * @param font the location of the font file
-	 * @param flipped whether the text is flipped
-	 */
-	public Score(String font, boolean flipped,float scale, Vector2 position)
-	{
-		super("fonts/arial/font.fnt",flipped,scale,position);
-	}
+    /**
+     * a contructor to provide the super construct the neccesary info
+     *
+     * @param font    the location of the font file
+     * @param flipped whether the text is flipped
+     */
+    public Score(String font, boolean flipped, float scale, Vector2 position)
+    {
+        super("fonts/arial/font.fnt", flipped, scale, position);
+    }
+
     /**
      * A getter for score
      *
