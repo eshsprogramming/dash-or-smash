@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 /**
  * Text.
@@ -149,7 +150,7 @@ public class Text
      *
      * @return The width of the text in pixels.
      */
-    public float getWidth()
+    public float getPixelWidth()
     {
         return bitmapFont.getBounds(text).width;
     }
@@ -159,9 +160,31 @@ public class Text
      *
      * @return The height of the text in pixels.
      */
-    public float getHeight()
+    public float getPixelHeight()
     {
         return bitmapFont.getBounds(text).height;
+    }
+
+    /**
+     * Returns the width of the text in pixels.
+     *
+     * @param screenWidth The width of the screen in pixels.
+     * @return The width of the text in pixels.
+     */
+    public float getRelativeWidth(float screenWidth)
+    {
+        return (bitmapFont.getBounds(text).width / screenWidth) * WorldRenderer.CAMERA_WIDTH;
+    }
+
+    /**
+     * Returns the height of the text in pixels.
+     *
+     * @param screenHeight The height of the screen in pixels.
+     * @return The height of the text in pixels.
+     */
+    public float getRelativeHeight(float screenHeight)
+    {
+        return (bitmapFont.getBounds(text).height / screenHeight) * WorldRenderer.CAMERA_HEIGHT;
     }
 
     /**
