@@ -67,7 +67,7 @@ public class WorldController extends Controller
         this.trains = gameWorld.getTrains();
         this.score = gameWorld.getScore();
         setTouchPosition(gameWorld.getNudists().get(0).getPosition());
-        this.hurtSound = Gdx.audio.newSound(Gdx.files.internal("sounds/hurt.wav"));
+        this.hurtSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/hurt.wav"));
     }
 
     /**
@@ -135,15 +135,19 @@ public class WorldController extends Controller
                 score.increment(nudists.size);
             }
         }
+
         TrainEntity temp = null;
+
         while(trains.size < TrainEntity.NUMBER_OF_TRAINS)
         {
             temp = new TrainEntity(new Vector2(MathUtils.random(0f, WorldRenderer.CAMERA_WIDTH - TrainEntity.SIZEX),
                     MathUtils.random(5f, 10f)), MathUtils.random(-2.2f) * timer * .01f - .8f);
+
             while(checkTrain(temp))
             {
                 temp.getPosition().x = MathUtils.random(0f, WorldRenderer.CAMERA_WIDTH - TrainEntity.SIZEX);
             }
+
             trains.add(temp);
         }
     }
@@ -163,8 +167,11 @@ public class WorldController extends Controller
                     nudists.removeIndex(index2);
                     respawnCounter = 0;
                     score.nudistDeath();
+
                     if(index2 == 0)
+                    {
                         selected = false;
+                    }
                 }
             }
         }
@@ -199,20 +206,22 @@ public class WorldController extends Controller
     {
         NudistEntity temp = new NudistEntity(new Vector2(nudists.first().getPosition().x +
                 NudistEntity.SIZEX, nudists.first().getPosition().y));
+
         if(temp.getPosition().x < 0 || temp.getPosition().x > WorldRenderer.CAMERA_WIDTH - NudistEntity.SIZEX)
         {
             temp.getPosition().x = (temp.getPosition().x > 0) ? temp.getPosition().x : 0;
             temp.getPosition().x = (temp.getPosition().x < WorldRenderer.CAMERA_WIDTH - NudistEntity.SIZEX)
                     ? temp.getPosition().x : WorldRenderer.CAMERA_WIDTH - NudistEntity.SIZEX;
         }
+
         nudists.add(temp);
     }
 
     /**
-     * Checks wether teh train is on the same track as another
+     * Checks whether teh train is on the same track as another
      *
      * @param train the train in question
-     * @return wether the train fails the check or not
+     * @return Whether or not the train fails the check or not
      */
     private boolean checkTrain(TrainEntity train)
     {
@@ -226,6 +235,7 @@ public class WorldController extends Controller
                 }
             }
         }
+
         return false;
     }
 }

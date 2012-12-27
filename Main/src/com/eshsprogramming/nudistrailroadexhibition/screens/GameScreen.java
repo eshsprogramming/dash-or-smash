@@ -10,7 +10,7 @@ import com.eshsprogramming.nudistrailroadexhibition.model.world.GameWorld;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 /**
- * The gameWorld that contains the gameplay.
+ * The screen that contains the gameplay.
  *
  * @author Zachary Latta, Benjamin Landers
  */
@@ -30,6 +30,11 @@ public class GameScreen extends BaseScreen
      */
     private Music music;
 
+    /**
+     * Creates a new game screen
+     *
+     * @param game The instance of Game.
+     */
     public GameScreen(NudistRailroadExhibition game)
     {
         super(game);
@@ -48,7 +53,7 @@ public class GameScreen extends BaseScreen
     }
 
     /**
-     * Called when this gameWorld becomes the current gameWorld for the game.
+     * Called when this screen becomes the current screen for the game.
      */
     @Override
     public void show()
@@ -57,7 +62,7 @@ public class GameScreen extends BaseScreen
         gameWorld = new GameWorld(getGame());
         renderer = new WorldRenderer(gameWorld, false);
         controller = new WorldController(gameWorld, getGame());
-        music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("sounds/soundtrack/game.mp3"));
 
         music.setLooping(true);
         music.setVolume(0.7f);
@@ -65,7 +70,7 @@ public class GameScreen extends BaseScreen
     }
 
     /**
-     * Called when this gameWorld is no longer the current gameWorld for the game.
+     * Called when this screen is no longer the current screen for the game.
      */
     @Override
     public void hide()

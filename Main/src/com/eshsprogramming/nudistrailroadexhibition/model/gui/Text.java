@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
+import com.eshsprogramming.nudistrailroadexhibition.view.Renderer;
 
 /**
  * Text.
@@ -173,7 +173,7 @@ public class Text
      */
     public float getRelativeWidth(float screenWidth)
     {
-        return (bitmapFont.getBounds(text).width / screenWidth) * WorldRenderer.CAMERA_WIDTH;
+        return (bitmapFont.getBounds(text).width / screenWidth) * Renderer.CAMERA_WIDTH;
     }
 
     /**
@@ -184,7 +184,7 @@ public class Text
      */
     public float getRelativeHeight(float screenHeight)
     {
-        return (bitmapFont.getBounds(text).height / screenHeight) * WorldRenderer.CAMERA_HEIGHT;
+        return (bitmapFont.getBounds(text).height / screenHeight) * Renderer.CAMERA_HEIGHT;
     }
 
     /**

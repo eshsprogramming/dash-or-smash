@@ -8,12 +8,15 @@ import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 import com.eshsprogramming.nudistrailroadexhibition.view.Renderer;
 
 /**
+ * The base class for screens in the game. Examples of screens
+ * include the main menu, a pause menu, and a game over screen.
+ *
  * @author Benjamin Landers
  */
 public class BaseScreen implements Screen, InputProcessor
 {
     /**
-     * a reference to the game   (btw this is a pun)
+     * A reference to the game
      */
     private NudistRailroadExhibition game = null;
     /**
@@ -26,18 +29,25 @@ public class BaseScreen implements Screen, InputProcessor
     private float height;
 
     /**
-     *
+     * Handles the rendering for the screen.
      */
     Renderer renderer = null;
 
     /**
-     * @param game a ref to the game
+     * Creates a new game screen.
+     *
+     * @param game The game that the screen is in.
      */
     public BaseScreen(NudistRailroadExhibition game)
     {
         this.game = game;
     }
 
+    /**
+     * Called each method to render and update the screen.
+     *
+     * @param delta The time in milliseconds between frames.
+     */
     public void render(float delta)
     {
         Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
@@ -47,6 +57,12 @@ public class BaseScreen implements Screen, InputProcessor
         //	controller.update(delta);
     }
 
+    /**
+     * Called when the window is resized.
+     *
+     * @param width  The new width of the game.
+     * @param height The new width of the game
+     */
     public void resize(int width, int height)
     {
         renderer.setSize(width, height);
@@ -162,11 +178,21 @@ public class BaseScreen implements Screen, InputProcessor
         return height;
     }
 
+    /**
+     * Returns the game itself.
+     *
+     * @return The game instance itself.
+     */
     public NudistRailroadExhibition getGame()
     {
         return game;
     }
 
+    /**
+     * Returns the renderer for the screen.
+     *
+     * @return The renderer for the screen.
+     */
     public Renderer getRenderer()
     {
         return renderer;

@@ -1,5 +1,6 @@
 package com.eshsprogramming.nudistrailroadexhibition.controller;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 import com.eshsprogramming.nudistrailroadexhibition.model.gui.Text;
@@ -9,7 +10,7 @@ import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
 /**
  * Controller for the game over screen. Handles input and potentially other changes that occur.
  *
- * @author Benjamin Landers
+ * @author Benjamin Landers, Zachary Latta
  */
 public class GameOverController extends Controller
 {
@@ -56,24 +57,6 @@ public class GameOverController extends Controller
         // Makes width and height relative.
         float width = (text.getPixelWidth() / getGame().gameOverScreen.getWidth()) * MainMenuRenderer.CAMERA_WIDTH;
         float height = (text.getPixelHeight() / getGame().gameOverScreen.getHeight()) * MainMenuRenderer.CAMERA_HEIGHT;
-
-        if(touchPosition.x > text.getPosition().x)
-        {
-            if(touchPosition.x < text.getPosition().x + width)
-            {
-                if(touchPosition.y > text.getPosition().y - height)
-                {
-                    if(touchPosition.y < text.getPosition().y)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        else
-        {
-            return false;
-        }
 
         return touchPosition.x > text.getPixelWidth() && touchPosition.x < text.getPosition().x + width &&
                 touchPosition.y > text.getPosition().y && touchPosition.y < text.getPosition().y + height;
