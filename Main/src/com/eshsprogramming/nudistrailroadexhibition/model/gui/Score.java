@@ -52,7 +52,7 @@ public class Score extends Text
      */
     public void increment(int nudistCount)
     {
-        score += Score.SCORE_COEFF + 7 * (nudistCount - 1);
+        score += Score.SCORE_COEFF * nudistCount;
     }
 
     /**
