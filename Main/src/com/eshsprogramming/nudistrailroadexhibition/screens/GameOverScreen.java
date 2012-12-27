@@ -69,6 +69,8 @@ public class GameOverScreen implements Screen, InputProcessor
     @Override
     public void show()
     {
+		this.width = Gdx.graphics.getWidth();
+		this.height = Gdx.graphics.getHeight();
         renderer = new GameOverRenderer(new GameOverWorld(this, score));
 
 
@@ -183,5 +185,6 @@ public class GameOverScreen implements Screen, InputProcessor
     public float getHeight()
     {
         return height;
-    }
+	}
+
 }

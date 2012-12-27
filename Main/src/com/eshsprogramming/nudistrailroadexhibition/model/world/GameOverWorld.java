@@ -38,7 +38,7 @@ public class GameOverWorld
 
         messageText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f,
                 new Vector2(1f, 4.5f), "Your score was ...");
-        scoreText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.003f, new Vector2(1, 3),
+        scoreText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f, new Vector2(5f, 4.5f),
                 "" + score);
 
         fillBlockArray();

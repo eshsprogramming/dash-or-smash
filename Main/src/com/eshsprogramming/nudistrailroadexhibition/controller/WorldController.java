@@ -125,6 +125,7 @@ public class WorldController
             nudists.get(0).getPosition().x += temp;
         } catch(Exception e)
         {
+			game.gameOverScreen.setScore(this.gameWorld.getScore().getScore());
             game.setScreen(game.gameOverScreen);
         }
     }
