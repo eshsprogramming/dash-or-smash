@@ -227,4 +227,20 @@ public class Text
     {
         this.text = text;
     }
+
+    /**
+     * Returns whether or not the text is touched.
+     *
+     * @param touchPosition The position of the user's touch in relative units.
+     * @param screenWidth   The width of the screen in pixels.
+     * @param screenHeight  The height of the screen in pixels.
+     * @return Whether or not the text is touched.
+     */
+    public boolean touched(Vector2 touchPosition, float screenWidth, float screenHeight)
+    {
+        return touchPosition.x > getPosition().x &&
+                touchPosition.x < getPosition().x + getRelativeWidth(screenWidth) &&
+                touchPosition.y > getPosition().y &&
+                touchPosition.y < getPosition().y + getRelativeHeight(screenHeight);
+    }
 }
