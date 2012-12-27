@@ -10,7 +10,7 @@ import com.eshsprogramming.nudistrailroadexhibition.model.world.GameWorld;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 /**
- * The screen that contains the game play.
+ * The screen that contains the gameplay.
  *
  * @author Zachary Latta, Benjamin Landers
  */
@@ -53,7 +53,7 @@ public class GameScreen extends BaseScreen
     }
 
     /**
-     * Called when this gameWorld becomes the current gameWorld for the game.
+     * Called when this screen becomes the current screen for the game.
      */
     @Override
     public void show()
@@ -70,7 +70,7 @@ public class GameScreen extends BaseScreen
     }
 
     /**
-     * Called when this gameWorld is no longer the current gameWorld for the game.
+     * Called when this screen is no longer the current screen for the game.
      */
     @Override
     public void hide()
