@@ -1,26 +1,29 @@
-package com.eshsprogramming.nudistrailroadexhibition.model;
+package com.eshsprogramming.nudistrailroadexhibition.model.world;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
+import com.eshsprogramming.nudistrailroadexhibition.model.Text;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.Block;
+import com.eshsprogramming.nudistrailroadexhibition.screens.GameOverScreen;
+
 
 /**
- * @author Zachary Latta
+ * @author Benjamin Landers
  */
-public class MainMenu
+public class GameOverWorld
 {
     /**
-     * The main menu screen. Used for relative sizing of text.
+     * The game over world. Used for relative sizing of text.
      */
-    MainMenuScreen mainMenuScreen = null;
+    private GameOverScreen gameOverScreen = null;
     /**
      * The title text.
      */
-    Text titleText = null;
+    Text messageText = null;
     /**
      * The play text.
      */
-    Text playText = null;
+    Text scoreText = null;
     /**
      * An array of the blocks which make up the background.
      */
@@ -29,12 +32,14 @@ public class MainMenu
     /**
      * Creates a new main menu
      */
-    public MainMenu(MainMenuScreen mainMenuScreen)
+    public GameOverWorld(GameOverScreen gameOverScreen, int score)
     {
-        this.mainMenuScreen = mainMenuScreen;
+        this.gameOverScreen = gameOverScreen;
 
-        titleText = new Text("fonts/arial/font.fnt", false, mainMenuScreen.getWidth() * 0.0035f, new Vector2(1, 4.5f), "Nudist Railroad Exhibition");
-        playText = new Text("fonts/arial/font.fnt", false, mainMenuScreen.getWidth() * 0.003f, new Vector2(1, 3), "Play");
+        messageText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f,
+                new Vector2(1f, 4.5f), "Your score was ...");
+        scoreText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.003f, new Vector2(1, 3),
+                "" + score);
 
         fillBlockArray();
     }
@@ -68,9 +73,9 @@ public class MainMenu
      *
      * @return The title text object.
      */
-    public Text getTitleText()
+    public Text getMessageText()
     {
-        return titleText;
+        return messageText;
     }
 
     /**
@@ -78,8 +83,8 @@ public class MainMenu
      *
      * @return The play text object.
      */
-    public Text getPlayText()
+    public Text getScoreText()
     {
-        return playText;
+        return scoreText;
     }
 }

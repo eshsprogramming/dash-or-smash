@@ -1,6 +1,5 @@
-package com.eshsprogramming.nudistrailroadexhibition.model;
+package com.eshsprogramming.nudistrailroadexhibition.model.entity;
 
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -25,7 +24,8 @@ public class Nudist extends Entity
     /**
      * The nudist's height in units
      */
-    public static final float SIZEY = 0.6f;;
+    public static final float SIZEY = 0.6f;
+    ;
     /**
      * The nudist's current state
      */
@@ -40,6 +40,7 @@ public class Nudist extends Entity
     {
         super(position);
     }
+
     /**
      * Returns the state of the nudist.
      *

@@ -1,27 +1,28 @@
-package com.eshsprogramming.nudistrailroadexhibition.model;
+package com.eshsprogramming.nudistrailroadexhibition.model.world;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.eshsprogramming.nudistrailroadexhibition.screens.GameOverScreen;
-
+import com.eshsprogramming.nudistrailroadexhibition.model.Text;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.Block;
+import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
 
 /**
- * @author Benjamin Landers
+ * @author Zachary Latta
  */
-public class GameOver
+public class MainMenuWorld
 {
     /**
-     * The game over screen. Used for relative sizing of text.
+     * The main menu world. Used for relative sizing of text.
      */
-    private GameOverScreen gameOverScreen = null;
+    MainMenuScreen mainMenuScreen = null;
     /**
      * The title text.
      */
-    Text messageText = null;
+    Text titleText = null;
     /**
      * The play text.
      */
-    Text scoreText = null;
+    Text playText = null;
     /**
      * An array of the blocks which make up the background.
      */
@@ -30,14 +31,12 @@ public class GameOver
     /**
      * Creates a new main menu
      */
-    public GameOver(GameOverScreen gameOverScreen, int score)
+    public MainMenuWorld(MainMenuScreen mainMenuScreen)
     {
-        this.gameOverScreen = gameOverScreen;
+        this.mainMenuScreen = mainMenuScreen;
 
-        messageText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f,
-                new Vector2(1f, 4.5f), "Your score was ...");
-        scoreText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.003f, new Vector2(1, 3),
-                "" + score);
+        titleText = new Text("fonts/arial/font.fnt", false, mainMenuScreen.getWidth() * 0.0035f, new Vector2(1, 4.5f), "Nudist Railroad Exhibition");
+        playText = new Text("fonts/arial/font.fnt", false, mainMenuScreen.getWidth() * 0.003f, new Vector2(1, 3), "Play");
 
         fillBlockArray();
     }
@@ -71,9 +70,9 @@ public class GameOver
      *
      * @return The title text object.
      */
-    public Text getMessageText()
+    public Text getTitleText()
     {
-        return messageText;
+        return titleText;
     }
 
     /**
@@ -81,8 +80,8 @@ public class GameOver
      *
      * @return The play text object.
      */
-    public Text getScoreText()
+    public Text getPlayText()
     {
-        return scoreText;
+        return playText;
     }
 }

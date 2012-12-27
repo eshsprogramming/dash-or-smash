@@ -1,4 +1,4 @@
-package com.eshsprogramming.nudistrailroadexhibition.model;
+package com.eshsprogramming.nudistrailroadexhibition.model.entity;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author Zachary Latta
  */
+// todo-ben Make block extend from entity
 public class Block
 {
     /**

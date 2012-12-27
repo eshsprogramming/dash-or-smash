@@ -3,8 +3,8 @@ package com.eshsprogramming.nudistrailroadexhibition.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.eshsprogramming.nudistrailroadexhibition.model.Block;
-import com.eshsprogramming.nudistrailroadexhibition.model.GameOver;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.Block;
+import com.eshsprogramming.nudistrailroadexhibition.model.world.GameOverWorld;
 
 /**
  * @author Benjamin Landers
@@ -12,18 +12,18 @@ import com.eshsprogramming.nudistrailroadexhibition.model.GameOver;
 public class GameOverRenderer
 {
     /**
-     * The width of the screen in relative units.
+     * The width of the world in relative units.
      */
     public static final float CAMERA_WIDTH = 8f;
     /**
-     * The height of the screen in relative units.
+     * The height of the world in relative units.
      */
     public static final float CAMERA_HEIGHT = 5f;
 
     /**
-     * The GameOver instance.
+     * The GameOverWorld instance.
      */
-    private GameOver gameOver;
+    private GameOverWorld gameOverWorld;
 
     /**
      * The sprite batch. Used for rendering sprites.
@@ -36,11 +36,11 @@ public class GameOverRenderer
     private Texture blockTexture;
 
     /**
-     * The width of the screen in pixels.
+     * The width of the world in pixels.
      */
     private int width;
     /**
-     * The height of the screen in pixels.
+     * The height of the world in pixels.
      */
     private int height;
     /**
@@ -55,9 +55,9 @@ public class GameOverRenderer
     /**
      * Creates a new GameOverRenderer
      */
-    public GameOverRenderer(GameOver gameOver)
+    public GameOverRenderer(GameOverWorld gameOverWorld)
     {
-        this.gameOver = gameOver;
+        this.gameOverWorld = gameOverWorld;
         this.spriteBatch = new SpriteBatch();
         loadTextures();
     }
@@ -76,11 +76,11 @@ public class GameOverRenderer
     }
 
     /**
-     * Draws blocks on the screen.
+     * Draws blocks on the world.
      */
     private void drawBlocks()
     {
-        for(Block block : gameOver.getBlocks())
+        for(Block block : gameOverWorld.getBlocks())
         {
             spriteBatch.draw(blockTexture, block.getPosition().x * ppuX, block.getPosition().y * ppuY,
                     Block.SIZE * ppuX, Block.SIZE * ppuY);
@@ -88,12 +88,12 @@ public class GameOverRenderer
     }
 
     /**
-     * Draws the text onto the screen.
+     * Draws the text onto the world.
      */
     private void drawText()
     {
-        gameOver.getMessageText().render(spriteBatch, ppuX, ppuY);
-        gameOver.getScoreText().render(spriteBatch, ppuX, ppuY);
+        gameOverWorld.getMessageText().render(spriteBatch, ppuX, ppuY);
+        gameOverWorld.getScoreText().render(spriteBatch, ppuX, ppuY);
     }
 
     /**

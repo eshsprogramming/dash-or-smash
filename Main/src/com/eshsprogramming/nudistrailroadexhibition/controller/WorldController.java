@@ -7,14 +7,14 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
-import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
 import com.eshsprogramming.nudistrailroadexhibition.model.Score;
-import com.eshsprogramming.nudistrailroadexhibition.model.Train;
-import com.eshsprogramming.nudistrailroadexhibition.model.World;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.Nudist;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.Train;
+import com.eshsprogramming.nudistrailroadexhibition.model.world.GameWorld;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 /**
- * The controller for the world. Manages sprite properties.
+ * The controller for the gameWorld. Manages sprite properties.
  *
  * @author Zachary Latta, Benjamin Landers
  */
@@ -37,15 +37,15 @@ public class WorldController
      */
     private boolean selected = false;
     /**
-     * The world.
+     * The gameWorld.
      */
-    private World world = null;
+    private GameWorld gameWorld = null;
     /**
-     * The nudists in the world.
+     * The nudists in the gameWorld.
      */
     private Array<Nudist> nudists = null;
     /**
-     * The trains in the world.
+     * The trains in the gameWorld.
      */
     private Array<Train> trains = null;
     /**
@@ -62,19 +62,19 @@ public class WorldController
     private Score score = null;
 
     /**
-     * Creates a new world controller.
+     * Creates a new gameWorld controller.
      *
-     * @param world The world to be used in the world controller.
-     * @param game  a reference to the game (did you win)
+     * @param gameWorld The gameWorld to be used in the gameWorld controller.
+     * @param game      a reference to the game (did you win)
      */
-    public WorldController(World world, NudistRailroadExhibition game)
+    public WorldController(GameWorld gameWorld, NudistRailroadExhibition game)
     {
-        this.world = world;
+        this.gameWorld = gameWorld;
         this.game = game;
-        this.nudists = world.getNudists();
-        this.trains = world.getTrains();
-        this.score = world.getScore();
-        this.touchPosition = world.getNudists().get(0).getPosition();
+        this.nudists = gameWorld.getNudists();
+        this.trains = gameWorld.getTrains();
+        this.score = gameWorld.getScore();
+        this.touchPosition = gameWorld.getNudists().get(0).getPosition();
         this.hurtSound = Gdx.audio.newSound(Gdx.files.internal("sounds/hurt.wav"));
     }
 
@@ -130,7 +130,7 @@ public class WorldController
     }
 
     /**
-     * Checks if trains are allowed to be on the screen. Removes them if they aren't and creates a new one.
+     * Checks if trains are allowed to be on the gameWorld. Removes them if they aren't and creates a new one.
      */
     private void checkTrainValidity()
     {
@@ -205,7 +205,7 @@ public class WorldController
     }
 
     /**
-     * Spawns a new nudist into the world.
+     * Spawns a new nudist into the gameWorld.
      */
     private void spawnNudist()
     {

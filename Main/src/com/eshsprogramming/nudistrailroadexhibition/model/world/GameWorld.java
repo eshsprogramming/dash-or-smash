@@ -1,14 +1,18 @@
-package com.eshsprogramming.nudistrailroadexhibition.model;
+package com.eshsprogramming.nudistrailroadexhibition.model.world;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.eshsprogramming.nudistrailroadexhibition.model.Score;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.Block;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.Nudist;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.Train;
 
 /**
  * The game world.
  *
  * @author Zachary Latta, Benjamin Landers
  */
-public class World
+public class GameWorld
 {
     /**
      * An array of the blocks which make up the world.
@@ -31,7 +35,7 @@ public class World
     /**
      * Creates a new world.
      */
-    public World()
+    public GameWorld()
     {
         createBlankWorld();
     }

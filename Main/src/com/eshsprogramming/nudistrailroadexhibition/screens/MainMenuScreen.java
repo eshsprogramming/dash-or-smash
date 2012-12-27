@@ -6,7 +6,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 import com.eshsprogramming.nudistrailroadexhibition.controller.MainMenuController;
-import com.eshsprogramming.nudistrailroadexhibition.model.MainMenu;
+import com.eshsprogramming.nudistrailroadexhibition.model.world.MainMenuWorld;
 import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
@@ -25,7 +25,7 @@ public class MainMenuScreen implements Screen, InputProcessor
     /**
      * The main menu.
      */
-    private MainMenu mainMenu;
+    private MainMenuWorld mainMenuWorld;
 
     /**
      * The main menu renderer.
@@ -58,7 +58,7 @@ public class MainMenuScreen implements Screen, InputProcessor
     }
 
     @Override
-    // todo-ben Fix resizing issue with main menu screen
+    // todo-ben Fix resizing issue with main menu world
     public void resize(int width, int height)
     {
         renderer.setSize(width, height);
@@ -72,9 +72,9 @@ public class MainMenuScreen implements Screen, InputProcessor
         this.width = Gdx.graphics.getWidth();
         this.height = Gdx.graphics.getHeight();
 
-        mainMenu = new MainMenu(this);
-        renderer = new MainMenuRenderer(mainMenu);
-        controller = new MainMenuController(mainMenu, this);
+        mainMenuWorld = new MainMenuWorld(this);
+        renderer = new MainMenuRenderer(mainMenuWorld);
+        controller = new MainMenuController(mainMenuWorld, this);
 
         Gdx.input.setInputProcessor(this);
     }
@@ -162,9 +162,9 @@ public class MainMenuScreen implements Screen, InputProcessor
     }
 
     /**
-     * Returns the width in pixels of the screen.
+     * Returns the width in pixels of the world.
      *
-     * @return The width in pixels of the screen.
+     * @return The width in pixels of the world.
      */
     public float getWidth()
     {
@@ -172,9 +172,9 @@ public class MainMenuScreen implements Screen, InputProcessor
     }
 
     /**
-     * Returns the height in pixels of the screen.
+     * Returns the height in pixels of the world.
      *
-     * @return The height in pixels of the screen.
+     * @return The height in pixels of the world.
      */
     public float getHeight()
     {

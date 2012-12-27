@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author Zachary Latta
  */
+// todo-zach Make text fit nicely into the new organizational structure
 public class Text
 {
     /**
@@ -79,7 +80,7 @@ public class Text
     }
 
     /**
-     * Draws the text on the screen.
+     * Draws the text on the world.
      *
      * @param spriteBatch The spritebatch to use for drawing.
      * @param ppuX        Pixels per unit on the x axis.

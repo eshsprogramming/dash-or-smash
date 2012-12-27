@@ -2,8 +2,8 @@ package com.eshsprogramming.nudistrailroadexhibition.controller;
 
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
-import com.eshsprogramming.nudistrailroadexhibition.model.MainMenu;
 import com.eshsprogramming.nudistrailroadexhibition.model.Text;
+import com.eshsprogramming.nudistrailroadexhibition.model.world.MainMenuWorld;
 import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
 import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
 
@@ -17,9 +17,9 @@ public class MainMenuController
     /**
      * The main menu.
      */
-    private MainMenu mainMenu = null;
+    private MainMenuWorld mainMenuWorld = null;
     /**
-     * The main menu screen.
+     * The main menu world.
      */
     private MainMenuScreen mainMenuScreen = null;
 
@@ -31,11 +31,11 @@ public class MainMenuController
     /**
      * Creates a new main menu controller.
      *
-     * @param mainMenu The main menu to use with the main menu controller
+     * @param mainMenuWorld The main menu to use with the main menu controller
      */
-    public MainMenuController(MainMenu mainMenu, MainMenuScreen mainMenuScreen)
+    public MainMenuController(MainMenuWorld mainMenuWorld, MainMenuScreen mainMenuScreen)
     {
-        this.mainMenu = mainMenu;
+        this.mainMenuWorld = mainMenuWorld;
         this.mainMenuScreen = mainMenuScreen;
 
         // Sets touch position to (0, 0) to avoid NullPointerException
@@ -49,7 +49,7 @@ public class MainMenuController
      */
     public void update(float delta, NudistRailroadExhibition game)
     {
-        if(textTouched(touchPosition, mainMenu.getPlayText()))
+        if(textTouched(touchPosition, mainMenuWorld.getPlayText()))
         {
             game.setScreen(game.gameScreen);
         }

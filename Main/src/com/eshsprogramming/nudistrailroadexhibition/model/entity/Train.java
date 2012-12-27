@@ -1,6 +1,5 @@
-package com.eshsprogramming.nudistrailroadexhibition.model;
+package com.eshsprogramming.nudistrailroadexhibition.model.entity;
 
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
@@ -26,6 +25,7 @@ public class Train extends Entity
      * The trains's height in units
      */
     public static final float SIZEY = 1.4f;
+
     /**
      * Creates a new train.
      *
@@ -43,7 +43,7 @@ public class Train extends Entity
      */
     public void update(float delta)
     {
-		super.update(delta);
+        super.update(delta);
         getPosition().add(0, delta * vY);
         getBounds().setY(getPosition().y);
     }

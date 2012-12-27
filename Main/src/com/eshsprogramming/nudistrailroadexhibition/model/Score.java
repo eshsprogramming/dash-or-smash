@@ -3,6 +3,7 @@ package com.eshsprogramming.nudistrailroadexhibition.model;
 /**
  * @author Zachary Latta
  */
+// todo-ben Make score fit nicely into the new organizational structure
 public class Score
 {
     /**

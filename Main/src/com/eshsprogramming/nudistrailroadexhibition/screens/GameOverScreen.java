@@ -5,7 +5,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
-import com.eshsprogramming.nudistrailroadexhibition.model.GameOver;
+import com.eshsprogramming.nudistrailroadexhibition.model.world.GameOverWorld;
 import com.eshsprogramming.nudistrailroadexhibition.view.GameOverRenderer;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
@@ -46,7 +46,7 @@ public class GameOverScreen implements Screen, InputProcessor
         this.game = game;
     }
 
-    //todo-zach make the game over screen actually work (I cant seem to get text to display)
+    //todo-zach make the game over world actually work (I cant seem to get text to display)
     public void render(float delta)
     {
         Gdx.gl.glClearColor(0.1f, 0.1f, 0.1f, 1);
@@ -64,19 +64,19 @@ public class GameOverScreen implements Screen, InputProcessor
     }
 
     /**
-     * Called when this screen becomes the current screen for the game.
+     * Called when this world becomes the current world for the game.
      */
     @Override
     public void show()
     {
-        renderer = new GameOverRenderer(new GameOver(this, score));
+        renderer = new GameOverRenderer(new GameOverWorld(this, score));
 
 
         Gdx.input.setInputProcessor(this);
     }
 
     /**
-     * Called when this screen is no longer the current screen for the game.
+     * Called when this world is no longer the current world for the game.
      */
     @Override
     public void hide()
@@ -166,9 +166,9 @@ public class GameOverScreen implements Screen, InputProcessor
     }
 
     /**
-     * Returns the width in pixels of the screen.
+     * Returns the width in pixels of the world.
      *
-     * @return The width in pixels of the screen.
+     * @return The width in pixels of the world.
      */
     public float getWidth()
     {
@@ -176,9 +176,9 @@ public class GameOverScreen implements Screen, InputProcessor
     }
 
     /**
-     * Returns the height in pixels of the screen.
+     * Returns the height in pixels of the world.
      *
-     * @return The height in pixels of the screen.
+     * @return The height in pixels of the world.
      */
     public float getHeight()
     {

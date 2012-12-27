@@ -13,16 +13,16 @@ import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
 public class NudistRailroadExhibition extends Game
 {
     /**
-     * The main menu screen.
+     * The main menu world.
      */
     public MainMenuScreen mainMenuScreen = null;
     /**
-     * The game screen.
+     * The game world.
      */
     public GameScreen gameScreen = null;
 
     /**
-     * the game over screen
+     * the game over world
      */
     public GameOverScreen gameOverScreen = null;
 

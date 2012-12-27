@@ -8,12 +8,12 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 import com.eshsprogramming.nudistrailroadexhibition.controller.WorldController;
-import com.eshsprogramming.nudistrailroadexhibition.model.Nudist;
-import com.eshsprogramming.nudistrailroadexhibition.model.World;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.Nudist;
+import com.eshsprogramming.nudistrailroadexhibition.model.world.GameWorld;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 /**
- * The screen that contains the gameplay.
+ * The gameWorld that contains the gameplay.
  *
  * @author Zachary Latta
  */
@@ -27,13 +27,13 @@ public class GameScreen implements Screen, InputProcessor
     /**
      * The game's world.
      */
-    private World world;
+    private GameWorld gameWorld;
     /**
-     * The game's world renderer.
+     * The game's renderer.
      */
     private WorldRenderer renderer;
     /**
-     * The game's world controller.
+     * The game's controller.
      */
     private WorldController controller;
 
@@ -43,11 +43,11 @@ public class GameScreen implements Screen, InputProcessor
     private Music music;
 
     /**
-     * The width of the world in pixels.
+     * The width of the gameWorld in pixels.
      */
     private float width;
     /**
-     * The height of the world in pixels.
+     * The height of the gameWorld in pixels.
      */
     private float height;
 
@@ -74,11 +74,11 @@ public class GameScreen implements Screen, InputProcessor
     /**
      * Called when the window is resized. Changes the width and size of the game.
      *
-     * @param width  The new width of the screen in pixels.
-     * @param height The new height of the screen in pixels.
+     * @param width  The new width of the gameWorld in pixels.
+     * @param height The new height of the gameWorld in pixels.
      */
     @Override
-    // todo-ben Fix resizing issues for the game screen
+    // todo-ben Fix resizing issues for the game gameWorld
     public void resize(int width, int height)
     {
         renderer.setSize(width, height);
@@ -87,14 +87,14 @@ public class GameScreen implements Screen, InputProcessor
     }
 
     /**
-     * Called when this screen becomes the current screen for the game.
+     * Called when this gameWorld becomes the current gameWorld for the game.
      */
     @Override
     public void show()
     {
-        world = new World();
-        renderer = new WorldRenderer(world, false);
-        controller = new WorldController(world, game);
+        gameWorld = new GameWorld();
+        renderer = new WorldRenderer(gameWorld, false);
+        controller = new WorldController(gameWorld, game);
         music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
 
         music.setLooping(true);
@@ -105,7 +105,7 @@ public class GameScreen implements Screen, InputProcessor
     }
 
     /**
-     * Called when this screen is no longer the current screen for the game.
+     * Called when this gameWorld is no longer the current gameWorld for the game.
      */
     @Override
     public void hide()
@@ -166,9 +166,9 @@ public class GameScreen implements Screen, InputProcessor
         float x = (touchX / width) * WorldRenderer.CAMERA_WIDTH;
         float y = (touchY / height) * WorldRenderer.CAMERA_HEIGHT;
 
-        for(int index = 0; index < world.getNudists().size; index++)
+        for(int index = 0; index < gameWorld.getNudists().size; index++)
         {
-            Nudist nudist = world.getNudists().get(index);
+            Nudist nudist = gameWorld.getNudists().get(index);
 
             // If the touch is on a nudist
             if(x > nudist.getPosition().x && x < nudist.getPosition().x + nudist.getBounds().width &&
@@ -177,7 +177,7 @@ public class GameScreen implements Screen, InputProcessor
                 if(index != 0)
                 {
                     // Swap the nudist into index 0 of the array
-                    world.getNudists().swap(0, index);
+                    gameWorld.getNudists().swap(0, index);
                 }
 
                 controller.setSelected(true);

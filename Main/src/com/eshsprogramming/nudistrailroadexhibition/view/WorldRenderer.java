@@ -10,21 +10,25 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.eshsprogramming.nudistrailroadexhibition.model.*;
+import com.eshsprogramming.nudistrailroadexhibition.model.Text;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.Block;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.Nudist;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.Train;
+import com.eshsprogramming.nudistrailroadexhibition.model.world.GameWorld;
 
 /**
- * Renderer for the world. Manages rendering of objects.
+ * Renderer for the gameWorld. Manages rendering of objects.
  *
  * @author Zachary Latta
  */
 public class WorldRenderer
 {
     /**
-     * The width of the screen in relative units.
+     * The width of the gameWorld in relative units.
      */
     public static final float CAMERA_WIDTH = 8f;
     /**
-     * The height of the screen in relative units.
+     * The height of the gameWorld in relative units.
      */
     public static final float CAMERA_HEIGHT = 5f;
 
@@ -38,9 +42,9 @@ public class WorldRenderer
     private static final int FRAME_ROWS = 2;
 
     /**
-     * The world itself.
+     * The gameWorld itself.
      */
-    private World world;
+    private GameWorld gameWorld;
     /**
      * The camera used in rendering.
      */
@@ -118,11 +122,11 @@ public class WorldRenderer
     private boolean debug = false;
 
     /**
-     * The width of the screen in pixels.
+     * The width of the gameWorld in pixels.
      */
     private int width;
     /**
-     * The height of the screen in pixels.
+     * The height of the gameWorld in pixels.
      */
     private int height;
     /**
@@ -139,20 +143,20 @@ public class WorldRenderer
     private Text scoreText;
 
     /**
-     * Creates a new world renderer.
+     * Creates a new gameWorld renderer.
      *
-     * @param world The world to be rendered.
-     * @param debug Whether or not debug information should be rendered.
+     * @param gameWorld The gameWorld to be rendered.
+     * @param debug     Whether or not debug information should be rendered.
      */
-    public WorldRenderer(World world, boolean debug)
+    public WorldRenderer(GameWorld gameWorld, boolean debug)
     {
-        this.world = world;
+        this.gameWorld = gameWorld;
         this.camera = new OrthographicCamera(CAMERA_WIDTH, CAMERA_HEIGHT);
         this.camera.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
         this.camera.update();
         this.debug = debug;
         this.scoreText = new Text("fonts/arial/font.fnt", false, 4f, new Vector2(6.25f, 4.75f),
-                Integer.toString(world.getScore().getScore()));
+                Integer.toString(gameWorld.getScore().getScore()));
 
         spriteBatch = new SpriteBatch();
 
@@ -239,7 +243,7 @@ public class WorldRenderer
     }
 
     /**
-     * Renders things to be rendered on the screen.
+     * Renders things to be rendered on the gameWorld.
      */
     public void render(float delta)
     {
@@ -265,7 +269,7 @@ public class WorldRenderer
      */
     private void setCurrentFrames()
     {
-        for(Nudist nudist : world.getNudists())
+        for(Nudist nudist : gameWorld.getNudists())
         {
             if(nudist.getState() == Nudist.State.IDLE)
             {
@@ -281,11 +285,11 @@ public class WorldRenderer
     }
 
     /**
-     * Draws blocks on the screen.
+     * Draws blocks on the gameWorld.
      */
     private void drawBlocks()
     {
-        for(Block block : world.getBlocks())
+        for(Block block : gameWorld.getBlocks())
         {
             spriteBatch.draw(blockTexture, block.getPosition().x * ppuX, block.getPosition().y * ppuY,
                     Block.SIZE * ppuX, Block.SIZE * ppuY);
@@ -293,11 +297,11 @@ public class WorldRenderer
     }
 
     /**
-     * Draws trains on the screen.
+     * Draws trains on the gameWorld.
      */
     private void drawTrains()
     {
-        for(Train train : world.getTrains())
+        for(Train train : gameWorld.getTrains())
         {
             spriteBatch.draw(trainCurrentFrame, train.getPosition().x * ppuX, train.getPosition().y * ppuY,
                     Train.SIZEX * ppuX, Train.SIZEY * ppuY);
@@ -305,11 +309,11 @@ public class WorldRenderer
     }
 
     /**
-     * Draws nudists on the screen.
+     * Draws nudists on the gameWorld.
      */
     private void drawNudists()
     {
-        for(Nudist nudist : world.getNudists())
+        for(Nudist nudist : gameWorld.getNudists())
         {
             spriteBatch.draw(nudistCurrentFrame, nudist.getPosition().x * ppuX, nudist.getPosition().y * ppuY,
                     Nudist.SIZEX * ppuX, Nudist.SIZEY * ppuY);
@@ -317,23 +321,23 @@ public class WorldRenderer
     }
 
     /**
-     * Draws the score on the screen.
+     * Draws the score on the gameWorld.
      */
     private void drawScore()
     {
-        scoreText.setText(Integer.toString(world.getScore().getScore()));
+        scoreText.setText(Integer.toString(gameWorld.getScore().getScore()));
         scoreText.render(spriteBatch, ppuX, ppuY);
     }
 
     /**
-     * Draws debug information on the screen.
+     * Draws debug information on the gameWorld.
      */
     private void drawDebug()
     {
         debugRenderer.setProjectionMatrix(camera.combined);
         debugRenderer.begin(ShapeRenderer.ShapeType.Rectangle);
 
-        for(Block block : world.getBlocks())
+        for(Block block : gameWorld.getBlocks())
         {
             Rectangle rect = block.getBounds();
 
@@ -344,7 +348,7 @@ public class WorldRenderer
             debugRenderer.rect(x1, y1, rect.width, rect.height);
         }
 
-        for(Train train : world.getTrains())
+        for(Train train : gameWorld.getTrains())
         {
             Rectangle rect = train.getBounds();
 
@@ -355,7 +359,7 @@ public class WorldRenderer
             debugRenderer.rect(x1, y1, rect.width, rect.height);
         }
 
-        for(Nudist nudist : world.getNudists())
+        for(Nudist nudist : gameWorld.getNudists())
         {
             Rectangle rect = nudist.getBounds();
 
