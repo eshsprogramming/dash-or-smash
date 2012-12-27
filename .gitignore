@@ -17,6 +17,7 @@
 *.ipr
 *.iws
 .idea/
+out/*
 
 ###############
 #   Eclipse   #
