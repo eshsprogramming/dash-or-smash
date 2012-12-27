@@ -236,7 +236,7 @@ public class Text
      * @param screenHeight  The height of the screen in pixels.
      * @return Whether or not the text is touched.
      */
-    public boolean touched(Vector2 touchPosition, float screenWidth, float screenHeight)
+    public boolean touches(Vector2 touchPosition, float screenWidth, float screenHeight)
     {
         return touchPosition.x > getPosition().x &&
                 touchPosition.x < getPosition().x + getRelativeWidth(screenWidth) &&
