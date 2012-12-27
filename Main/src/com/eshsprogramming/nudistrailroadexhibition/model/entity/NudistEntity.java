@@ -38,7 +38,7 @@ public class NudistEntity extends Entity
      */
     public NudistEntity(Vector2 position)
     {
-        super(position);
+        super(position, SIZEX, SIZEY);
     }
 
     /**
