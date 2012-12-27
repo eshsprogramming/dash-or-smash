@@ -7,25 +7,24 @@ import com.eshsprogramming.nudistrailroadexhibition.model.world.GameOverWorld;
 import com.eshsprogramming.nudistrailroadexhibition.view.GameOverRenderer;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
-
 /**
- * The main gameover screen
+ * The main game over screen
  *
- * @author Benjamin Landers
+ * @author Benjamin Landers, Zachary latta
  */
 public class GameOverScreen extends BaseScreen
 {
     /**
-     * the score as an integer
+     * The score as an integer.
      */
     private int score = 0;
     /**
-     * the controller object
+     * The controller object.
      */
-    GameOverController controller = null;
+    private GameOverController controller = null;
 
     /**
-     * the publicly accesable constructor
+     * The publicly assessable constructor
      *
      * @param game a reference to the main game
      */
@@ -48,12 +47,24 @@ public class GameOverScreen extends BaseScreen
         return true;
     }
 
+    /**
+     * Called each frame. Handles rendering of things for the game over screen.
+     *
+     * @param delta The time in milliseconds between frames.
+     */
     public void render(float delta)
     {
         super.render(delta);
+
         controller.update(delta);
     }
 
+    /**
+     * Called when the window is resized.
+     *
+     * @param width  The new width of the screen.
+     * @param height The new height of the screen.
+     */
     public void resize(int width, int height)
     {
         super.resize(width, height);
@@ -70,9 +81,13 @@ public class GameOverScreen extends BaseScreen
         controller.setTouchPosition(new Vector2(0, 0));
     }
 
-    public void setScore(int x)
+    /**
+     * Sets the score to the value passed.
+     *
+     * @param score The new score.
+     */
+    public void setScore(int score)
     {
-        this.score = x;
+        this.score = score;
     }
-
 }

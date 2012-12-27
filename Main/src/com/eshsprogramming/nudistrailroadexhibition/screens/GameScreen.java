@@ -10,7 +10,7 @@ import com.eshsprogramming.nudistrailroadexhibition.model.world.GameWorld;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 /**
- * The gameWorld that contains the gameplay.
+ * The screen that contains the game play.
  *
  * @author Zachary Latta, Benjamin Landers
  */
@@ -30,6 +30,11 @@ public class GameScreen extends BaseScreen
      */
     private Music music;
 
+    /**
+     * Creates a new game screen
+     *
+     * @param game The instance of Game.
+     */
     public GameScreen(NudistRailroadExhibition game)
     {
         super(game);

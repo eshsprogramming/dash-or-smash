@@ -23,6 +23,11 @@ public class MainMenuScreen extends BaseScreen
      */
     private MainMenuController controller;
 
+    /**
+     * Creates a new main menu screen.
+     *
+     * @param game The instance of Game
+     */
     public MainMenuScreen(NudistRailroadExhibition game)
     {
         super(game);
