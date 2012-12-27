@@ -8,18 +8,17 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author Zachary Latta
  */
-// todo-ben Make block extend from entity
-public class BlockEntity
+public class BlockEntity extends Entity
 {
     /**
-     * The block's size
+     * The block's horizontal size in relative units
      */
-    public static final float SIZE = 1f;
-
+    public static final float SIZEX = 1f;
     /**
-     * The block's position in the world.
+     * The block's vertical size in relative units
      */
-    private Vector2 position = new Vector2();
+    public static final float SIZEY = 1f;
+
     /**
      * The bounds of the block
      */
@@ -32,9 +31,7 @@ public class BlockEntity
      */
     public BlockEntity(Vector2 position)
     {
-        this.position = position;
-        this.bounds.width = SIZE;
-        this.bounds.height = SIZE;
+        super(position, SIZEX, SIZEY);
     }
 
     /**
@@ -45,15 +42,5 @@ public class BlockEntity
     public Rectangle getBounds()
     {
         return bounds;
-    }
-
-    /**
-     * Returns the position of the block
-     *
-     * @return The position of the block
-     */
-    public Vector2 getPosition()
-    {
-        return position;
     }
 }

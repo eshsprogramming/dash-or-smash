@@ -69,7 +69,7 @@ public class MainMenuRenderer extends Renderer
         for(BlockEntity blockEntity : mainMenuWorld.getBlocks())
         {
             spriteBatch.draw(blockTexture, blockEntity.getPosition().x * getPPuX(), blockEntity.getPosition().y * getPPuY(),
-                    BlockEntity.SIZE * getPPuX(), BlockEntity.SIZE * getPPuY());
+                    BlockEntity.SIZEX * getPPuX(), BlockEntity.SIZEY * getPPuY());
         }
     }
 

@@ -21,6 +21,8 @@ public class Entity
     private Rectangle bounds = new Rectangle();
 
     /**
+     * Creates a new entity
+     *
      * @param position the current position
      */
     public Entity(Vector2 position, float sizeX, float sizeY)

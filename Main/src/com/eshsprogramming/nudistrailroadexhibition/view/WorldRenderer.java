@@ -273,7 +273,7 @@ public class WorldRenderer extends Renderer
         for(BlockEntity blockEntity : gameWorld.getBlocks())
         {
             spriteBatch.draw(blockTexture, blockEntity.getPosition().x * getPPuX(), blockEntity.getPosition().y * getPPuY(),
-                    BlockEntity.SIZE * getPPuX(), BlockEntity.SIZE * getPPuY());
+                    BlockEntity.SIZEX * getPPuX(), BlockEntity.SIZEY * getPPuY());
         }
     }
 
