@@ -67,7 +67,7 @@ public class WorldController extends Controller
         this.trains = gameWorld.getTrains();
         this.score = gameWorld.getScore();
         setTouchPosition(gameWorld.getNudists().get(0).getPosition());
-        this.hurtSound = Gdx.audio.newSound(Gdx.files.internal("sounds/hurt.wav"));
+        this.hurtSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/hurt.wav"));
     }
 
     /**

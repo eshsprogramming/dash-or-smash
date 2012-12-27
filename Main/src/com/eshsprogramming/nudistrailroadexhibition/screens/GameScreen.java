@@ -57,7 +57,7 @@ public class GameScreen extends BaseScreen
         gameWorld = new GameWorld(getGame());
         renderer = new WorldRenderer(gameWorld, false);
         controller = new WorldController(gameWorld, getGame());
-        music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
+        music = Gdx.audio.newMusic(Gdx.files.internal("sounds/soundtrack/game.mp3"));
 
         music.setLooping(true);
         music.setVolume(0.7f);
