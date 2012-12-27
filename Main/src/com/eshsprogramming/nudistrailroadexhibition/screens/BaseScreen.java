@@ -162,4 +162,8 @@ public class BaseScreen implements Screen, InputProcessor
 	{
 		return height;
 	}
+	public NudistRailroadExhibition getGame()
+	{
+		return game;
+	}
 }

@@ -15,7 +15,6 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
  */
 public class GameOverScreen extends BaseScreen
 {
-    private GameOverRenderer renderer = null;
     /**
      * the score as an integer
      */

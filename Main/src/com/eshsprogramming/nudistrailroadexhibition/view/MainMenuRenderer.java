@@ -11,7 +11,7 @@ import com.eshsprogramming.nudistrailroadexhibition.model.world.MainMenuWorld;
  *
  * @author Zachary Latta
  */
-public class MainMenuRenderer
+public class MainMenuRenderer extends Renderer
 {
     /**
      * The width of the world in relative units.
