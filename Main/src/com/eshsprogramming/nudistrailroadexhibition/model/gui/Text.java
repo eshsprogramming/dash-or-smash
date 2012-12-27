@@ -240,7 +240,7 @@ public class Text
     {
         return touchPosition.x > getPosition().x &&
                 touchPosition.x < getPosition().x + getRelativeWidth(screenWidth) &&
-                touchPosition.y > getPosition().y &&
-                touchPosition.y < getPosition().y + getRelativeHeight(screenHeight);
+                touchPosition.y > getPosition().y - getRelativeHeight(screenHeight) &&
+                touchPosition.y < getPosition().y;
     }
 }
