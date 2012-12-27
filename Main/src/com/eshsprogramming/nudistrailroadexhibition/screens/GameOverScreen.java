@@ -4,7 +4,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
+import com.eshsprogramming.nudistrailroadexhibition.controller.GameOverController;
 import com.eshsprogramming.nudistrailroadexhibition.model.world.GameOverWorld;
 import com.eshsprogramming.nudistrailroadexhibition.view.GameOverRenderer;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
@@ -19,7 +21,7 @@ public class GameOverScreen extends BaseScreen
      * the score as an integer
      */
     private int score = 0;
-
+	GameOverController controller = null;
     /**
      * the publicly accesable constructor
      *
@@ -28,12 +30,24 @@ public class GameOverScreen extends BaseScreen
     public GameOverScreen(NudistRailroadExhibition game)
     {
         super(game);
+		controller = new GameOverController(game);
     }
+	public boolean touchDown(int screenX, int screenY, int pointer, int button)
+	{
+		float touchX = screenX;
+		float touchY = getHeight() - screenY;
 
+		float x = (touchX / getWidth()) * WorldRenderer.CAMERA_WIDTH;
+		float y = (touchY / getHeight()) * WorldRenderer.CAMERA_HEIGHT;
+
+		controller.setTouchPosition(new Vector2(x, y));
+
+		return true;
+	}
     public void render(float delta)
     {
         super.render(delta);
-        //	controller.update(delta);
+        controller.update(delta,getGame());
     }
 
     public void resize(int width, int height)
