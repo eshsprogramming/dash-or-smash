@@ -42,7 +42,8 @@ public class GameWorld
     public GameWorld(NudistRailroadExhibition game)
     {
         this.game = game;
-        score = new Score("fonts/8BitWonder/font.fnt", false, game.gameScreen.getWidth() * 0.0035f * .125f, new Vector2(6.5f, 4.75f));
+        score = new Score("fonts/8BitWonder/font.fnt", false, game.gameScreen.getWidth() * 0.0035f * .125f,
+                new Vector2(6.5f, 4.75f));
         createBlankWorld();
     }
 

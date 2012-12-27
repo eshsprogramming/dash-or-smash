@@ -43,11 +43,11 @@ public class GameOverWorld
         this.gameOverScreen = gameOverScreen;
 
         scoreText = new Text("fonts/8BitWonder/font.fnt", false, gameOverScreen.getWidth() * 0.005f * .25f,
-                new Vector2(1f, 4.5f), "Score: " + score);
+                new Vector2(1f, 4.5f), "SCORE: " + score);
         playAgainText = new Text("fonts/8BitWonder/font.fnt", false, gameOverScreen.getWidth() * 0.0035f * .125f,
-                new Vector2(1f, 3f), "Play Again");
+                new Vector2(1f, 3f), "PLAY AGAIN");
         mainMenuText = new Text("fonts/8BitWonder/font.fnt", false, gameOverScreen.getWidth() * 0.0035f * .125f,
-                new Vector2(1f, 2f), "Main Menu");
+                new Vector2(1f, 2f), "MAIN MENU");
 
         fillBlockArray();
     }

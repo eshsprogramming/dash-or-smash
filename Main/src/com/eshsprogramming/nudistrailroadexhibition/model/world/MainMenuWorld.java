@@ -38,9 +38,9 @@ public class MainMenuWorld
         this.mainMenuScreen = mainMenuScreen;
 
         titleText = new Text("fonts/8BitWonder/font.fnt", false, mainMenuScreen.getWidth() * 0.0035f * .125f,
-                new Vector2(1, 4.5f), "Nudist Railroad Exhibition");
+                new Vector2(1, 4.5f), "NUDIST RAILROAD EXHIBITION");
         playText = new Text("fonts/8BitWonder/font.fnt", false, mainMenuScreen.getWidth() * 0.003f * .125f,
-                new Vector2(1, 3), "Play");
+                new Vector2(1, 3), "PLAY");
 
         fillBlockArray();
     }
