@@ -10,7 +10,6 @@ public class DesktopStarter
 {
 	public static void main(String[] args)
 	{
-        // todo-zach Make world size relative.
 		new LwjglApplication(new NudistRailroadExhibition(), "NudistEntity Railroad Exhibition", 640, 400 , true);
 	}
 }

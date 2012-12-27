@@ -11,7 +11,6 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
  *
  * @author Zachary Latta
  */
-// todo-zach Make text fit nicely into the new organizational structure
 public class Text
 {
     /**
