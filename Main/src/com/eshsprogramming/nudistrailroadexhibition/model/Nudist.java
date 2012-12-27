@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author Zachary Latta
  */
-public class Nudist
+public class Nudist extends Entity
 {
     /**
      * The different states the nudist can be in.
@@ -25,16 +25,7 @@ public class Nudist
     /**
      * The nudist's height in units
      */
-    public static final float SIZEY = 0.6f;
-
-    /**
-     * The nudist's position on the x and y plane.
-     */
-    private Vector2 position = new Vector2();
-    /**
-     * The bounds of the nudist
-     */
-    private Rectangle bounds = new Rectangle();
+    public static final float SIZEY = 0.6f;;
     /**
      * The nudist's current state
      */
@@ -47,40 +38,8 @@ public class Nudist
      */
     public Nudist(Vector2 position)
     {
-        this.position = position;
-        this.bounds.height = SIZEY;
-        this.bounds.width = SIZEX;
+        super(position);
     }
-
-    /**
-     * The update method for the nudist. Doesn't do anything.
-     */
-    public void update(float delta)
-    {
-        bounds.setY(position.y);
-        bounds.setX(position.x);
-    }
-
-    /**
-     * Returns the bounds of the nudist.
-     *
-     * @return The bounds of the nudist.
-     */
-    public Rectangle getBounds()
-    {
-        return bounds;
-    }
-
-    /**
-     * Returns the position of the nudist.
-     *
-     * @return The position of the nudist
-     */
-    public Vector2 getPosition()
-    {
-        return position;
-    }
-
     /**
      * Returns the state of the nudist.
      *

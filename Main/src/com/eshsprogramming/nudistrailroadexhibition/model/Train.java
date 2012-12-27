@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author Benjamin Landers
  */
-public class Train
+public class Train extends Entity
 {
     /**
      * The total number of trains.
@@ -27,15 +27,6 @@ public class Train
      */
     public static final float SIZEY = 1.4f;
     /**
-     * The location of the train on the relative cartesian coordinate plane.
-     */
-    private Vector2 position = new Vector2();
-    /**
-     * The bounds of the train
-     */
-    private Rectangle bounds = new Rectangle();
-
-    /**
      * Creates a new train.
      *
      * @param position The train's starting position
@@ -43,10 +34,7 @@ public class Train
      */
     public Train(Vector2 position, float vY)
     {
-        this.position = position;
-        this.bounds.height = SIZEY;
-        this.bounds.width = SIZEX;
-        this.bounds.setX(position.x);
+        super(position);
         this.vY = vY;
     }
 
@@ -55,27 +43,8 @@ public class Train
      */
     public void update(float delta)
     {
-        position.add(0, delta * vY);
-        bounds.setY(position.y);
-    }
-
-    /**
-     * Returns the bounds of the train.
-     *
-     * @return The bounds of the train.
-     */
-    public Rectangle getBounds()
-    {
-        return bounds;
-    }
-
-    /**
-     * Returns the position of the train.
-     *
-     * @return The position of the train
-     */
-    public Vector2 getPosition()
-    {
-        return position;
+		super.update(delta);
+        getPosition().add(0, delta * vY);
+        getBounds().setY(getPosition().y);
     }
 }
