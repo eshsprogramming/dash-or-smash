@@ -16,7 +16,7 @@ import com.eshsprogramming.nudistrailroadexhibition.model.gui.Score;
 public class GameWorld
 {
     /**
-     * a ref to game
+     * A reference to the actual Game instance.
      */
     NudistRailroadExhibition game = null;
     /**
@@ -31,7 +31,6 @@ public class GameWorld
      * An array of all the trains
      */
     private Array<TrainEntity> trains = new Array<TrainEntity>();
-    // todo-ben Instead of using the score class for score, just use a Text instance. It makes things simpler when playing with multiple classes.
     /**
      * The player's score.
      */
@@ -43,7 +42,6 @@ public class GameWorld
     public GameWorld(NudistRailroadExhibition game)
     {
         this.game = game;
-        float temp = game.gameScreen.getWidth();
         score = new Score("fonts/arial/font.fnt", false, game.gameScreen.getWidth() * 0.0035f, new Vector2(6.5f, 4.75f));
         createBlankWorld();
     }

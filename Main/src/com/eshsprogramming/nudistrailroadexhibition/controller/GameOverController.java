@@ -8,6 +8,7 @@ import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
 
 /**
  * controls the gameover screen
+ *
  * @author Benjamin Landers
  */
 public class GameOverController extends Controller
@@ -22,10 +23,9 @@ public class GameOverController extends Controller
         setTouchPosition(new Vector2(0, 0)); // to avoid a null pointer exception
     }
 
-	/**
-	 *
-	 * @param delta time in milisecs
-	 */
+    /**
+     * @param delta time in milisecs
+     */
     public void update(float delta)
     {
         if(textTouched(getTouchPosition(),

@@ -3,9 +3,10 @@ package com.eshsprogramming.nudistrailroadexhibition.model.gui;
 import com.badlogic.gdx.math.Vector2;
 
 /**
+ * The score of the user.
+ *
  * @author Zachary Latta
  */
-// todo-ben Make score fit nicely into the new organizational structure
 public class Score extends Text
 {
     /**
@@ -22,12 +23,12 @@ public class Score extends Text
     private int score = 0;
 
     /**
-     * a contructor to provide the super construct the neccesary info
+     * A constructor to provide the super construct the necessary information.
      *
-     * @param font    the location of the font file
-     * @param flipped whether the text is flipped
-	 * @param scale the sclae of the score
-	 * @param position the 2d position of the score
+     * @param font     The location of the font file
+     * @param flipped  Whether or not the text is flipped
+     * @param scale    The scale of the score
+     * @param position The 2d position of the score
      */
     public Score(String font, boolean flipped, float scale, Vector2 position)
     {
@@ -37,7 +38,7 @@ public class Score extends Text
     /**
      * A getter for score
      *
-     * @return score the score the player currently has
+     * @return The score the player currently has.
      */
     public int getScore()
     {
@@ -46,6 +47,8 @@ public class Score extends Text
 
     /**
      * Increments the score by the points for each train
+     *
+     * @param nudistCount The current number of nudists.
      */
     public void increment(int nudistCount)
     {

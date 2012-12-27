@@ -25,7 +25,7 @@ public class WorldController extends Controller
      */
     private float respawnCounter = 0;
     /**
-     * timer
+     * Timer to keep track of total delta time.
      */
     private float timer = 0;
     /**
