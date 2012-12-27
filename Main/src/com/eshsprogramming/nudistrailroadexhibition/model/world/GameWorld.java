@@ -2,6 +2,7 @@ package com.eshsprogramming.nudistrailroadexhibition.model.world;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 import com.eshsprogramming.nudistrailroadexhibition.model.gui.Score;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.BlockEntity;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.NudistEntity;
@@ -14,6 +15,10 @@ import com.eshsprogramming.nudistrailroadexhibition.model.entity.TrainEntity;
  */
 public class GameWorld
 {
+	/**
+	 * a ref to game
+	 */
+	NudistRailroadExhibition game = null;
     /**
      * An array of the blocks which make up the world.
      */
@@ -30,13 +35,16 @@ public class GameWorld
     /**
      * The player's score.
      */
-    private Score score = new Score();
+    private Score score = null ;
 
     /**
      * Creates a new world.
      */
-    public GameWorld()
+    public GameWorld(NudistRailroadExhibition game)
     {
+		this.game = game;
+		float temp = game.gameScreen.getWidth() ;
+		score = new Score("fonts/arial/font.fnt", false, game.gameScreen.getWidth() * 0.0035f, new Vector2(6.5f, 4.75f));
         createBlankWorld();
     }
 
@@ -100,4 +108,5 @@ public class GameWorld
     {
         return score;
     }
+
 }

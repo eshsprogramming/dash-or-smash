@@ -92,7 +92,9 @@ public class GameScreen implements Screen, InputProcessor
     @Override
     public void show()
     {
-        gameWorld = new GameWorld();
+		this.width = Gdx.graphics.getWidth();
+		this.height = Gdx.graphics.getHeight();
+        gameWorld = new GameWorld(game);
         renderer = new WorldRenderer(gameWorld, false);
         controller = new WorldController(gameWorld, game);
         music = Gdx.audio.newMusic(Gdx.files.internal("sounds/music.mp3"));
@@ -222,4 +224,23 @@ public class GameScreen implements Screen, InputProcessor
     {
         return false;
     }
+	/**
+	 * Returns the width in pixels of the world.
+	 *
+	 * @return The width in pixels of the world.
+	 */
+	public float getWidth()
+	{
+		return width;
+	}
+
+	/**
+	 * Returns the height in pixels of the world.
+	 *
+	 * @return The height in pixels of the world.
+	 */
+	public float getHeight()
+	{
+		return height;
+	}
 }

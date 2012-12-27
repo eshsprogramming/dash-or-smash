@@ -155,8 +155,7 @@ public class WorldRenderer
         this.camera.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
         this.camera.update();
         this.debug = debug;
-        this.scoreText = new Text("fonts/arial/font.fnt", false, 4f, new Vector2(6.25f, 4.75f),
-                Integer.toString(gameWorld.getScore().getScore()));
+        this.scoreText = gameWorld.getScore();
 
         spriteBatch = new SpriteBatch();
 

@@ -47,7 +47,6 @@ public class Text
     public Text(String ref, boolean flip, String text)
     {
         this.bitmapFont = new BitmapFont(Gdx.files.internal(ref), flip);
-        this.setPosition(position);
         this.setText(text);
     }
 
@@ -60,7 +59,21 @@ public class Text
     public Text(String ref, boolean flip, Vector2 position)
     {
         this.bitmapFont = new BitmapFont(Gdx.files.internal(ref), flip);
+		this.setPosition(position);
     }
+	/**
+	 * Creates a new Text object.
+	 *
+	 * @param ref      The location of the .fnt file to use.
+	 * @param position The position of the text.
+	 * @param scale the scaler facter
+	 */
+	public Text(String ref, boolean flip,float scale, Vector2 position)
+	{
+		this.bitmapFont = new BitmapFont(Gdx.files.internal(ref), flip);
+		this.setScale(scale);
+		this.setPosition(position);
+	}
 
     /**
      * Creates a new Text object.

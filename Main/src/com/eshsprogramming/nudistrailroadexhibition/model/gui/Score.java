@@ -1,10 +1,12 @@
 package com.eshsprogramming.nudistrailroadexhibition.model.gui;
 
+import com.badlogic.gdx.math.Vector2;
+
 /**
  * @author Zachary Latta
  */
 // todo-ben Make score fit nicely into the new organizational structure
-public class Score
+public class Score extends Text
 {
     /**
      * The score coefficient. The amount used to increment the score.
@@ -19,6 +21,15 @@ public class Score
      */
     private int score = 0;
 
+	/**
+	 * a contructor to provide the super construct the neccesary info
+	 * @param font the location of the font file
+	 * @param flipped whether the text is flipped
+	 */
+	public Score(String font, boolean flipped,float scale, Vector2 position)
+	{
+		super("fonts/arial/font.fnt",flipped,scale,position);
+	}
     /**
      * A getter for score
      *
