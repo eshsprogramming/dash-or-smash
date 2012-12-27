@@ -10,14 +10,6 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Entity
 {
-    /**
-     * The entity's width in units
-     */
-    public static float SIZEX = 0.4f;
-    /**
-     * The entity's height in units
-     */
-    public static float SIZEY = 0.6f;
 
     /**
      * The entity's position on the x and y plane.
@@ -31,11 +23,11 @@ public class Entity
     /**
      * @param position the current position
      */
-    public Entity(Vector2 position)
+    public Entity(Vector2 position, float sizeX, float sizeY)
     {
         this.position = position;
-        this.bounds.height = SIZEY;
-        this.bounds.width = SIZEX;
+        this.bounds.height = sizeY;
+        this.bounds.width = sizeX;
     }
 
     /**

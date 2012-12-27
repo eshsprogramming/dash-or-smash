@@ -34,7 +34,7 @@ public class TrainEntity extends Entity
      */
     public TrainEntity(Vector2 position, float vY)
     {
-        super(position);
+        super(position, SIZEX, SIZEY);
         this.vY = vY;
     }
 
