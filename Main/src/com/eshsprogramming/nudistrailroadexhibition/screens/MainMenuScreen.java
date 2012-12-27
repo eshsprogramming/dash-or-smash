@@ -1,5 +1,7 @@
 package com.eshsprogramming.nudistrailroadexhibition.screens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 import com.eshsprogramming.nudistrailroadexhibition.controller.MainMenuController;
@@ -24,6 +26,11 @@ public class MainMenuScreen extends BaseScreen
     private MainMenuController controller;
 
     /**
+     * The background music for this screen.
+     */
+    private Music music;
+
+    /**
      * Creates a new main menu screen.
      *
      * @param game The instance of Game
@@ -33,6 +40,11 @@ public class MainMenuScreen extends BaseScreen
         super(game);
     }
 
+    /**
+     * Called each frame. Calls necessary methods to render and update the screen.
+     *
+     * @param delta The time in milliseconds between frames.
+     */
     @Override
     public void render(float delta)
     {
@@ -40,6 +52,9 @@ public class MainMenuScreen extends BaseScreen
         controller.update(delta);
     }
 
+    /**
+     * Called when this screen becomes the current screen.
+     */
     @Override
     public void show()
     {
@@ -48,6 +63,24 @@ public class MainMenuScreen extends BaseScreen
         mainMenuWorld = new MainMenuWorld(this);
         renderer = new MainMenuRenderer(mainMenuWorld);
         controller = new MainMenuController(mainMenuWorld, this, getGame());
+
+        music = Gdx.audio.newMusic(Gdx.files.internal("sounds/soundtrack/main_menu.mp3"));
+
+        music.setLooping(true);
+        music.setVolume(0.7f);
+        music.play();
+    }
+
+    /**
+     * Called when this screen is no longer the current screen for the game.
+     */
+    @Override
+    public void hide()
+    {
+        music.setLooping(false);
+        music.stop();
+
+        super.hide();
     }
 
     ////////////////////////////////
