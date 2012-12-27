@@ -21,16 +21,17 @@ public class NudistRailroadExhibition extends Game
      */
     public GameScreen gameScreen = null;
 
-	/**
-	 * the game over screen
-	 */
-	public GameOverScreen gameOverScreen = null;
+    /**
+     * the game over screen
+     */
+    public GameOverScreen gameOverScreen = null;
+
     @Override
     public void create()
     {
         mainMenuScreen = new MainMenuScreen(this);
         gameScreen = new GameScreen(this);
-		gameOverScreen = new GameOverScreen(this);
+        gameOverScreen = new GameOverScreen(this);
 
         setScreen(mainMenuScreen);
     }
