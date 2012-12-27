@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 import com.eshsprogramming.nudistrailroadexhibition.controller.WorldController;
-import com.eshsprogramming.nudistrailroadexhibition.model.entity.Nudist;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.NudistEntity;
 import com.eshsprogramming.nudistrailroadexhibition.model.world.GameWorld;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
@@ -168,15 +168,15 @@ public class GameScreen implements Screen, InputProcessor
 
         for(int index = 0; index < gameWorld.getNudists().size; index++)
         {
-            Nudist nudist = gameWorld.getNudists().get(index);
+            NudistEntity nudistEntity = gameWorld.getNudists().get(index);
 
-            // If the touch is on a nudist
-            if(x > nudist.getPosition().x && x < nudist.getPosition().x + nudist.getBounds().width &&
-                    y > nudist.getPosition().y && y < nudist.getPosition().y + nudist.getBounds().height)
+            // If the touch is on a nudistEntity
+            if(x > nudistEntity.getPosition().x && x < nudistEntity.getPosition().x + nudistEntity.getBounds().width &&
+                    y > nudistEntity.getPosition().y && y < nudistEntity.getPosition().y + nudistEntity.getBounds().height)
             {
                 if(index != 0)
                 {
-                    // Swap the nudist into index 0 of the array
+                    // Swap the nudistEntity into index 0 of the array
                     gameWorld.getNudists().swap(0, index);
                 }
 
@@ -186,7 +186,7 @@ public class GameScreen implements Screen, InputProcessor
 
         }
 
-        controller.setTouchPosition(new Vector2(x - Nudist.SIZEX / 2, y));
+        controller.setTouchPosition(new Vector2(x - NudistEntity.SIZEX / 2, y));
 
         return true;
     }
@@ -206,7 +206,7 @@ public class GameScreen implements Screen, InputProcessor
         float x = (touchX / width) * WorldRenderer.CAMERA_WIDTH;
         float y = (touchY / height) * WorldRenderer.CAMERA_HEIGHT;
 
-        controller.setTouchPosition(new Vector2(x - Nudist.SIZEX / 2, y));
+        controller.setTouchPosition(new Vector2(x - NudistEntity.SIZEX / 2, y));
 
         return true;
     }

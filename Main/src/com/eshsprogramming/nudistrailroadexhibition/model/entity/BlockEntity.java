@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
  * @author Zachary Latta
  */
 // todo-ben Make block extend from entity
-public class Block
+public class BlockEntity
 {
     /**
      * The block's size
@@ -30,7 +30,7 @@ public class Block
      *
      * @param position The block's position in the world.
      */
-    public Block(Vector2 position)
+    public BlockEntity(Vector2 position)
     {
         this.position = position;
         this.bounds.width = SIZE;

@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author Zachary Latta
  */
-public class Nudist extends Entity
+public class NudistEntity extends Entity
 {
     /**
      * The different states the nudist can be in.
@@ -36,7 +36,7 @@ public class Nudist extends Entity
      *
      * @param position The nudist's starting position.
      */
-    public Nudist(Vector2 position)
+    public NudistEntity(Vector2 position)
     {
         super(position);
     }

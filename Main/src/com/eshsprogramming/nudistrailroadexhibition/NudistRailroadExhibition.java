@@ -6,7 +6,7 @@ import com.eshsprogramming.nudistrailroadexhibition.screens.GameScreen;
 import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
 
 /**
- * The entry point of Nudist Railroad Exhibition.
+ * The entry point of NudistEntity Railroad Exhibition.
  *
  * @author Zachary Latta
  */

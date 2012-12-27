@@ -131,7 +131,7 @@ public class GameOverScreen implements Screen, InputProcessor
         float x = (touchX / width) * WorldRenderer.CAMERA_WIDTH;
         float y = (touchY / height) * WorldRenderer.CAMERA_HEIGHT;
 
-        //controller.setTouchPosition(new Vector2(x - Nudist.SIZEX / 2, y));
+        //controller.setTouchPosition(new Vector2(x - NudistEntity.SIZEX / 2, y));
 
         return true;
     }

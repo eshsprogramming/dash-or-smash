@@ -4,7 +4,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * The base class for both Nudist and Train
+ * The base class for both NudistEntity and TrainEntity
  *
  * @author Benjamin Landers
  */

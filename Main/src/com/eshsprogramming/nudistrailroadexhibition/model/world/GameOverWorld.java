@@ -3,7 +3,7 @@ package com.eshsprogramming.nudistrailroadexhibition.model.world;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.model.Text;
-import com.eshsprogramming.nudistrailroadexhibition.model.entity.Block;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.BlockEntity;
 import com.eshsprogramming.nudistrailroadexhibition.screens.GameOverScreen;
 
 
@@ -27,7 +27,7 @@ public class GameOverWorld
     /**
      * An array of the blocks which make up the background.
      */
-    private Array<Block> blocks = new Array<Block>();
+    private Array<BlockEntity> blocks = new Array<BlockEntity>();
 
     /**
      * Creates a new main menu
@@ -53,7 +53,7 @@ public class GameOverWorld
         {
             for(int index2 = 0; index2 < 5; index2++)
             {
-                blocks.add(new Block(new Vector2(index1, index2)));
+                blocks.add(new BlockEntity(new Vector2(index1, index2)));
             }
         }
     }
@@ -63,7 +63,7 @@ public class GameOverWorld
      *
      * @return The array of blocks which make up the background.
      */
-    public Array<Block> getBlocks()
+    public Array<BlockEntity> getBlocks()
     {
         return blocks;
     }

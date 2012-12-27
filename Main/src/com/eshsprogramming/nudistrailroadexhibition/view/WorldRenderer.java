@@ -11,9 +11,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.model.Text;
-import com.eshsprogramming.nudistrailroadexhibition.model.entity.Block;
-import com.eshsprogramming.nudistrailroadexhibition.model.entity.Nudist;
-import com.eshsprogramming.nudistrailroadexhibition.model.entity.Train;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.BlockEntity;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.NudistEntity;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.TrainEntity;
 import com.eshsprogramming.nudistrailroadexhibition.model.world.GameWorld;
 
 /**
@@ -269,13 +269,13 @@ public class WorldRenderer
      */
     private void setCurrentFrames()
     {
-        for(Nudist nudist : gameWorld.getNudists())
+        for(NudistEntity nudistEntity : gameWorld.getNudists())
         {
-            if(nudist.getState() == Nudist.State.IDLE)
+            if(nudistEntity.getState() == NudistEntity.State.IDLE)
             {
                 nudistCurrentFrame = nudistIdleAnimation.getKeyFrame(stateTime, true);
             }
-            else if(nudist.getState() == Nudist.State.DYING)
+            else if(nudistEntity.getState() == NudistEntity.State.DYING)
             {
                 nudistCurrentFrame = nudistDyingAnimation.getKeyFrame(stateTime, true);
             }
@@ -289,10 +289,10 @@ public class WorldRenderer
      */
     private void drawBlocks()
     {
-        for(Block block : gameWorld.getBlocks())
+        for(BlockEntity blockEntity : gameWorld.getBlocks())
         {
-            spriteBatch.draw(blockTexture, block.getPosition().x * ppuX, block.getPosition().y * ppuY,
-                    Block.SIZE * ppuX, Block.SIZE * ppuY);
+            spriteBatch.draw(blockTexture, blockEntity.getPosition().x * ppuX, blockEntity.getPosition().y * ppuY,
+                    BlockEntity.SIZE * ppuX, BlockEntity.SIZE * ppuY);
         }
     }
 
@@ -301,10 +301,10 @@ public class WorldRenderer
      */
     private void drawTrains()
     {
-        for(Train train : gameWorld.getTrains())
+        for(TrainEntity trainEntity : gameWorld.getTrains())
         {
-            spriteBatch.draw(trainCurrentFrame, train.getPosition().x * ppuX, train.getPosition().y * ppuY,
-                    Train.SIZEX * ppuX, Train.SIZEY * ppuY);
+            spriteBatch.draw(trainCurrentFrame, trainEntity.getPosition().x * ppuX, trainEntity.getPosition().y * ppuY,
+                    TrainEntity.SIZEX * ppuX, TrainEntity.SIZEY * ppuY);
         }
     }
 
@@ -313,10 +313,10 @@ public class WorldRenderer
      */
     private void drawNudists()
     {
-        for(Nudist nudist : gameWorld.getNudists())
+        for(NudistEntity nudistEntity : gameWorld.getNudists())
         {
-            spriteBatch.draw(nudistCurrentFrame, nudist.getPosition().x * ppuX, nudist.getPosition().y * ppuY,
-                    Nudist.SIZEX * ppuX, Nudist.SIZEY * ppuY);
+            spriteBatch.draw(nudistCurrentFrame, nudistEntity.getPosition().x * ppuX, nudistEntity.getPosition().y * ppuY,
+                    NudistEntity.SIZEX * ppuX, NudistEntity.SIZEY * ppuY);
         }
     }
 
@@ -337,20 +337,20 @@ public class WorldRenderer
         debugRenderer.setProjectionMatrix(camera.combined);
         debugRenderer.begin(ShapeRenderer.ShapeType.Rectangle);
 
-        for(Block block : gameWorld.getBlocks())
+        for(BlockEntity blockEntity : gameWorld.getBlocks())
         {
-            Rectangle rect = block.getBounds();
+            Rectangle rect = blockEntity.getBounds();
 
-            float x1 = block.getPosition().x + rect.x;
-            float y1 = block.getPosition().y + rect.y;
+            float x1 = blockEntity.getPosition().x + rect.x;
+            float y1 = blockEntity.getPosition().y + rect.y;
 
             debugRenderer.setColor(new Color(1, 0, 0, 1));
             debugRenderer.rect(x1, y1, rect.width, rect.height);
         }
 
-        for(Train train : gameWorld.getTrains())
+        for(TrainEntity trainEntity : gameWorld.getTrains())
         {
-            Rectangle rect = train.getBounds();
+            Rectangle rect = trainEntity.getBounds();
 
             float x1 = rect.x;
             float y1 = rect.y;
@@ -359,9 +359,9 @@ public class WorldRenderer
             debugRenderer.rect(x1, y1, rect.width, rect.height);
         }
 
-        for(Nudist nudist : gameWorld.getNudists())
+        for(NudistEntity nudistEntity : gameWorld.getNudists())
         {
-            Rectangle rect = nudist.getBounds();
+            Rectangle rect = nudistEntity.getBounds();
 
             float x1 = rect.x;
             float y1 = rect.y;

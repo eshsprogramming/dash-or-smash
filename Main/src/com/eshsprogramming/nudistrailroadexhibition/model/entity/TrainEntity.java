@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author Benjamin Landers
  */
-public class Train extends Entity
+public class TrainEntity extends Entity
 {
     /**
      * The total number of trains.
@@ -32,7 +32,7 @@ public class Train extends Entity
      * @param position The train's starting position
      * @param vY       The train's velocity on the Y axis
      */
-    public Train(Vector2 position, float vY)
+    public TrainEntity(Vector2 position, float vY)
     {
         super(position);
         this.vY = vY;

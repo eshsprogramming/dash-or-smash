@@ -3,7 +3,7 @@ package com.eshsprogramming.nudistrailroadexhibition.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.eshsprogramming.nudistrailroadexhibition.model.entity.Block;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.BlockEntity;
 import com.eshsprogramming.nudistrailroadexhibition.model.world.GameOverWorld;
 
 /**
@@ -80,10 +80,10 @@ public class GameOverRenderer
      */
     private void drawBlocks()
     {
-        for(Block block : gameOverWorld.getBlocks())
+        for(BlockEntity blockEntity : gameOverWorld.getBlocks())
         {
-            spriteBatch.draw(blockTexture, block.getPosition().x * ppuX, block.getPosition().y * ppuY,
-                    Block.SIZE * ppuX, Block.SIZE * ppuY);
+            spriteBatch.draw(blockTexture, blockEntity.getPosition().x * ppuX, blockEntity.getPosition().y * ppuY,
+                    BlockEntity.SIZE * ppuX, BlockEntity.SIZE * ppuY);
         }
     }
 

@@ -8,8 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
 import com.eshsprogramming.nudistrailroadexhibition.model.Score;
-import com.eshsprogramming.nudistrailroadexhibition.model.entity.Nudist;
-import com.eshsprogramming.nudistrailroadexhibition.model.entity.Train;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.NudistEntity;
+import com.eshsprogramming.nudistrailroadexhibition.model.entity.TrainEntity;
 import com.eshsprogramming.nudistrailroadexhibition.model.world.GameWorld;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
@@ -43,11 +43,11 @@ public class WorldController
     /**
      * The nudists in the gameWorld.
      */
-    private Array<Nudist> nudists = null;
+    private Array<NudistEntity> nudists = null;
     /**
      * The trains in the gameWorld.
      */
-    private Array<Train> trains = null;
+    private Array<TrainEntity> trains = null;
     /**
      * The position of the user's touch.
      */
@@ -88,15 +88,15 @@ public class WorldController
         timer += delta;
 
         // Calls update methods of nudists
-        for(Nudist nudist : nudists)
+        for(NudistEntity nudistEntity : nudists)
         {
-            nudist.update(delta);
+            nudistEntity.update(delta);
         }
 
         // Calls update methods of trains
-        for(Train train : trains)
+        for(TrainEntity trainEntity : trains)
         {
-            train.update(delta);
+            trainEntity.update(delta);
         }
 
         handleCollision();
@@ -120,8 +120,8 @@ public class WorldController
             temp = (selected) ? temp : 0;
             temp = (-1f < temp && temp < 1f) ? temp : 0;
             temp = (touchPosition.x > 0) ? temp : 0;
-            temp = (touchPosition.x < WorldRenderer.CAMERA_WIDTH - Nudist.SIZEX) ?
-                    temp : WorldRenderer.CAMERA_WIDTH - Nudist.SIZEX - nudists.get(0).getPosition().x;
+            temp = (touchPosition.x < WorldRenderer.CAMERA_WIDTH - NudistEntity.SIZEX) ?
+                    temp : WorldRenderer.CAMERA_WIDTH - NudistEntity.SIZEX - nudists.get(0).getPosition().x;
             nudists.get(0).getPosition().x += temp;
         } catch(Exception e)
         {
@@ -134,18 +134,18 @@ public class WorldController
      */
     private void checkTrainValidity()
     {
-        for(Train train : trains)
+        for(TrainEntity trainEntity : trains)
         {
-            if(train.getPosition().y + Train.SIZEY < 0)
+            if(trainEntity.getPosition().y + TrainEntity.SIZEY < 0)
             {
-                trains.removeValue(train, true);
+                trains.removeValue(trainEntity, true);
                 score.increment(nudists.size);
             }
         }
 
-        while(trains.size < Train.NUMBER_OF_TRAINS)
+        while(trains.size < TrainEntity.NUMBER_OF_TRAINS)
         {
-            trains.add(new Train(new Vector2(MathUtils.random(0f, WorldRenderer.CAMERA_WIDTH - Train.SIZEX),
+            trains.add(new TrainEntity(new Vector2(MathUtils.random(0f, WorldRenderer.CAMERA_WIDTH - TrainEntity.SIZEX),
                     MathUtils.random(5f, 10f)), MathUtils.random(-2.2f) * timer * .01f - .8f));
         }
     }
@@ -173,15 +173,15 @@ public class WorldController
     }
 
     /**
-     * Checks for collision between a train and a nudist.
+     * Checks for collision between a trainEntity and a nudistEntity.
      *
-     * @param train  The train used for the collision check.
-     * @param nudist The nudist used for the collision check.
-     * @return Whether or not there is a collision between the train and nudist.
+     * @param trainEntity  The trainEntity used for the collision check.
+     * @param nudistEntity The nudistEntity used for the collision check.
+     * @return Whether or not there is a collision between the trainEntity and nudistEntity.
      */
-    private boolean checkCollision(Train train, Nudist nudist)
+    private boolean checkCollision(TrainEntity trainEntity, NudistEntity nudistEntity)
     {
-        return Intersector.intersectRectangles(train.getBounds(), nudist.getBounds());
+        return Intersector.intersectRectangles(trainEntity.getBounds(), nudistEntity.getBounds());
     }
 
     /**
@@ -209,13 +209,13 @@ public class WorldController
      */
     private void spawnNudist()
     {
-        Nudist temp = new Nudist(new Vector2(nudists.first().getPosition().x +
-                Nudist.SIZEX, nudists.first().getPosition().y));
-        if(temp.getPosition().x < 0 || temp.getPosition().x > WorldRenderer.CAMERA_WIDTH - Nudist.SIZEX)
+        NudistEntity temp = new NudistEntity(new Vector2(nudists.first().getPosition().x +
+                NudistEntity.SIZEX, nudists.first().getPosition().y));
+        if(temp.getPosition().x < 0 || temp.getPosition().x > WorldRenderer.CAMERA_WIDTH - NudistEntity.SIZEX)
         {
             temp.getPosition().x = (temp.getPosition().x > 0) ? temp.getPosition().x : 0;
-            temp.getPosition().x = (temp.getPosition().x < WorldRenderer.CAMERA_WIDTH - Nudist.SIZEX)
-                    ? temp.getPosition().x : WorldRenderer.CAMERA_WIDTH - Nudist.SIZEX;
+            temp.getPosition().x = (temp.getPosition().x < WorldRenderer.CAMERA_WIDTH - NudistEntity.SIZEX)
+                    ? temp.getPosition().x : WorldRenderer.CAMERA_WIDTH - NudistEntity.SIZEX;
         }
         nudists.add(temp);
     }
