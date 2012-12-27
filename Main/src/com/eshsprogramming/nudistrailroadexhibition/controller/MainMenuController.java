@@ -19,7 +19,7 @@ public class MainMenuController extends Controller
      */
     private MainMenuWorld mainMenuWorld = null;
     /**
-     * The main menu world.
+     * The main menu screen.
      */
     private MainMenuScreen mainMenuScreen = null;
 
