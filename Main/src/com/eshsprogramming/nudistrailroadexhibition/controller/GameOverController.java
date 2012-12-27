@@ -1,11 +1,8 @@
 package com.eshsprogramming.nudistrailroadexhibition.controller;
 
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
-import com.eshsprogramming.nudistrailroadexhibition.model.gui.Text;
 import com.eshsprogramming.nudistrailroadexhibition.view.GameOverRenderer;
-import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
 
 /**
  * Controller for the game over screen. Handles input and potentially other changes that occur.
@@ -32,14 +29,14 @@ public class GameOverController extends Controller
      */
     public void update(float delta)
     {
-        if(((GameOverRenderer)getGame().gameOverScreen.getRenderer()).getWorld().getMainMenuText()
-            .touches(getTouchPosition(), getGame().gameOverScreen.getWidth(), getGame().gameOverScreen.getHeight()))
+        if(((GameOverRenderer) getGame().gameOverScreen.getRenderer()).getWorld().getMainMenuText()
+                .touches(getTouchPosition(), getGame().gameOverScreen.getWidth(), getGame().gameOverScreen.getHeight()))
         {
             getGame().setScreen(getGame().mainMenuScreen);
         }
 
-        if(((GameOverRenderer)getGame().gameOverScreen.getRenderer()).getWorld().getPlayAgainText()
-            .touches(getTouchPosition(), getGame().gameOverScreen.getWidth(), getGame().gameOverScreen.getHeight()))
+        if(((GameOverRenderer) getGame().gameOverScreen.getRenderer()).getWorld().getPlayAgainText()
+                .touches(getTouchPosition(), getGame().gameOverScreen.getWidth(), getGame().gameOverScreen.getHeight()))
         {
             getGame().setScreen(getGame().gameScreen);
         }

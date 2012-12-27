@@ -44,9 +44,9 @@ public class GameOverWorld
 
         scoreText = new Text("fonts/8BitWonder/font.fnt", false, gameOverScreen.getWidth() * 0.005f * .25f,
                 new Vector2(1f, 4.5f), "Score: " + score);
-        playAgainText = new Text("fonts/8BitWonder/font.fnt", false, gameOverScreen.getWidth() * 0.0035f*.25f,
+        playAgainText = new Text("fonts/8BitWonder/font.fnt", false, gameOverScreen.getWidth() * 0.0035f * .25f,
                 new Vector2(1f, 3f), "Play Again");
-        mainMenuText = new Text("fonts/8BitWonder/font.fnt", false, gameOverScreen.getWidth() * 0.0035f*.25f,
+        mainMenuText = new Text("fonts/8BitWonder/font.fnt", false, gameOverScreen.getWidth() * 0.0035f * .25f,
                 new Vector2(1f, 2f), "Main Menu");
 
         fillBlockArray();
