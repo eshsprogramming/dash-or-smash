@@ -32,33 +32,16 @@ public class GameOverController extends Controller
      */
     public void update(float delta)
     {
-        if(textTouched(getTouchPosition(),
-                ((GameOverRenderer) getGame().gameOverScreen.getRenderer()).getWorld().getMainMenuText()))
+        if(((GameOverRenderer)getGame().gameOverScreen.getRenderer()).getWorld().getMainMenuText()
+            .touches(getTouchPosition(), getGame().gameOverScreen.getWidth(), getGame().gameOverScreen.getHeight()))
         {
             getGame().setScreen(getGame().mainMenuScreen);
         }
 
-        if(textTouched(getTouchPosition(),
-                ((GameOverRenderer) getGame().gameOverScreen.getRenderer()).getWorld().getPlayAgainText()))
+        if(((GameOverRenderer)getGame().gameOverScreen.getRenderer()).getWorld().getPlayAgainText()
+            .touches(getTouchPosition(), getGame().gameOverScreen.getWidth(), getGame().gameOverScreen.getHeight()))
         {
             getGame().setScreen(getGame().gameScreen);
         }
-    }
-
-    /**
-     * Returns whether or not the text is touched.
-     *
-     * @param touchPosition The current touch position.
-     * @param text          The text to test.
-     * @return Whether or not the text is touched.
-     */
-    private boolean textTouched(Vector2 touchPosition, Text text)
-    {
-        // Makes width and height relative.
-        float width = (text.getPixelWidth() / getGame().gameOverScreen.getWidth()) * MainMenuRenderer.CAMERA_WIDTH;
-        float height = (text.getPixelHeight() / getGame().gameOverScreen.getHeight()) * MainMenuRenderer.CAMERA_HEIGHT;
-
-        return touchPosition.x > text.getPixelWidth() && touchPosition.x < text.getPosition().x + width &&
-                touchPosition.y > text.getPosition().y && touchPosition.y < text.getPosition().y + height;
     }
 }

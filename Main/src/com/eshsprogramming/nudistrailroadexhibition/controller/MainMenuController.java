@@ -45,44 +45,10 @@ public class MainMenuController extends Controller
      */
     public void update(float delta)
     {
-        if(textTouched(getTouchPosition(), mainMenuWorld.getPlayText()))
+        if(mainMenuWorld.getPlayText().touches(getTouchPosition(), mainMenuScreen.getWidth(),
+                mainMenuScreen.getHeight()))
         {
             getGame().setScreen(getGame().gameScreen);
         }
-    }
-
-    /**
-     * Returns whether or not the text is touched.
-     *
-     * @param touchPosition The current touch position.
-     * @param text          The text to test.
-     * @return Whether or not the text is touched.
-     */
-    private boolean textTouched(Vector2 touchPosition, Text text)
-    {
-        // Makes width and height relative.
-        float width = (text.getPixelWidth() / mainMenuScreen.getWidth()) * MainMenuRenderer.CAMERA_WIDTH;
-        float height = (text.getPixelHeight() / mainMenuScreen.getHeight()) * MainMenuRenderer.CAMERA_HEIGHT;
-
-        if(touchPosition.x > text.getPosition().x)
-        {
-            if(touchPosition.x < text.getPosition().x + width)
-            {
-                if(touchPosition.y > text.getPosition().y - height)
-                {
-                    if(touchPosition.y < text.getPosition().y)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        else
-        {
-            return false;
-        }
-
-        return touchPosition.x > text.getPixelWidth() && touchPosition.x < text.getPosition().x + width &&
-                touchPosition.y > text.getPosition().y && touchPosition.y < text.getPosition().y + height;
     }
 }
