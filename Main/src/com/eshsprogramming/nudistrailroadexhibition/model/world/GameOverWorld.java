@@ -8,6 +8,7 @@ import com.eshsprogramming.nudistrailroadexhibition.screens.GameOverScreen;
 
 
 /**
+ * The storage unit for the gamescreen
  * @author Benjamin Landers
  */
 public class GameOverWorld

@@ -26,6 +26,8 @@ public class Score extends Text
      *
      * @param font    the location of the font file
      * @param flipped whether the text is flipped
+	 * @param scale the sclae of the score
+	 * @param position the 2d position of the score
      */
     public Score(String font, boolean flipped, float scale, Vector2 position)
     {

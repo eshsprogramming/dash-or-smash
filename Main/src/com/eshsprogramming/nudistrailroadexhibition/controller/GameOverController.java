@@ -7,6 +7,7 @@ import com.eshsprogramming.nudistrailroadexhibition.view.GameOverRenderer;
 import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
 
 /**
+ * controls the gameover screen
  * @author Benjamin Landers
  */
 public class GameOverController
@@ -20,13 +21,21 @@ public class GameOverController
      */
     private Vector2 touchPosition = null;
 
+	/**
+	 *
+	 * @param game a ref to the main game class
+	 */
     public GameOverController(NudistRailroadExhibition game)
     {
         this.game = game;
         this.touchPosition = new Vector2(0, 0); // to avoid a null pointer exception
     }
 
-    public void update(float delta, NudistRailroadExhibition game)
+	/**
+	 *
+	 * @param delta time in milisecs
+	 */
+    public void update(float delta)
     {
         if(textTouched(touchPosition,
                 ((GameOverRenderer) game.gameOverScreen.getRenderer()).getWorld().getMainMenuText()))

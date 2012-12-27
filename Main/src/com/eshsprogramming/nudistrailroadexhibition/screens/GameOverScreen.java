@@ -9,6 +9,7 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 
 /**
+ * The main gameover screen
  * @author Benjamin Landers
  */
 public class GameOverScreen extends BaseScreen
@@ -17,6 +18,9 @@ public class GameOverScreen extends BaseScreen
      * the score as an integer
      */
     private int score = 0;
+	/**
+	 * the controller object
+	 */
     GameOverController controller = null;
 
     /**
@@ -46,7 +50,7 @@ public class GameOverScreen extends BaseScreen
     public void render(float delta)
     {
         super.render(delta);
-        controller.update(delta, getGame());
+        controller.update(delta);
     }
 
     public void resize(int width, int height)
