@@ -10,6 +10,7 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 
 /**
  * The main gameover screen
+ *
  * @author Benjamin Landers
  */
 public class GameOverScreen extends BaseScreen
@@ -18,9 +19,9 @@ public class GameOverScreen extends BaseScreen
      * the score as an integer
      */
     private int score = 0;
-	/**
-	 * the controller object
-	 */
+    /**
+     * the controller object
+     */
     GameOverController controller = null;
 
     /**

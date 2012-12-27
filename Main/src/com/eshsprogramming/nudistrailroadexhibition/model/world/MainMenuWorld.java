@@ -7,6 +7,8 @@ import com.eshsprogramming.nudistrailroadexhibition.model.gui.Text;
 import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
 
 /**
+ * The world for the main menu. Contains the things displayed and handled by the main menu.
+ *
  * @author Zachary Latta
  */
 public class MainMenuWorld

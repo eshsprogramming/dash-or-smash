@@ -8,12 +8,13 @@ import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
 
 /**
  * controls the gameover screen
+ *
  * @author Benjamin Landers
  */
 public class GameOverController
 {
     /**
-     * a ref to game
+     * A reference to the actual Game instance.
      */
     private NudistRailroadExhibition game = null;
     /**
@@ -21,20 +22,18 @@ public class GameOverController
      */
     private Vector2 touchPosition = null;
 
-	/**
-	 *
-	 * @param game a ref to the main game class
-	 */
+    /**
+     * @param game a ref to the main game class
+     */
     public GameOverController(NudistRailroadExhibition game)
     {
         this.game = game;
         this.touchPosition = new Vector2(0, 0); // to avoid a null pointer exception
     }
 
-	/**
-	 *
-	 * @param delta time in milisecs
-	 */
+    /**
+     * @param delta time in milisecs
+     */
     public void update(float delta)
     {
         if(textTouched(touchPosition,

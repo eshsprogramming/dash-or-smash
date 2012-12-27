@@ -89,6 +89,11 @@ public class GameOverRenderer extends Renderer
         blockTexture = new Texture(Gdx.files.internal("images/block.png"));
     }
 
+    /**
+     * Returns the world to render.
+     *
+     * @return The world to render.
+     */
     public GameOverWorld getWorld()
     {
         return gameOverWorld;

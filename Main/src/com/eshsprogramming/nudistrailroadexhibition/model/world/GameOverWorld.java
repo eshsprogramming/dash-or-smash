@@ -8,8 +8,9 @@ import com.eshsprogramming.nudistrailroadexhibition.screens.GameOverScreen;
 
 
 /**
- * The storage unit for the gamescreen
- * @author Benjamin Landers
+ * The world for game over. Contains things in the world.
+ *
+ * @author Benjamin Landers, Zachary Latta
  */
 public class GameOverWorld
 {

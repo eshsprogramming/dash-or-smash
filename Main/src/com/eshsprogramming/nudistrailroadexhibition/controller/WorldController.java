@@ -21,7 +21,7 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 public class WorldController
 {
     /**
-     * the game
+     * A reference to the actual Game instance.
      */
     private NudistRailroadExhibition game = null;
     /**
@@ -29,7 +29,7 @@ public class WorldController
      */
     private float respawnCounter = 0;
     /**
-     * timer
+     * Timer to keep track of total delta time.
      */
     private float timer = 0;
     /**
