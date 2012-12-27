@@ -13,7 +13,7 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 /**
  * The main menu of the game.
  *
- * @author Zachary Latta
+ * @author Zachary Latta, Benjamin Landers
  */
 public class MainMenuScreen extends BaseScreen
 {
