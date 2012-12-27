@@ -12,7 +12,7 @@ import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
  *
  * @author Zachary Latta
  */
-public class MainMenuController
+public class MainMenuController extends Controller
 {
     /**
      * The main menu.
@@ -24,17 +24,13 @@ public class MainMenuController
     private MainMenuScreen mainMenuScreen = null;
 
     /**
-     * The current position of the user's touch
-     */
-    private Vector2 touchPosition = null;
-
-    /**
      * Creates a new main menu controller.
      *
      * @param mainMenuWorld The main menu to use with the main menu controller
      */
-    public MainMenuController(MainMenuWorld mainMenuWorld, MainMenuScreen mainMenuScreen)
+    public MainMenuController(MainMenuWorld mainMenuWorld, MainMenuScreen mainMenuScreen, NudistRailroadExhibition game)
     {
+		super(game);
         this.mainMenuWorld = mainMenuWorld;
         this.mainMenuScreen = mainMenuScreen;
 
@@ -47,24 +43,13 @@ public class MainMenuController
      *
      * @param delta Time in milliseconds between frames.
      */
-    public void update(float delta, NudistRailroadExhibition game)
+    public void update(float delta)
     {
-        if(textTouched(touchPosition, mainMenuWorld.getPlayText()))
+        if(textTouched(getTouchPosition(), mainMenuWorld.getPlayText()))
         {
-            game.setScreen(game.gameScreen);
+            getGame().setScreen(getGame().gameScreen);
         }
     }
-
-    /**
-     * Sets the controller's touch position.
-     *
-     * @param touchPosition The new touch position.
-     */
-    public void setTouchPosition(Vector2 touchPosition)
-    {
-        this.touchPosition = touchPosition;
-    }
-
     /**
      * Returns whether or not the text is touched.
      *
