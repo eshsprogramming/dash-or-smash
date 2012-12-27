@@ -63,6 +63,7 @@ public class GameOverScreen extends BaseScreen
     {
 		super.show();
         renderer = new GameOverRenderer(new GameOverWorld(this, score));
+		controller.setTouchPosition(new Vector2(0,0));
     }
 	public void setScore(int x)
 	{
