@@ -68,7 +68,7 @@ public class Text
      *
      * @param ref      The location of the .fnt file to use.
      * @param position The position of the text.
-     * @param scale    the scaler facter
+     * @param scale    the scale factor
      */
     public Text(String ref, boolean flip, float scale, Vector2 position)
     {
