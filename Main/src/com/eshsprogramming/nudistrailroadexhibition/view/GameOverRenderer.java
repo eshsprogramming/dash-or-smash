@@ -9,7 +9,7 @@ import com.eshsprogramming.nudistrailroadexhibition.model.world.GameOverWorld;
 /**
  * @author Benjamin Landers
  */
-public class GameOverRenderer
+public class GameOverRenderer extends Renderer
 {
     /**
      * The width of the world in relative units.
@@ -34,24 +34,6 @@ public class GameOverRenderer
      * The texture for the blocks.
      */
     private Texture blockTexture;
-
-    /**
-     * The width of the world in pixels.
-     */
-    private int width;
-    /**
-     * The height of the world in pixels.
-     */
-    private int height;
-    /**
-     * Pixels per unit on the X axis
-     */
-    private float ppuX;
-    /**
-     * Pixels per unit on the Y axis
-     */
-    private float ppuY;
-
     /**
      * Creates a new GameOverRenderer
      */
@@ -82,8 +64,8 @@ public class GameOverRenderer
     {
         for(BlockEntity blockEntity : gameOverWorld.getBlocks())
         {
-            spriteBatch.draw(blockTexture, blockEntity.getPosition().x * ppuX, blockEntity.getPosition().y * ppuY,
-                    BlockEntity.SIZE * ppuX, BlockEntity.SIZE * ppuY);
+            spriteBatch.draw(blockTexture, blockEntity.getPosition().x * getPPuX(), blockEntity.getPosition().y * getPPuY(),
+                    BlockEntity.SIZE * getPPuX(), BlockEntity.SIZE * getPPuY());
         }
     }
 
@@ -92,22 +74,8 @@ public class GameOverRenderer
      */
     private void drawText()
     {
-        gameOverWorld.getMessageText().render(spriteBatch, ppuX, ppuY);
-        gameOverWorld.getScoreText().render(spriteBatch, ppuX, ppuY);
-    }
-
-    /**
-     * Sets the size of the window in pixels.
-     *
-     * @param width  The width of the window in pixels.
-     * @param height The height of the window in pixels.
-     */
-    public void setSize(int width, int height)
-    {
-        this.width = width;
-        this.height = height;
-        ppuX = (float) width / CAMERA_WIDTH;
-        ppuY = (float) height / CAMERA_HEIGHT;
+        gameOverWorld.getMessageText().render(spriteBatch, getPPuX(), getPPuY());
+        gameOverWorld.getScoreText().render(spriteBatch, getPPuX(), getPPuY());
     }
 
     /**
