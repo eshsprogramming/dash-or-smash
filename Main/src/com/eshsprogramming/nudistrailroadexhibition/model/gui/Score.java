@@ -32,7 +32,7 @@ public class Score extends Text
      */
     public Score(String font, boolean flipped, float scale, Vector2 position)
     {
-        super("fonts/arial/font.fnt", flipped, scale, position);
+        super(font, flipped, scale, position);
     }
 
     /**
