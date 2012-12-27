@@ -11,24 +11,16 @@ import com.eshsprogramming.nudistrailroadexhibition.view.MainMenuRenderer;
  *
  * @author Benjamin Landers
  */
-public class GameOverController
+public class GameOverController extends Controller
 {
-    /**
-     * A reference to the actual Game instance.
-     */
-    private NudistRailroadExhibition game = null;
-    /**
-     * The current position of the user's touch
-     */
-    private Vector2 touchPosition = null;
-
-    /**
-     * @param game a ref to the main game class
-     */
+	/**
+	 *
+	 * @param game a ref to the main game class
+	 */
     public GameOverController(NudistRailroadExhibition game)
     {
-        this.game = game;
-        this.touchPosition = new Vector2(0, 0); // to avoid a null pointer exception
+       super(game);
+        setTouchPosition(new Vector2(0, 0)); // to avoid a null pointer exception
     }
 
     /**
@@ -36,29 +28,18 @@ public class GameOverController
      */
     public void update(float delta)
     {
-        if(textTouched(touchPosition,
-                ((GameOverRenderer) game.gameOverScreen.getRenderer()).getWorld().getMainMenuText()))
+        if(textTouched(getTouchPosition(),
+                ((GameOverRenderer) getGame().gameOverScreen.getRenderer()).getWorld().getMainMenuText()))
         {
-            game.setScreen(game.mainMenuScreen);
+            getGame().setScreen(getGame().mainMenuScreen);
         }
 
-        if(textTouched(touchPosition,
-                ((GameOverRenderer) game.gameOverScreen.getRenderer()).getWorld().getPlayAgainText()))
+        if(textTouched(getTouchPosition(),
+                ((GameOverRenderer) getGame().gameOverScreen.getRenderer()).getWorld().getPlayAgainText()))
         {
-            game.setScreen(game.gameScreen);
+            getGame().setScreen(getGame().gameScreen);
         }
     }
-
-    /**
-     * Sets the controller's touch position.
-     *
-     * @param touchPosition The new touch position.
-     */
-    public void setTouchPosition(Vector2 touchPosition)
-    {
-        this.touchPosition = touchPosition;
-    }
-
     /**
      * Returns whether or not the text is touched.
      *
@@ -69,8 +50,8 @@ public class GameOverController
     private boolean textTouched(Vector2 touchPosition, Text text)
     {
         // Makes width and height relative.
-        float width = (text.getPixelWidth() / game.gameOverScreen.getWidth()) * MainMenuRenderer.CAMERA_WIDTH;
-        float height = (text.getPixelHeight() / game.gameOverScreen.getHeight()) * MainMenuRenderer.CAMERA_HEIGHT;
+        float width = (text.getPixelWidth() / getGame().gameOverScreen.getWidth()) * MainMenuRenderer.CAMERA_WIDTH;
+        float height = (text.getPixelHeight() / getGame().gameOverScreen.getHeight()) * MainMenuRenderer.CAMERA_HEIGHT;
 
         if(touchPosition.x > text.getPosition().x)
         {

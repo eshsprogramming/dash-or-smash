@@ -32,7 +32,7 @@ public class MainMenuScreen extends BaseScreen
     public void render(float delta)
     {
         super.render(delta);
-        controller.update(delta, getGame());
+        controller.update(delta);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class MainMenuScreen extends BaseScreen
 
         mainMenuWorld = new MainMenuWorld(this);
         renderer = new MainMenuRenderer(mainMenuWorld);
-        controller = new MainMenuController(mainMenuWorld, this);
+        controller = new MainMenuController(mainMenuWorld, this, getGame());
     }
 
     ////////////////////////////////
