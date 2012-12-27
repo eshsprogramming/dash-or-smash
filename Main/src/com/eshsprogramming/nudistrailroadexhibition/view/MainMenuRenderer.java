@@ -9,7 +9,7 @@ import com.eshsprogramming.nudistrailroadexhibition.model.world.MainMenuWorld;
 /**
  * Renders the main menu.
  *
- * @author Zachary Latta
+ * @author Zachary Latta, Benjamin Landers
  */
 public class MainMenuRenderer extends Renderer
 {
@@ -36,24 +36,6 @@ public class MainMenuRenderer extends Renderer
      * The texture for the blocks.
      */
     private Texture blockTexture;
-
-    /**
-     * The width of the world in pixels.
-     */
-    private int width;
-    /**
-     * The height of the world in pixels.
-     */
-    private int height;
-    /**
-     * Pixels per unit on the X axis
-     */
-    private float ppuX;
-    /**
-     * Pixels per unit on the Y axis
-     */
-    private float ppuY;
-
     /**
      * Creates a new MainMenuRenderer
      */
@@ -85,8 +67,8 @@ public class MainMenuRenderer extends Renderer
     {
         for(BlockEntity blockEntity : mainMenuWorld.getBlocks())
         {
-            spriteBatch.draw(blockTexture, blockEntity.getPosition().x * ppuX, blockEntity.getPosition().y * ppuY,
-                    BlockEntity.SIZE * ppuX, BlockEntity.SIZE * ppuY);
+            spriteBatch.draw(blockTexture, blockEntity.getPosition().x * getPPuX(), blockEntity.getPosition().y * getPPuY(),
+                    BlockEntity.SIZE * getPPuX(), BlockEntity.SIZE * getPPuY());
         }
     }
 
@@ -95,24 +77,9 @@ public class MainMenuRenderer extends Renderer
      */
     private void drawText()
     {
-        mainMenuWorld.getTitleText().render(spriteBatch, ppuX, ppuY);
-        mainMenuWorld.getPlayText().render(spriteBatch, ppuX, ppuY);
+        mainMenuWorld.getTitleText().render(spriteBatch, getPPuX(), getPPuY());
+        mainMenuWorld.getPlayText().render(spriteBatch, getPPuX(), getPPuY());
     }
-
-    /**
-     * Sets the size of the window in pixels.
-     *
-     * @param width  The width of the window in pixels.
-     * @param height The height of the window in pixels.
-     */
-    public void setSize(int width, int height)
-    {
-        this.width = width;
-        this.height = height;
-        ppuX = (float) width / CAMERA_WIDTH;
-        ppuY = (float) height / CAMERA_HEIGHT;
-    }
-
     /**
      * Loads the textures from files.
      */

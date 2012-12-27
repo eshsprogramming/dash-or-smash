@@ -15,7 +15,7 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
 /**
  * The gameWorld that contains the gameplay.
  *
- * @author Zachary Latta
+ * @author Zachary Latta, Benjamin Landers
  */
 public class GameScreen implements Screen, InputProcessor
 {
