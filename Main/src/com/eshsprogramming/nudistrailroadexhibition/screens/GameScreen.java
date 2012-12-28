@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
-import com.eshsprogramming.nudistrailroadexhibition.controller.WorldController;
+import com.eshsprogramming.nudistrailroadexhibition.controller.GameController;
 import com.eshsprogramming.nudistrailroadexhibition.model.entity.NudistEntity;
 import com.eshsprogramming.nudistrailroadexhibition.model.world.GameWorld;
 import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
@@ -23,7 +23,7 @@ public class GameScreen extends BaseScreen
     /**
      * The game's controller.
      */
-    private WorldController controller;
+    private GameController controller;
 
     /**
      * The background music.
@@ -61,7 +61,7 @@ public class GameScreen extends BaseScreen
         super.show();
         gameWorld = new GameWorld(getGame());
         renderer = new WorldRenderer(gameWorld, false);
-        controller = new WorldController(gameWorld, getGame());
+        controller = new GameController(gameWorld, getGame());
         music = Gdx.audio.newMusic(Gdx.files.internal("sounds/soundtrack/game.mp3"));
 
         music.setLooping(true);

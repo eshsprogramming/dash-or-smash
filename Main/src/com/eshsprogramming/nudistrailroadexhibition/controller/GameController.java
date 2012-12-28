@@ -18,7 +18,7 @@ import com.eshsprogramming.nudistrailroadexhibition.view.WorldRenderer;
  *
  * @author Zachary Latta, Benjamin Landers
  */
-public class WorldController extends Controller
+public class GameController extends Controller
 {
     /**
      * Used to count how long since the player hit a train
@@ -59,7 +59,7 @@ public class WorldController extends Controller
      * @param gameWorld The gameWorld to be used in the gameWorld controller.
      * @param game      a reference to the game (did you win)
      */
-    public WorldController(GameWorld gameWorld, NudistRailroadExhibition game)
+    public GameController(GameWorld gameWorld, NudistRailroadExhibition game)
     {
         super(game);
         this.gameWorld = gameWorld;
