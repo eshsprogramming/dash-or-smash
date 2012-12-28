@@ -37,9 +37,9 @@ public class MainMenuWorld
     {
         this.mainMenuScreen = mainMenuScreen;
 
-        titleText = new Text("fonts/arial/font.fnt", false, mainMenuScreen.getWidth() * 0.0035f,
+        titleText = new Text("fonts/arial-15.fnt", false, mainMenuScreen.getWidth() * 0.0035f,
                 new Vector2(1, 4.5f), "Nudist Railroad Exhibition");
-        playText = new Text("fonts/arial/font.fnt", false, mainMenuScreen.getWidth() * 0.003f,
+        playText = new Text("fonts/arial-15.fnt", false, mainMenuScreen.getWidth() * 0.003f,
                 new Vector2(1, 3), "Play");
 
         fillBlockArray();

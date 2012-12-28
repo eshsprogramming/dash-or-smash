@@ -42,11 +42,11 @@ public class GameOverWorld
     {
         this.gameOverScreen = gameOverScreen;
 
-        scoreText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.005f,
+        scoreText = new Text("fonts/arial-15.fnt", false, gameOverScreen.getWidth() * 0.005f,
                 new Vector2(1f, 4.5f), "Score: " + score);
-        playAgainText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f,
+        playAgainText = new Text("fonts/arial-15.fnt", false, gameOverScreen.getWidth() * 0.0035f,
                 new Vector2(1f, 3f), "Play Again");
-        mainMenuText = new Text("fonts/arial/font.fnt", false, gameOverScreen.getWidth() * 0.0035f,
+        mainMenuText = new Text("fonts/arial-15.fnt", false, gameOverScreen.getWidth() * 0.0035f,
                 new Vector2(1f, 2f), "Main Menu");
 
         fillBlockArray();
