@@ -140,7 +140,7 @@ public class GameController extends Controller
 			}
 		}
 
-		VehicleEntity temp = null;
+		VehicleEntity temp;
 
 		while(vehicleEntities.size < VehicleEntity.NUMBER_OF_TRAINS)
 		{
@@ -233,7 +233,8 @@ public class GameController extends Controller
 		{
 			if(vehicle != temp)
 			{
-				if(vehicle.getPosition().x > temp.getPosition().x - VehicleEntity.SIZEX && vehicle.getPosition().x < temp.getPosition().x + VehicleEntity.SIZEX)
+				if(vehicle.getPosition().x > temp.getPosition().x - VehicleEntity.SIZEX && vehicle.getPosition().x <
+                        temp.getPosition().x + VehicleEntity.SIZEX)
 				{
 					return true;
 				}
