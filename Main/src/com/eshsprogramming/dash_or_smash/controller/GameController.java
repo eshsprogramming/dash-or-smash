@@ -204,7 +204,7 @@ public class GameController extends Controller
 	}
 
 	/**
-	 * Spawns a new nudist into the gameWorld.
+	 * Spawns a new pedestrian into the gameWorld.
 	 */
 	private void spawnPedestrian()
 	{
