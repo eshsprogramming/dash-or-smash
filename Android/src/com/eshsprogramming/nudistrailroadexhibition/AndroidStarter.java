@@ -1,6 +1,5 @@
 package com.eshsprogramming.nudistrailroadexhibition;
 
-import android.app.Activity;
 import android.os.Bundle;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -21,6 +20,6 @@ public class AndroidStarter extends AndroidApplication
 		cfg.useWakelock = true;
 		cfg.useGL20 = true;
 
-		initialize(new NudistRailroadExhibition(), cfg);
+		initialize(new DashOrSmash(), cfg);
 	}
 }

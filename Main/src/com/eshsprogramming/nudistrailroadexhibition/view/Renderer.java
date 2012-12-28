@@ -1,55 +1,72 @@
 package com.eshsprogramming.nudistrailroadexhibition.view;
 
 /**
- * @author Benjamin Landers
+ * The base render class. Render classes handles displaying of things for screens.
+ *
+ * @author Benjamin Landers, Zachary Latta
  */
-public class Renderer
+public abstract class Renderer
 {
-    /**
-     * The width of the world in relative units.
-     */
-    public static float CAMERA_WIDTH = 8f;
-    /**
-     * The height of the world in relative units.
-     */
-    public static float CAMERA_HEIGHT = 5f;
-    /**
-     * The width of the world in pixels.
-     */
-    private int width;
-    /**
-     * The height of the world in pixels.
-     */
-    private int height;
-    /**
-     * Pixels per unit on the X axis
-     */
-    private float ppuX;
-    /**
-     * Pixels per unit on the Y axis
-     */
-    private float ppuY;
+	/**
+	 * The width of the world in relative units.
+	 */
+	public static float CAMERA_WIDTH = 8f;
+	/**
+	 * The height of the world in relative units.
+	 */
+	public static float CAMERA_HEIGHT = 5f;
+	/**
+	 * The width of the world in pixels.
+	 */
+	private int width;
+	/**
+	 * The height of the world in pixels.
+	 */
+	private int height;
+	/**
+	 * Pixels per unit on the X axis
+	 */
+	private float ppuX;
+	/**
+	 * Pixels per unit on the Y axis
+	 */
+	private float ppuY;
 
-    public void render(float delta)
-    {
-    }
+	/**
+	 * Creates a new Renderer instance
+	 */
+	public Renderer()
+	{
+	}
 
-    public void setSize(int width, int height)
-    {
-        this.width = width;
-        this.height = height;
-        ppuX = (float) width / CAMERA_WIDTH;
-        ppuY = (float) height / CAMERA_HEIGHT;
-    }
+	/**
+	 * Called each frame. Should be used to render things on screen.
+	 *
+	 * @param delta The time in milliseconds between frames.
+	 */
+	public abstract void render(float delta);
 
-    public float getPPuY()
-    {
-        return ppuY;
-    }
+	/**
+	 * Changes the width and height of the world
+	 *
+	 * @param width  The width of the window.
+	 * @param height The height of the window.
+	 */
+	public void setSize(int width, int height)
+	{
+		this.width = width;
+		this.height = height;
+		ppuX = (float)width / CAMERA_WIDTH;
+		ppuY = (float)height / CAMERA_HEIGHT;
+	}
 
-    public float getPPuX()
-    {
-        return ppuX;
-    }
+	public float getPPuY()
+	{
+		return ppuY;
+	}
 
+	public float getPPuX()
+	{
+		return ppuX;
+	}
 }

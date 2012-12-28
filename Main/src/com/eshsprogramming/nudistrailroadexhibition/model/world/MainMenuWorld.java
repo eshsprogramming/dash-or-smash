@@ -11,81 +11,81 @@ import com.eshsprogramming.nudistrailroadexhibition.screens.MainMenuScreen;
  *
  * @author Zachary Latta
  */
-public class MainMenuWorld
+public class MainMenuWorld extends World
 {
-    /**
-     * The main menu world. Used for relative sizing of text.
-     */
-    MainMenuScreen mainMenuScreen = null;
-    /**
-     * The title text.
-     */
-    Text titleText = null;
-    /**
-     * The play text.
-     */
-    Text playText = null;
-    /**
-     * An array of the blocks which make up the background.
-     */
-    private Array<BlockEntity> blocks = new Array<BlockEntity>();
+	/**
+	 * The main menu world. Used for relative sizing of text.
+	 */
+	private MainMenuScreen mainMenuScreen = null;
+	/**
+	 * The title text.
+	 */
+	private Text titleText = null;
+	/**
+	 * The play text.
+	 */
+	private Text playText = null;
+	/**
+	 * An array of the blocks which make up the background.
+	 */
+	private Array<BlockEntity> blockEntities = new Array<BlockEntity>();
 
-    /**
-     * Creates a new main menu
-     */
-    public MainMenuWorld(MainMenuScreen mainMenuScreen)
-    {
-        this.mainMenuScreen = mainMenuScreen;
+	/**
+	 * Creates a new main menu
+	 */
+	public MainMenuWorld(MainMenuScreen mainMenuScreen)
+	{
+		this.mainMenuScreen = mainMenuScreen;
 
-        titleText = new Text("fonts/arial-15.fnt", false, mainMenuScreen.getWidth() * 0.0035f,
-                new Vector2(1, 4.5f), "Nudist Railroad Exhibition");
-        playText = new Text("fonts/arial-15.fnt", false, mainMenuScreen.getWidth() * 0.003f,
-                new Vector2(1, 3), "Play");
+		titleText = new Text("fonts/arial-15.fnt", false, mainMenuScreen.getWidth() * 0.007f,
+				new Vector2(1, 4.5f), "Dash Or Smash");
+		playText = new Text("fonts/arial-15.fnt", false, mainMenuScreen.getWidth() * 0.0035f,
+				new Vector2(1, 3), "Play");
 
-        fillBlockArray();
-    }
+		fillBlockArray();
+	}
 
-    /**
-     * Fills the blocks array with blocks.
-     */
-    private void fillBlockArray()
-    {
-        for(int index1 = 0; index1 < 8; index1++)
-        {
-            for(int index2 = 0; index2 < 5; index2++)
-            {
-                blocks.add(new BlockEntity(new Vector2(index1, index2)));
-            }
-        }
-    }
+	/**
+	 * Fills the blocks array with blockEntities.
+	 */
+	private void fillBlockArray()
+	{
+		for(int index1 = 0; index1 < 8; index1++)
+		{
+			for(int index2 = 0; index2 < 5; index2++)
+			{
+				blockEntities.add(new BlockEntity(new Vector2(index1, index2)));
+			}
+		}
+	}
 
-    /**
-     * Returns the array of blocks which make up the background.
-     *
-     * @return The array of blocks which make up the background.
-     */
-    public Array<BlockEntity> getBlocks()
-    {
-        return blocks;
-    }
+	/**
+	 * Returns the array of blockEntities which make up the background.
+	 *
+	 * @return The array of blockEntities which make up the background.
+	 */
+	public Array<BlockEntity> getBlockEntities()
+	{
+		return blockEntities;
+	}
 
-    /**
-     * Returns the title text object.
-     *
-     * @return The title text object.
-     */
-    public Text getTitleText()
-    {
-        return titleText;
-    }
+	/**
+	 * Returns the title text object.
+	 *
+	 * @return The title text object.
+	 */
+	public Text getTitleText()
+	{
+		return titleText;
+	}
 
-    /**
-     * Returns the play text object.
-     *
-     * @return The play text object.
-     */
-    public Text getPlayText()
-    {
-        return playText;
-    }
+	/**
+	 * Returns the play text object.
+	 *
+	 * @return The play text object.
+	 */
+	public Text getPlayText()
+	{
+		return playText;
+	}
 }

@@ -1,54 +1,66 @@
 package com.eshsprogramming.nudistrailroadexhibition.controller;
 
 import com.badlogic.gdx.math.Vector2;
-import com.eshsprogramming.nudistrailroadexhibition.NudistRailroadExhibition;
+import com.eshsprogramming.nudistrailroadexhibition.DashOrSmash;
 
 /**
  * Base class for a controller
  *
  * @author Benjamin Landers
  */
-public class Controller
+public abstract class Controller
 {
-    /**
-     * A reference to the actual Game instance
-     */
-    private NudistRailroadExhibition game = null;
-    /**
-     * The position of the user's touch.
-     */
-    private Vector2 touchPosition = null;
+	/**
+	 * A reference to the actual Game instance
+	 */
+	private DashOrSmash game = null;
+	/**
+	 * The position of the user's touch.
+	 */
+	private Vector2 touchPosition = null;
 
-    /**
-     * Default constructor
-     */
-    public Controller(NudistRailroadExhibition game)
-    {
-        this.game = game;
-    }
+	/**
+	 * Default constructor
+	 */
+	public Controller(DashOrSmash game)
+	{
+		this.game = game;
+	}
 
-    /**
-     * Returns the touch position.
-     *
-     * @return The touch position.
-     */
-    public Vector2 getTouchPosition()
-    {
-        return touchPosition;
-    }
+	/**
+	 * Called each frame. Should be used to update things on screen.
+	 *
+	 * @param delta The time in milliseconds between frames.
+	 */
+	public abstract void update(float delta);
 
-    /**
-     * Sets the touch position to the new touch position passed.
-     *
-     * @param touchPosition the new touch position
-     */
-    public void setTouchPosition(Vector2 touchPosition)
-    {
-        this.touchPosition = touchPosition;
-    }
+	/**
+	 * Returns the touch position.
+	 *
+	 * @return The touch position.
+	 */
+	public Vector2 getTouchPosition()
+	{
+		return touchPosition;
+	}
 
-    public NudistRailroadExhibition getGame()
-    {
-        return game;
-    }
+	/**
+	 * Sets the touch position to the new touch position passed.
+	 *
+	 * @param touchPosition the new touch position
+	 */
+	public void setTouchPosition(Vector2 touchPosition)
+	{
+		this.touchPosition = touchPosition;
+	}
+
+	/**
+	 * Returns the main game instance
+	 *
+	 * @return The main game instance
+	 */
+	public DashOrSmash getGame()
+	{
+		return game;
+	}
 }
