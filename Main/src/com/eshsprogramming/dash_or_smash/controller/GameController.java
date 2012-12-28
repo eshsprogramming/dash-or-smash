@@ -29,7 +29,7 @@ public class GameController extends Controller
 	 */
 	private float timer = 0;
 	/**
-	 * Used to tell if player selected a nudist
+	 * Used to tell if player selected a pedestrian
 	 */
 	private boolean selected = false;
 	/**
@@ -45,7 +45,7 @@ public class GameController extends Controller
 	 */
 	private Array<VehicleEntity> vehicleEntities = null;
 	/**
-	 * The hurt sound. Played when a nudist dies.
+	 * The hurt sound. Played when a pedestrian dies.
 	 */
 	private Sound hurtSound = null;
 	/**
