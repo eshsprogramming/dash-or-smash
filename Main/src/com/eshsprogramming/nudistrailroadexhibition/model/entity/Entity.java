@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
  *
  * @author Benjamin Landers
  */
-public class Entity
+public abstract class Entity
 {
 	/**
 	 * The entity's position on the x and y plane.
