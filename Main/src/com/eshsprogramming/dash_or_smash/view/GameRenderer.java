@@ -70,6 +70,10 @@ public class GameRenderer extends Renderer
      * The animation for the green vehicles.
      */
     private Animation vehicleGreenAnimation = null;
+	/**
+	 * The animation for the blue vehicles.
+	 */
+	private Animation vehicleBlueAnimation = null;
 
 	/**
 	 * The texture for the pedestrians idle animation.
@@ -87,6 +91,10 @@ public class GameRenderer extends Renderer
      * The texture for the green vehicle animation.
      */
     private Texture vehicleGreenSheet = null;
+	/**
+	 * The texture for the blue vehicle animation.
+	 */
+	private Texture vehicleBlueSheet = null;
 
 	/**
 	 * The frames of the nudist idle animation.
@@ -97,25 +105,34 @@ public class GameRenderer extends Renderer
 	 */
 	private TextureRegion[] pedestrianDyingFrames = null;
 	/**
-	 * The current frame of animation for the pedestrians.
-	 */
-	private TextureRegion pedestrianCurrentFrame = null;
-	/**
 	 * The frames of the red vehicle animation.
 	 */
 	private TextureRegion[] vehicleRedFrames = null;
+	/**
+	 * The frames of the green vehicle animation.
+	 */
+	private TextureRegion[] vehicleGreenFrames = null;
+	/**
+	 * The frames of the blue vehicle animation.
+	 */
+	private TextureRegion[] vehicleBlueFrames = null;
+
+	/**
+	 * The current frame of animation for the pedestrians.
+	 */
+	private TextureRegion pedestrianCurrentFrame = null;
 	/**
 	 * The current frame of the red vehicle animation.
 	 */
 	private TextureRegion vehicleRedCurrentFrame = null;
     /**
-     * The frames of the green vehicle animation.
-     */
-    private TextureRegion[] vehicleGreenFrames = null;
-    /**
      * The current frame of the green vehicle animation.
      */
     private TextureRegion vehicleGreenCurrentFrame = null;
+	/**
+	 * The current frame of the blue vehicle animation.
+	 */
+	private TextureRegion vehicleBlueCurrentFrame = null;
 
 	/**
 	 * The texture for the blocks.
@@ -173,6 +190,7 @@ public class GameRenderer extends Renderer
 		pedestrianDyingSheet = new Texture(Gdx.files.internal("images/pedestrian_dying_sheet.png"));
 		vehicleRedSheet = new Texture(Gdx.files.internal("images/vehicle_red_sheet.png"));
         vehicleGreenSheet = new Texture(Gdx.files.internal("images/vehicle_green_sheet.png"));
+		vehicleBlueSheet = new Texture(Gdx.files.internal("images/vehicle_blue_sheet.png"));
 		blockTexture = new Texture(Gdx.files.internal("images/block.png"));
 	}
 
@@ -186,11 +204,13 @@ public class GameRenderer extends Renderer
 
 		vehicleRedFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
         vehicleGreenFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
+		vehicleBlueFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
 
 		loadFrames(pedestrianIdleFrames, pedestrianIdleSheet);
         loadFrames(pedestrianDyingFrames, pedestrianDyingSheet);
         loadFrames(vehicleRedFrames, vehicleRedSheet);
         loadFrames(vehicleGreenFrames, vehicleGreenSheet);
+		loadFrames(vehicleBlueFrames, vehicleBlueSheet);
 	}
 
     /**
@@ -222,6 +242,7 @@ public class GameRenderer extends Renderer
 
 		vehicleRedAnimation = new Animation(0.25f, vehicleRedFrames);
         vehicleGreenAnimation = new Animation(0.25f, vehicleGreenFrames);
+		vehicleBlueAnimation = new Animation(0.25f, vehicleBlueFrames);
 	}
 
 	/**
@@ -265,6 +286,7 @@ public class GameRenderer extends Renderer
 
 		vehicleRedCurrentFrame = vehicleRedAnimation.getKeyFrame(stateTime, true);
         vehicleGreenCurrentFrame = vehicleGreenAnimation.getKeyFrame(stateTime, true);
+		vehicleBlueCurrentFrame = vehicleBlueAnimation.getKeyFrame(stateTime, true);
 	}
 
 	/**
@@ -296,6 +318,12 @@ public class GameRenderer extends Renderer
 
 				case 1:
 					spriteBatch.draw(vehicleGreenCurrentFrame, vehicleEntity.getPosition().x * getPPuX(),
+							vehicleEntity.getPosition().y * getPPuY(), VehicleEntity.SIZEX * getPPuX(),
+							VehicleEntity.SIZEY * getPPuY());
+					break;
+
+				case 2:
+					spriteBatch.draw(vehicleBlueCurrentFrame, vehicleEntity.getPosition().x * getPPuX(),
 							vehicleEntity.getPosition().y * getPPuY(), VehicleEntity.SIZEX * getPPuX(),
 							VehicleEntity.SIZEY * getPPuY());
 					break;
