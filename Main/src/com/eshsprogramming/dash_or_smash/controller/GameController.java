@@ -48,10 +48,10 @@ public class GameController extends Controller
 	 * The hurt sound. Played when a pedestrian dies.
 	 */
 	private Sound hurtSound = null;
-    /**
-     * The powerup sound. Played when a pedestrian is spawned.
-     */
-    private Sound powerupSound = null;
+	/**
+	 * The powerup sound. Played when a pedestrian is spawned.
+	 */
+	private Sound powerupSound = null;
 	/**
 	 * The Score object
 	 */
@@ -71,9 +71,9 @@ public class GameController extends Controller
 		this.vehicleEntities = gameWorld.getVehicleEntities();
 		this.score = gameWorld.getScore();
 		this.hurtSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/hurt.wav"));
-        this.powerupSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/powerup.wav"));
+		this.powerupSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/powerup.wav"));
 
-        setTouchPosition(gameWorld.getPedestrianEntities().first().getPosition());
+		setTouchPosition(gameWorld.getPedestrianEntities().first().getPosition());
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class GameController extends Controller
 
 		if(respawnCounter > 5)
 		{
-            powerupSound.play();
+			powerupSound.play();
 
 			respawnCounter = 0;
 			spawnPedestrian();
@@ -244,7 +244,7 @@ public class GameController extends Controller
 			if(vehicle != temp)
 			{
 				if(vehicle.getPosition().x > temp.getPosition().x - VehicleEntity.SIZEX && vehicle.getPosition().x <
-                        temp.getPosition().x + VehicleEntity.SIZEX)
+						temp.getPosition().x + VehicleEntity.SIZEX)
 				{
 					return true;
 				}
