@@ -72,7 +72,7 @@ public class GameController extends Controller
 	public GameController(GameWorld gameWorld, DashOrSmash game)
 	{
 		super(game);
-		touchManager = new MultiTouchProcessor(game,3);
+		touchManager = new MultiTouchProcessor(game, 3);
 		this.gameWorld = gameWorld;
 		this.pedestrianEntities = gameWorld.getPedestrianEntities();
 		this.vehicleEntities = gameWorld.getVehicleEntities();
@@ -124,12 +124,12 @@ public class GameController extends Controller
 		try
 		{
 			touchManager.updatePositions();
-			float temp = (touchManager.getPositions()[0].x - pedestrianEntities.get(0).getPosition().x- PedestrianEntity.SIZEX / 2) * 1f;
+			float temp = (touchManager.getPositions()[0].x - pedestrianEntities.get(0).getPosition().x - PedestrianEntity.SIZEX / 2) * 1f;
 			temp = (selected) ? temp : 0;
 			temp = (Gdx.input.isTouched()) ? temp : 0;
 			temp = (-1f < temp && temp < 1f) ? temp : 0;
-			temp = (touchManager.getPositions()[0].x + PedestrianEntity.SIZEX/2> 0) ? temp : 0;
-			temp = (touchManager.getPositions()[0].x  < GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX/2) ?
+			temp = (touchManager.getPositions()[0].x + PedestrianEntity.SIZEX / 2 > 0) ? temp : 0;
+			temp = (touchManager.getPositions()[0].x < GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX / 2) ?
 					temp : GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX - pedestrianEntities.get(0).getPosition().x;
 			pedestrianEntities.get(0).getPosition().x += temp;
 		}

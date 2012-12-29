@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -56,39 +55,39 @@ public class GameRenderer extends Renderer
 	/**
 	 * An animation for Idle red shirts
 	 */
-	private SpriteAnimation pedestrianIdleRedshirtAnim =null;
+	private SpriteAnimation pedestrianIdleRedshirtAnim = null;
 	/**
 	 * An animation for Idle purple shirts
 	 */
-	private SpriteAnimation pedestrianIdlePurpleshirtAnim =null;
+	private SpriteAnimation pedestrianIdlePurpleshirtAnim = null;
 	/**
 	 * An animation for Idle yellow shirts
 	 */
-	private SpriteAnimation pedestrianIdleYellowshirtAnim =null;
+	private SpriteAnimation pedestrianIdleYellowshirtAnim = null;
 	/**
 	 * An animation for Dying red shirts
 	 */
-	private SpriteAnimation pedestrianDyingRedshirtAnim =null;
+	private SpriteAnimation pedestrianDyingRedshirtAnim = null;
 	/**
 	 * An animation for Dying purple shirts
 	 */
-	private SpriteAnimation pedestrianDyingPurpleshirtAnim =null;
+	private SpriteAnimation pedestrianDyingPurpleshirtAnim = null;
 	/**
 	 * An animation for Dying yellow shirts
 	 */
-	private SpriteAnimation pedestrianDyingYellowshirtAnim =null;
+	private SpriteAnimation pedestrianDyingYellowshirtAnim = null;
 	/**
 	 * An animation for Red vehicles
 	 */
-	private SpriteAnimation vehicleRedAnim =null;
+	private SpriteAnimation vehicleRedAnim = null;
 	/**
 	 * An animation for Green Vehicles
 	 */
-	private SpriteAnimation vehicleGreenAnim =null;
+	private SpriteAnimation vehicleGreenAnim = null;
 	/**
 	 * An animation for Blue vehicles
 	 */
-	private SpriteAnimation vehicleBlueAnim =null;
+	private SpriteAnimation vehicleBlueAnim = null;
 	/**
 	 * The texture for the blocks.
 	 */
@@ -129,27 +128,28 @@ public class GameRenderer extends Renderer
 
 		this.spriteBatch = new SpriteBatch();
 
-       loadSpriteAnimations();
+		loadSpriteAnimations();
 
 		stateTime = 0;
 	}
+
 	private void loadSpriteAnimations()
 	{
-		pedestrianIdleRedshirtAnim = new SpriteAnimation(2,2,.5f,
+		pedestrianIdleRedshirtAnim = new SpriteAnimation(2, 2, .5f,
 				new Texture(Gdx.files.internal("images/pedestrian_idle_redshirt_sheet.png")));
-		pedestrianIdlePurpleshirtAnim = new SpriteAnimation(2,2,.5f,
+		pedestrianIdlePurpleshirtAnim = new SpriteAnimation(2, 2, .5f,
 				new Texture(Gdx.files.internal("images/pedestrian_idle_purpleshirt_sheet.png")));
-		pedestrianIdleYellowshirtAnim = new SpriteAnimation(2,2,.5f,
+		pedestrianIdleYellowshirtAnim = new SpriteAnimation(2, 2, .5f,
 				new Texture(Gdx.files.internal("images/pedestrian_idle_yellowshirt_sheet.png")));
-		pedestrianDyingRedshirtAnim = new SpriteAnimation(2,2,.25f,
+		pedestrianDyingRedshirtAnim = new SpriteAnimation(2, 2, .25f,
 				new Texture(Gdx.files.internal("images/pedestrian_dying_redshirt_sheet.png")));
-		pedestrianDyingPurpleshirtAnim = new SpriteAnimation(2,2,.25f,
+		pedestrianDyingPurpleshirtAnim = new SpriteAnimation(2, 2, .25f,
 				new Texture(Gdx.files.internal("images/pedestrian_dying_purpleshirt_sheet.png")));
-		pedestrianDyingYellowshirtAnim = new SpriteAnimation(2,2,.25f,
+		pedestrianDyingYellowshirtAnim = new SpriteAnimation(2, 2, .25f,
 				new Texture(Gdx.files.internal("images/pedestrian_dying_yellowshirt_sheet.png")));
-		vehicleRedAnim = new SpriteAnimation(2,2,.25f, new Texture(Gdx.files.internal("images/vehicle_red_sheet.png")));
-		vehicleGreenAnim = new SpriteAnimation(2,2,.25f ,new Texture(Gdx.files.internal("images/vehicle_green_sheet.png")));
-		vehicleBlueAnim = new SpriteAnimation(2,2,.25f, new Texture(Gdx.files.internal("images/vehicle_blue_sheet.png")));
+		vehicleRedAnim = new SpriteAnimation(2, 2, .25f, new Texture(Gdx.files.internal("images/vehicle_red_sheet.png")));
+		vehicleGreenAnim = new SpriteAnimation(2, 2, .25f, new Texture(Gdx.files.internal("images/vehicle_green_sheet.png")));
+		vehicleBlueAnim = new SpriteAnimation(2, 2, .25f, new Texture(Gdx.files.internal("images/vehicle_blue_sheet.png")));
 
 		blockTexture = new Texture(Gdx.files.internal("images/block.png"));
 	}
@@ -172,7 +172,6 @@ public class GameRenderer extends Renderer
 			}
 		}
 	}
-
 
 
 	/**
@@ -203,15 +202,15 @@ public class GameRenderer extends Renderer
 	private void setCurrentFrames()
 	{
 
-		pedestrianIdleRedshirtAnim.updateKeyFrame(stateTime,true);
-		pedestrianIdlePurpleshirtAnim.updateKeyFrame(stateTime,true);
-		pedestrianIdleYellowshirtAnim.updateKeyFrame(stateTime,true);
-		pedestrianDyingRedshirtAnim.updateKeyFrame(stateTime,true);
-		pedestrianDyingPurpleshirtAnim.updateKeyFrame(stateTime,true);
-		pedestrianDyingYellowshirtAnim.updateKeyFrame(stateTime,true);
-		vehicleRedAnim.updateKeyFrame(stateTime,true);
-		vehicleGreenAnim.updateKeyFrame(stateTime,true);
-		vehicleBlueAnim.updateKeyFrame(stateTime,true);
+		pedestrianIdleRedshirtAnim.updateKeyFrame(stateTime, true);
+		pedestrianIdlePurpleshirtAnim.updateKeyFrame(stateTime, true);
+		pedestrianIdleYellowshirtAnim.updateKeyFrame(stateTime, true);
+		pedestrianDyingRedshirtAnim.updateKeyFrame(stateTime, true);
+		pedestrianDyingPurpleshirtAnim.updateKeyFrame(stateTime, true);
+		pedestrianDyingYellowshirtAnim.updateKeyFrame(stateTime, true);
+		vehicleRedAnim.updateKeyFrame(stateTime, true);
+		vehicleGreenAnim.updateKeyFrame(stateTime, true);
+		vehicleBlueAnim.updateKeyFrame(stateTime, true);
 	}
 
 	/**

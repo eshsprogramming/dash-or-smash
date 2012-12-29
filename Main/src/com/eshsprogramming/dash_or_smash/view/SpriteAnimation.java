@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
  * A class to organize rendering code
+ *
  * @author benjamin Landers
  */
 public class SpriteAnimation
@@ -37,19 +38,21 @@ public class SpriteAnimation
 
 	/**
 	 * makes the animation
-	 * @param col the number of columns
-	 * @param row the number of rows
+	 *
+	 * @param col   the number of columns
+	 * @param row   the number of rows
 	 * @param sheet the sheet to base the animation off of
 	 */
 	public SpriteAnimation(int col, int row, float frameDuration, Texture sheet)
 	{
 		columns = col;
 		this.rows = row;
-		frames = new TextureRegion[col*row];
+		frames = new TextureRegion[col * row];
 		textureSheet = sheet;
-		loadFrames(frames,textureSheet);
-		animation = new Animation(frameDuration,frames);
+		loadFrames(frames, textureSheet);
+		animation = new Animation(frameDuration, frames);
 	}
+
 	private void loadFrames(TextureRegion[] frames, Texture sheet)
 	{
 		TextureRegion[][] tmp = TextureRegion.split(sheet, sheet.getWidth() / columns,
@@ -64,10 +67,12 @@ public class SpriteAnimation
 			}
 		}
 	}
+
 	public void updateKeyFrame(float stateTime, boolean looping)
 	{
-		 currentFrame = animation.getKeyFrame(stateTime,looping);
+		currentFrame = animation.getKeyFrame(stateTime, looping);
 	}
+
 	public TextureRegion getCurrentFrame()
 	{
 		return currentFrame;
