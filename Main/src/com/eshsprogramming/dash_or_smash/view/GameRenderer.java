@@ -53,15 +53,41 @@ public class GameRenderer extends Renderer
 	 * For debug rendering
 	 */
 	private ShapeRenderer debugRenderer = new ShapeRenderer();
-
+	/**
+	 * An animation for Idle red shirts
+	 */
 	private SpriteAnimation pedestrianIdleRedshirtAnim =null;
+	/**
+	 * An animation for Idle purple shirts
+	 */
 	private SpriteAnimation pedestrianIdlePurpleshirtAnim =null;
+	/**
+	 * An animation for Idle yellow shirts
+	 */
 	private SpriteAnimation pedestrianIdleYellowshirtAnim =null;
+	/**
+	 * An animation for Dying red shirts
+	 */
 	private SpriteAnimation pedestrianDyingRedshirtAnim =null;
+	/**
+	 * An animation for Dying purple shirts
+	 */
 	private SpriteAnimation pedestrianDyingPurpleshirtAnim =null;
+	/**
+	 * An animation for Dying yellow shirts
+	 */
 	private SpriteAnimation pedestrianDyingYellowshirtAnim =null;
+	/**
+	 * An animation for Red vehicles
+	 */
 	private SpriteAnimation vehicleRedAnim =null;
+	/**
+	 * An animation for Green Vehicles
+	 */
 	private SpriteAnimation vehicleGreenAnim =null;
+	/**
+	 * An animation for Blue vehicles
+	 */
 	private SpriteAnimation vehicleBlueAnim =null;
 	/**
 	 * The texture for the blocks.
