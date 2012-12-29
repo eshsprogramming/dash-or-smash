@@ -22,15 +22,6 @@ import com.eshsprogramming.dash_or_smash.model.world.GameWorld;
 public class GameRenderer extends Renderer
 {
 	/**
-	 * The width of the gameWorld in relative units.
-	 */
-	public static final float CAMERA_WIDTH = 8f;
-	/**
-	 * The height of the gameWorld in relative units.
-	 */
-	public static final float CAMERA_HEIGHT = 5f;
-
-	/**
 	 * The columns in the spritesheets
 	 */
 	private static final int FRAME_COLUMNS = 2;

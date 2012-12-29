@@ -10,11 +10,11 @@ public abstract class Renderer
 	/**
 	 * The width of the world in relative units.
 	 */
-	public static float CAMERA_WIDTH = 8f;
+	public static final float CAMERA_WIDTH = 8f;
 	/**
 	 * The height of the world in relative units.
 	 */
-	public static float CAMERA_HEIGHT = 5f;
+	public static final float CAMERA_HEIGHT = 5f;
 	/**
 	 * The width of the world in pixels.
 	 */

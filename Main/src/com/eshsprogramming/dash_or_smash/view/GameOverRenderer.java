@@ -14,15 +14,6 @@ import com.eshsprogramming.dash_or_smash.model.world.GameOverWorld;
 public class GameOverRenderer extends Renderer
 {
 	/**
-	 * The width of the world in relative units.
-	 */
-	public static final float CAMERA_WIDTH = 8f;
-	/**
-	 * The height of the world in relative units.
-	 */
-	public static final float CAMERA_HEIGHT = 5f;
-
-	/**
 	 * The GameOverWorld instance.
 	 */
 	private GameOverWorld gameOverWorld;
