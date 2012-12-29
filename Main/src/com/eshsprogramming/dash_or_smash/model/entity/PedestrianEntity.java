@@ -35,10 +35,11 @@ public class PedestrianEntity extends Entity
 	 * Creates a new nudist.
 	 *
 	 * @param position The nudist's starting position.
+	 * @param imageType The type of image to use while rendering
 	 */
-	public PedestrianEntity(Vector2 position)
+	public PedestrianEntity(Vector2 position, int imageType)
 	{
-		super(position, SIZEX, SIZEY);
+		super(position, SIZEX, SIZEY, imageType);
 	}
 
 	/**

@@ -123,15 +123,13 @@ public class GameController extends Controller
 		try
 		{
 			touchManager.updatePositions();
-			float temp = (touchManager.getPositions()[0].x - pedestrianEntities.get(0).getPosition().x) * 1f;
+			float temp = (touchManager.getPositions()[0].x - pedestrianEntities.get(0).getPosition().x- PedestrianEntity.SIZEX / 2) * 1f;
 			temp = (selected) ? temp : 0;
 			temp = (Gdx.input.isTouched()) ? temp : 0;
 			temp = (-1f < temp && temp < 1f) ? temp : 0;
-			temp = (touchManager.getPositions()[0].x > 0) ? temp : 0;
-			temp = (touchManager.getPositions()[0].x  < GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX) ?
-					temp : GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX -
-					pedestrianEntities.get(0).getPosition().x;
-
+			temp = (touchManager.getPositions()[0].x + PedestrianEntity.SIZEX/2> 0) ? temp : 0;
+			temp = (touchManager.getPositions()[0].x  < GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX/2) ?
+					temp : GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX - pedestrianEntities.get(0).getPosition().x;
 			pedestrianEntities.get(0).getPosition().x += temp;
 		}
 		catch(Exception e)
@@ -224,7 +222,7 @@ public class GameController extends Controller
 	private void spawnPedestrian()
 	{
 		PedestrianEntity temp = new PedestrianEntity(new Vector2(pedestrianEntities.first().getPosition().x +
-				PedestrianEntity.SIZEX, pedestrianEntities.first().getPosition().y));
+				PedestrianEntity.SIZEX, pedestrianEntities.first().getPosition().y), MathUtils.random(2));
 
 		if(temp.getPosition().x < 0 || temp.getPosition().x > GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX)
 		{
