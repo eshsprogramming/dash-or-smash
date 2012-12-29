@@ -52,7 +52,7 @@ public class GameRenderer extends Renderer
 	/**
 	 * For debug rendering
 	 */
-	ShapeRenderer debugRenderer = new ShapeRenderer();
+	private ShapeRenderer debugRenderer = new ShapeRenderer();
 
 	/**
 	 * The idle animation of the pedestrians.
@@ -63,9 +63,13 @@ public class GameRenderer extends Renderer
 	 */
 	private Animation pedestrianDyingAnimation = null;
 	/**
-	 * The animation for the vehicles.
+	 * The animation for the red vehicles.
 	 */
-	private Animation vehicleAnimation = null;
+	private Animation vehicleRedAnimation = null;
+    /**
+     * The animation for the green vehicles.
+     */
+    private Animation vehicleGreenAnimation = null;
 
 	/**
 	 * The texture for the pedestrians idle animation.
@@ -76,9 +80,13 @@ public class GameRenderer extends Renderer
 	 */
 	private Texture pedestrianDyingSheet = null;
 	/**
-	 * The texture for the vehicle animation.
+	 * The texture for the red vehicle animation.
 	 */
-	private Texture vehicleSheet = null;
+	private Texture vehicleRedSheet = null;
+    /**
+     * The texture for the green vehicle animation.
+     */
+    private Texture vehicleGreenSheet = null;
 
 	/**
 	 * The frames of the nudist idle animation.
@@ -93,13 +101,21 @@ public class GameRenderer extends Renderer
 	 */
 	private TextureRegion pedestrianCurrentFrame = null;
 	/**
-	 * The frames of the vehicle animation.
+	 * The frames of the red vehicle animation.
 	 */
-	private TextureRegion[] vehicleFrames = null;
+	private TextureRegion[] vehicleRedFrames = null;
 	/**
-	 * The current frame of the vehicle animation.
+	 * The current frame of the red vehicle animation.
 	 */
-	private TextureRegion vehicleCurrentFrame = null;
+	private TextureRegion vehicleRedCurrentFrame = null;
+    /**
+     * The frames of the green vehicle animation.
+     */
+    private TextureRegion[] vehicleGreenFrames = null;
+    /**
+     * The current frame of the green vehicle animation.
+     */
+    private TextureRegion vehicleGreenCurrentFrame = null;
 
 	/**
 	 * The texture for the blocks.
@@ -155,7 +171,8 @@ public class GameRenderer extends Renderer
 	{
 		pedestrianIdleSheet = new Texture(Gdx.files.internal("images/pedestrian_idle_sheet.png"));
 		pedestrianDyingSheet = new Texture(Gdx.files.internal("images/pedestrian_dying_sheet.png"));
-		vehicleSheet = new Texture(Gdx.files.internal("images/vehicle_sheet.png"));
+		vehicleRedSheet = new Texture(Gdx.files.internal("images/vehicle_red_sheet.png"));
+        vehicleGreenSheet = new Texture(Gdx.files.internal("images/vehicle_green_sheet.png"));
 		blockTexture = new Texture(Gdx.files.internal("images/block.png"));
 	}
 
@@ -167,50 +184,33 @@ public class GameRenderer extends Renderer
 		pedestrianIdleFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
 		pedestrianDyingFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
 
-		vehicleFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
+		vehicleRedFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
+        vehicleGreenFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
 
-		{
-			TextureRegion[][] tmp = TextureRegion.split(pedestrianIdleSheet, pedestrianIdleSheet.getWidth() / FRAME_COLUMNS,
-					pedestrianIdleSheet.getHeight() / FRAME_ROWS);
-
-			int index = 0;
-			for(int i = 0; i < FRAME_ROWS; i++)
-			{
-				for(int j = 0; j < FRAME_COLUMNS; j++)
-				{
-					pedestrianIdleFrames[index++] = tmp[i][j];
-				}
-			}
-		}
-
-		{
-			TextureRegion[][] tmp = TextureRegion.split(pedestrianDyingSheet,
-					pedestrianDyingSheet.getWidth() / FRAME_COLUMNS, pedestrianDyingSheet.getHeight() / FRAME_ROWS);
-
-			int index = 0;
-			for(int i = 0; i < FRAME_ROWS; i++)
-			{
-				for(int j = 0; j < FRAME_COLUMNS; j++)
-				{
-					pedestrianDyingFrames[index++] = tmp[i][j];
-				}
-			}
-		}
-
-		{
-			TextureRegion[][] tmp = TextureRegion.split(vehicleSheet, vehicleSheet.getWidth() / FRAME_COLUMNS,
-					vehicleSheet.getHeight() / FRAME_ROWS);
-
-			int index = 0;
-			for(int i = 0; i < FRAME_ROWS; i++)
-			{
-				for(int j = 0; j < FRAME_COLUMNS; j++)
-				{
-					vehicleFrames[index++] = tmp[i][j];
-				}
-			}
-		}
+		loadFrames(pedestrianIdleFrames, pedestrianIdleSheet);
+        loadFrames(pedestrianDyingFrames, pedestrianDyingSheet);
+        loadFrames(vehicleRedFrames, vehicleRedSheet);
+        loadFrames(vehicleGreenFrames, vehicleGreenSheet);
 	}
+
+    /**
+     * Loads frames from a spritesheet into a TextureRegion[]
+     */
+    private void loadFrames(TextureRegion[] frames, Texture sheet)
+    {
+        TextureRegion[][] tmp = TextureRegion.split(sheet, sheet.getWidth() / FRAME_COLUMNS,
+                sheet.getHeight() / FRAME_ROWS);
+
+        int index = 0;
+        for(int i = 0; i < FRAME_ROWS; i++)
+        {
+            for(int j = 0; j < FRAME_COLUMNS; j++)
+            {
+                frames[index++] = tmp[i][j];
+            }
+        }
+    }
+
 
 	/**
 	 * Sets up animations
@@ -220,7 +220,8 @@ public class GameRenderer extends Renderer
 		pedestrianIdleAnimation = new Animation(0.5f, pedestrianIdleFrames);
 		pedestrianDyingAnimation = new Animation(0.25f, pedestrianDyingFrames);
 
-		vehicleAnimation = new Animation(0.25f, vehicleFrames);
+		vehicleRedAnimation = new Animation(0.25f, vehicleRedFrames);
+        vehicleGreenAnimation = new Animation(0.25f, vehicleGreenFrames);
 	}
 
 	/**
@@ -262,7 +263,8 @@ public class GameRenderer extends Renderer
 			}
 		}
 
-		vehicleCurrentFrame = vehicleAnimation.getKeyFrame(stateTime, true);
+		vehicleRedCurrentFrame = vehicleRedAnimation.getKeyFrame(stateTime, true);
+        vehicleGreenCurrentFrame = vehicleGreenAnimation.getKeyFrame(stateTime, true);
 	}
 
 	/**
@@ -284,8 +286,18 @@ public class GameRenderer extends Renderer
 	{
 		for(VehicleEntity vehicleEntity : gameWorld.getVehicleEntities())
 		{
-			spriteBatch.draw(vehicleCurrentFrame, vehicleEntity.getPosition().x * getPPuX(), vehicleEntity.getPosition().y * getPPuY(),
-					VehicleEntity.SIZEX * getPPuX(), VehicleEntity.SIZEY * getPPuY());
+            if((int)(Math.random() * 2) == 1)
+            {
+                spriteBatch.draw(vehicleGreenCurrentFrame, vehicleEntity.getPosition().x * getPPuX(),
+                        vehicleEntity.getPosition().y * getPPuY(), VehicleEntity.SIZEX * getPPuY(),
+                        VehicleEntity.SIZEY * getPPuY());
+            }
+            else
+            {
+                spriteBatch.draw(vehicleRedCurrentFrame, vehicleEntity.getPosition().x * getPPuX(),
+                        vehicleEntity.getPosition().y * getPPuY(), VehicleEntity.SIZEX * getPPuX(),
+                        VehicleEntity.SIZEY * getPPuY());
+            }
 		}
 	}
 
