@@ -39,10 +39,10 @@ public class SpriteAnimation
 	/**
 	 * Creates a new sprite animation.
 	 *
-	 * @param columns   The number of columns in the sprite sheet.
-	 * @param rows   The number of rows in the sprite sheet.
+	 * @param columns       The number of columns in the sprite sheet.
+	 * @param rows          The number of rows in the sprite sheet.
 	 * @param frameDuration The time in seconds between frames.
-	 * @param spriteSheet The sprite sheet used in the animation.
+	 * @param spriteSheet   The sprite sheet used in the animation.
 	 */
 	public SpriteAnimation(int columns, int rows, float frameDuration, Texture spriteSheet)
 	{
@@ -58,7 +58,7 @@ public class SpriteAnimation
 	/**
 	 * Loads frames into a TextureRegion[]
 	 *
-	 * @param frames The frames to load into from the sprite sheet
+	 * @param frames      The frames to load into from the sprite sheet
 	 * @param spriteSheet The sprite sheet to load the frames from
 	 */
 	private void loadFrames(TextureRegion[] frames, Texture spriteSheet)
@@ -80,7 +80,7 @@ public class SpriteAnimation
 	 * Updates the current frame of the animation.
 	 *
 	 * @param stateTime The time spent in the state represented by this animation
-	 * @param looping Whether or not the animation should be looping
+	 * @param looping   Whether or not the animation should be looping
 	 */
 	public void updateCurrentFrame(float stateTime, boolean looping)
 	{
