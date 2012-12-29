@@ -1,5 +1,6 @@
 package com.eshsprogramming.dash_or_smash.model.world;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.dash_or_smash.DashOrSmash;
@@ -55,7 +56,7 @@ public class GameWorld extends World
 		// Adds pedestrians to the array of them
 		for(int index = 0; index < 1; index++)
 		{
-			pedestrianEntities.add(new PedestrianEntity(new Vector2((int)(Math.random() * 6), 0)));
+			pedestrianEntities.add(new PedestrianEntity(new Vector2((int)(Math.random() * 6), 0), MathUtils.random(2)));
 		}
 
 		// Adds blocks to the world

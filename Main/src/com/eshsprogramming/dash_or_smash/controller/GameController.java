@@ -219,7 +219,7 @@ public class GameController extends Controller
 	private void spawnPedestrian()
 	{
 		PedestrianEntity temp = new PedestrianEntity(new Vector2(pedestrianEntities.first().getPosition().x +
-				PedestrianEntity.SIZEX, pedestrianEntities.first().getPosition().y));
+				PedestrianEntity.SIZEX, pedestrianEntities.first().getPosition().y), MathUtils.random(2));
 
 		if(temp.getPosition().x < 0 || temp.getPosition().x > GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX)
 		{

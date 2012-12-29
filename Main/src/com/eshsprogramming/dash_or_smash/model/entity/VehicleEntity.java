@@ -31,10 +31,11 @@ public class VehicleEntity extends Entity
 	 *
 	 * @param position The vehicle's starting position
 	 * @param vY       The vehicle's velocity on the Y axis
+	 * @param imageType The type of image to use for the vehicle object's rendering
 	 */
-	public VehicleEntity(Vector2 position, float vY, int type)
+	public VehicleEntity(Vector2 position, float vY, int imageType)
 	{
-		super(position, SIZEX, SIZEY, type);
+		super(position, SIZEX, SIZEY, imageType);
 
 		this.vY = vY;
 	}
