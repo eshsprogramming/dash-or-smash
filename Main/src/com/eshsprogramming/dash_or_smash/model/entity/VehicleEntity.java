@@ -32,9 +32,10 @@ public class VehicleEntity extends Entity
 	 * @param position The vehicle's starting position
 	 * @param vY       The vehicle's velocity on the Y axis
 	 */
-	public VehicleEntity(Vector2 position, float vY)
+	public VehicleEntity(Vector2 position, float vY, int type)
 	{
-		super(position, SIZEX, SIZEY);
+		super(position, SIZEX, SIZEY, type);
+
 		this.vY = vY;
 	}
 
@@ -44,6 +45,7 @@ public class VehicleEntity extends Entity
 	public void update(float delta)
 	{
 		super.update(delta);
+
 		getPosition().add(0, delta * vY);
 		getBounds().setY(getPosition().y);
 	}

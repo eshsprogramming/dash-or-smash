@@ -286,18 +286,24 @@ public class GameRenderer extends Renderer
 	{
 		for(VehicleEntity vehicleEntity : gameWorld.getVehicleEntities())
 		{
-            if((int)(Math.random() * 2) == 1)
-            {
-                spriteBatch.draw(vehicleGreenCurrentFrame, vehicleEntity.getPosition().x * getPPuX(),
-                        vehicleEntity.getPosition().y * getPPuY(), VehicleEntity.SIZEX * getPPuY(),
-                        VehicleEntity.SIZEY * getPPuY());
-            }
-            else
-            {
-                spriteBatch.draw(vehicleRedCurrentFrame, vehicleEntity.getPosition().x * getPPuX(),
-                        vehicleEntity.getPosition().y * getPPuY(), VehicleEntity.SIZEX * getPPuX(),
-                        VehicleEntity.SIZEY * getPPuY());
-            }
+        	switch(vehicleEntity.getImageType())
+			{
+				case 0:
+					spriteBatch.draw(vehicleRedCurrentFrame, vehicleEntity.getPosition().x * getPPuX(),
+							vehicleEntity.getPosition().y * getPPuY(), VehicleEntity.SIZEX * getPPuX(),
+							VehicleEntity.SIZEY * getPPuY());
+					break;
+
+				case 1:
+					spriteBatch.draw(vehicleGreenCurrentFrame, vehicleEntity.getPosition().x * getPPuX(),
+							vehicleEntity.getPosition().y * getPPuY(), VehicleEntity.SIZEX * getPPuX(),
+							VehicleEntity.SIZEY * getPPuY());
+					break;
+
+				default:
+					System.out.println("Image type specified does not exist.");
+					break;
+			}
 		}
 	}
 

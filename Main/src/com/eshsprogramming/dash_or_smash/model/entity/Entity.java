@@ -11,6 +11,11 @@ import com.badlogic.gdx.math.Vector2;
 public abstract class Entity
 {
 	/**
+	 * The type of image that the entity should use. This is used in a Renderer instance to decide which image to
+	 * render for the entity.
+	 */
+	private int imageType;
+	/**
 	 * The entity's position on the x and y plane.
 	 */
 	private Vector2 position = null;
@@ -22,13 +27,32 @@ public abstract class Entity
 	/**
 	 * Creates a new entity
 	 *
-	 * @param position the current position
+	 * @param position The current position of the entity.
+	 * @param sizeX The size of the entity on the x axis in relative units.
+	 * @param sizeY The size of the entity on the y axis in relative units.
 	 */
 	public Entity(Vector2 position, float sizeX, float sizeY)
 	{
 		this.position = position;
 		this.bounds.height = sizeY;
 		this.bounds.width = sizeX;
+
+		imageType = 0;
+	}
+
+	/**
+	 * Creates a new entity
+	 *
+	 * @param position The current position of the entity.
+	 * @param sizeX The size of the entity on the x axis in relative units.
+	 * @param sizeY The size of the entity on the y axis in relative units.
+	 * @param imageType The type of image the entity should use.
+	 */
+	public Entity(Vector2 position, float sizeX, float sizeY, int imageType)
+	{
+		this(position, sizeX, sizeY);
+
+		this.imageType = imageType;
 	}
 
 	/**
@@ -58,5 +82,15 @@ public abstract class Entity
 	public Vector2 getPosition()
 	{
 		return position;
+	}
+
+	/**
+	 * Returns the image type.
+	 *
+	 * @return The image type.
+	 */
+	public int getImageType()
+	{
+		return imageType;
 	}
 }

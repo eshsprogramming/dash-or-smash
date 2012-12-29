@@ -153,7 +153,7 @@ public class GameController extends Controller
 		while(vehicleEntities.size < VehicleEntity.NUMBER_OF_TRAINS)
 		{
 			temp = new VehicleEntity(new Vector2(MathUtils.random(0f, GameRenderer.CAMERA_WIDTH - VehicleEntity.SIZEX),
-					MathUtils.random(5f, 10f)), MathUtils.random(-2.2f) * timer * .01f - .8f);
+					MathUtils.random(5f, 10f)), MathUtils.random(-2.2f) * timer * .01f - .8f, (int)MathUtils.random(1));
 
 			while(checkTrain(temp))
 			{
