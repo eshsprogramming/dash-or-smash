@@ -125,10 +125,29 @@ public class GameRenderer extends Renderer
 		vehicleGreenAnim = new SpriteAnimation(2,2,.25f ,new Texture(Gdx.files.internal("images/vehicle_green_sheet.png")));
 		vehicleBlueAnim = new SpriteAnimation(2,2,.25f, new Texture(Gdx.files.internal("images/vehicle_blue_sheet.png")));
 
-
-
 		blockTexture = new Texture(Gdx.files.internal("images/block.png"));
 	}
+
+
+	/**
+	 * Loads frames from a spritesheet into a TextureRegion[]
+	 */
+	private void loadFrames(TextureRegion[] frames, Texture sheet)
+	{
+		TextureRegion[][] tmp = TextureRegion.split(sheet, sheet.getWidth() / FRAME_COLUMNS,
+				sheet.getHeight() / FRAME_ROWS);
+
+		int index = 0;
+		for(int i = 0; i < FRAME_ROWS; i++)
+		{
+			for(int j = 0; j < FRAME_COLUMNS; j++)
+			{
+				frames[index++] = tmp[i][j];
+			}
+		}
+	}
+
+
 
 	/**
 	 * Renders things to be rendered on the gameWorld.
@@ -188,7 +207,7 @@ public class GameRenderer extends Renderer
 	{
 		for(VehicleEntity vehicleEntity : gameWorld.getVehicleEntities())
 		{
-        	switch(vehicleEntity.getImageType())
+			switch(vehicleEntity.getImageType())
 			{
 				case 0:
 					spriteBatch.draw(vehicleRedAnim.getCurrentFrame(), vehicleEntity.getPosition().x * getPPuX(),

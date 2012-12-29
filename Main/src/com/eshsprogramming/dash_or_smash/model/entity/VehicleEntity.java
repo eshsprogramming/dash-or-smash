@@ -29,8 +29,8 @@ public class VehicleEntity extends Entity
 	/**
 	 * Creates a new vehicle.
 	 *
-	 * @param position The vehicle's starting position
-	 * @param vY       The vehicle's velocity on the Y axis
+	 * @param position  The vehicle's starting position
+	 * @param vY        The vehicle's velocity on the Y axis
 	 * @param imageType The type of image to use for the vehicle object's rendering
 	 */
 	public VehicleEntity(Vector2 position, float vY, int imageType)

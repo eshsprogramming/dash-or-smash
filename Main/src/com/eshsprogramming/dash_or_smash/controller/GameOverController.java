@@ -13,10 +13,10 @@ import com.eshsprogramming.dash_or_smash.view.GameOverRenderer;
  */
 public class GameOverController extends Controller
 {
-    /**
-     * Played when the user selects something.
-     */
-    private Sound selectSound = null;
+	/**
+	 * Played when the user selects something.
+	 */
+	private Sound selectSound = null;
 
 	/**
 	 * Creates a new GameOverController.
@@ -27,7 +27,7 @@ public class GameOverController extends Controller
 	{
 		super(game);
 
-        this.selectSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/select.wav"));
+		this.selectSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/select.wav"));
 
 		setTouchPosition(new Vector2(0, 0)); // to avoid a null pointer exception
 	}
@@ -42,7 +42,7 @@ public class GameOverController extends Controller
 		if(((GameOverRenderer)getGame().gameOverScreen.getRenderer()).getWorld().getMainMenuText()
 				.touches(getTouchPosition(), getGame().gameOverScreen.getWidth(), getGame().gameOverScreen.getHeight()))
 		{
-            selectSound.play();
+			selectSound.play();
 
 			getGame().setScreen(getGame().mainMenuScreen);
 		}
@@ -50,7 +50,7 @@ public class GameOverController extends Controller
 		if(((GameOverRenderer)getGame().gameOverScreen.getRenderer()).getWorld().getPlayAgainText()
 				.touches(getTouchPosition(), getGame().gameOverScreen.getWidth(), getGame().gameOverScreen.getHeight()))
 		{
-            selectSound.play();
+			selectSound.play();
 
 			getGame().setScreen(getGame().gameScreen);
 		}

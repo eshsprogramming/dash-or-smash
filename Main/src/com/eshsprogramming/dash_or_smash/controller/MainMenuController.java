@@ -23,10 +23,10 @@ public class MainMenuController extends Controller
 	 */
 	private MainMenuScreen mainMenuScreen = null;
 
-    /**
-     * Played when the user selects something.
-     */
-    private Sound selectSound = null;
+	/**
+	 * Played when the user selects something.
+	 */
+	private Sound selectSound = null;
 
 	/**
 	 * Creates a new main menu controller.
@@ -39,7 +39,7 @@ public class MainMenuController extends Controller
 
 		this.mainMenuWorld = mainMenuWorld;
 		this.mainMenuScreen = mainMenuScreen;
-        this.selectSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/select.wav"));
+		this.selectSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/select.wav"));
 
 		// Sets touch position to (0, 0) to avoid NullPointerException
 		this.setTouchPosition(new Vector2(0, 0));
@@ -55,7 +55,7 @@ public class MainMenuController extends Controller
 		if(mainMenuWorld.getPlayText().touches(getTouchPosition(), mainMenuScreen.getWidth(),
 				mainMenuScreen.getHeight()))
 		{
-            selectSound.play();
+			selectSound.play();
 
 			getGame().setScreen(getGame().gameScreen);
 		}
