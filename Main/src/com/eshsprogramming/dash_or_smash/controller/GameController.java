@@ -11,6 +11,7 @@ import com.eshsprogramming.dash_or_smash.model.entity.PedestrianEntity;
 import com.eshsprogramming.dash_or_smash.model.entity.VehicleEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Score;
 import com.eshsprogramming.dash_or_smash.model.world.GameWorld;
+import com.eshsprogramming.dash_or_smash.processor.MultiTouchProcessor;
 import com.eshsprogramming.dash_or_smash.view.GameRenderer;
 
 /**
@@ -20,6 +21,10 @@ import com.eshsprogramming.dash_or_smash.view.GameRenderer;
  */
 public class GameController extends Controller
 {
+	/**
+	 * manages touches for the user
+	 */
+	private MultiTouchProcessor touchManager = null;
 	/**
 	 * Used to count how long since the player hit a train
 	 */
@@ -49,7 +54,7 @@ public class GameController extends Controller
 	 */
 	private Sound hurtSound = null;
     /**
-     * The powerup sound. Played when a pedestrian is spawned.
+     * The powerupSound Played when a pedestrian is spawned.
      */
     private Sound powerupSound = null;
 	/**
@@ -66,6 +71,7 @@ public class GameController extends Controller
 	public GameController(GameWorld gameWorld, DashOrSmash game)
 	{
 		super(game);
+		touchManager = new MultiTouchProcessor(game,3);
 		this.gameWorld = gameWorld;
 		this.pedestrianEntities = gameWorld.getPedestrianEntities();
 		this.vehicleEntities = gameWorld.getVehicleEntities();
@@ -116,14 +122,13 @@ public class GameController extends Controller
 	{
 		try
 		{
-			float x = getGame().gameScreen.getRelativeX(Gdx.input.getX());
-			float temp = (x - pedestrianEntities.get(0).getPosition().x) * 1f;
-
+			touchManager.updatePositions();
+			float temp = (touchManager.getPositions()[0].x - pedestrianEntities.get(0).getPosition().x) * 1f;
 			temp = (selected) ? temp : 0;
 			temp = (Gdx.input.isTouched()) ? temp : 0;
 			temp = (-1f < temp && temp < 1f) ? temp : 0;
-			temp = (x  > 0) ? temp : 0;
-			temp = (x  < GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX) ?
+			temp = (touchManager.getPositions()[0].x > 0) ? temp : 0;
+			temp = (touchManager.getPositions()[0].x  < GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX) ?
 					temp : GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX -
 					pedestrianEntities.get(0).getPosition().x;
 
@@ -155,7 +160,7 @@ public class GameController extends Controller
 		while(vehicleEntities.size < VehicleEntity.NUMBER_OF_TRAINS)
 		{
 			temp = new VehicleEntity(new Vector2(MathUtils.random(0f, GameRenderer.CAMERA_WIDTH - VehicleEntity.SIZEX),
-					MathUtils.random(5f, 10f)), MathUtils.random(-2.2f) * timer * .01f - .8f, MathUtils.random(2));
+					MathUtils.random(5f, 10f)), MathUtils.random(-2.2f) * timer * .01f - .8f, (int)MathUtils.random(1));
 
 			while(checkTrain(temp))
 			{
