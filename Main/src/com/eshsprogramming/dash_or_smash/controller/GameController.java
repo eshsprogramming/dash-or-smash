@@ -128,7 +128,7 @@ public class GameController extends Controller
 			temp = (selected) ? temp : 0;
 			temp = (Gdx.input.isTouched()) ? temp : 0;
 			temp = (-1f < temp && temp < 1f) ? temp : 0;
-			temp = (touchManager.getPositions()[0].x + PedestrianEntity.SIZEX / 2 > 0) ? temp : 0;
+			temp = (touchManager.getPositions()[0].x - PedestrianEntity.SIZEX / 2 > 0) ? temp : 0;
 			temp = (touchManager.getPositions()[0].x < GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX / 2) ?
 					temp : GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX - pedestrianEntities.get(0).getPosition().x;
 			pedestrianEntities.get(0).getPosition().x += temp;
