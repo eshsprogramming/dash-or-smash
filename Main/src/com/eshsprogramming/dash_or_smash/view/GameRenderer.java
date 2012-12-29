@@ -54,154 +54,15 @@ public class GameRenderer extends Renderer
 	 */
 	private ShapeRenderer debugRenderer = new ShapeRenderer();
 
-	/**
-	 * The idle animation of the red shirt pedestrians.
-	 */
-	private Animation pedestrianIdleRedshirtAnimation = null;
-	/**
-	 * The idle animation of the purple shirt pedestrians.
-	 */
-	private Animation pedestrianIdlePurpleshirtAnimation = null;
-	/**
-	 * The idle animation of the yellow shirt pedestrians.
-	 */
-	private Animation pedestrianIdleYellowshirtAnimation = null;
-	/**
-	 * The dying animation of the red shirt pedestrians.
-	 */
-	private Animation pedestrianDyingRedshirtAnimation = null;
-	/**
-	 * The dying animation of the purple shirt pedestrians.
-	 */
-	private Animation pedestrianDyingPurpleshirtAnimation = null;
-	/**
-	 * The dying animation of the yellow shirt pedestrians.
-	 */
-	private Animation pedestrianDyingYellowshirtAnimation = null;
-	/**
-	 * The animation for the red vehicles.
-	 */
-	private Animation vehicleRedAnimation = null;
-    /**
-     * The animation for the green vehicles.
-     */
-    private Animation vehicleGreenAnimation = null;
-	/**
-	 * The animation for the blue vehicles.
-	 */
-	private Animation vehicleBlueAnimation = null;
-
-	/**
-	 * The texture for the red shirt pedestrians idle animation.
-	 */
-	private Texture pedestrianIdleRedshirtSheet = null;
-	/**
-	 * The texture for the purple shirt pedestrians idle animation.
-	 */
-	private Texture pedestrianIdlePurpleshirtSheet = null;
-	/**
-	 * The texture for the yellow shirt pedestrians idle animation.
-	 */
-	private Texture pedestrianIdleYellowshirtSheet = null;
-	/**
-	 * The texture for the red shirt pedestrians dying animation.
-	 */
-	private Texture pedestrianDyingRedshirtSheet = null;
-	/**
-	 * The texture for the purple shirt pedestrians dying animation.
-	 */
-	private Texture pedestrianDyingPurpleshirtSheet = null;
-	/**
-	 * The texture for the yellow shirt pedestrians dying animation.
-	 */
-	private Texture pedestrianDyingYellowshirtSheet = null;
-	/**
-	 * The texture for the red vehicle animation.
-	 */
-	private Texture vehicleRedSheet = null;
-    /**
-     * The texture for the green vehicle animation.
-     */
-    private Texture vehicleGreenSheet = null;
-	/**
-	 * The texture for the blue vehicle animation.
-	 */
-	private Texture vehicleBlueSheet = null;
-
-	/**
-	 * The frames of the pedestrian red shirt idle animation.
-	 */
-	private TextureRegion[] pedestrianIdleRedshirtFrames = null;
-	/**
-	 * The frames of the pedestrian purple shirt idle animation.
-	 */
-	private TextureRegion[] pedestrianIdlePurpleshirtFrames = null;
-	/**
-	 * The frames of the pedestrian yellow shirt idle animation.
-	 */
-	private TextureRegion[] pedestrianIdleYellowshirtFrames = null;
-	/**
-	 * The frames of the pedestrian red shirt dying animation.
-	 */
-	private TextureRegion[] pedestrianDyingRedshirtFrames = null;
-	/**
-	 * The frames of the pedestrian purple shirt dying animation.
-	 */
-	private TextureRegion[] pedestrianDyingPurpleshirtFrames = null;
-	/**
-	 * The frames of the pedestrian yellow shirt dying animation.
-	 */
-	private TextureRegion[] pedestrianDyingYellowshirtFrames = null;
-	/**
-	 * The frames of the red vehicle animation.
-	 */
-	private TextureRegion[] vehicleRedFrames = null;
-	/**
-	 * The frames of the green vehicle animation.
-	 */
-	private TextureRegion[] vehicleGreenFrames = null;
-	/**
-	 * The frames of the blue vehicle animation.
-	 */
-	private TextureRegion[] vehicleBlueFrames = null;
-
-	/**
-	 * The current frame of the idle animation for the red shirt pedestrians.
-	 */
-	private TextureRegion pedestrianIdleRedshirtCurrentFrame = null;
-	/**
-	 * The current frame of the idle animation for the purple shirt pedestrians.
-	 */
-	private TextureRegion pedestrianIdlePurpleshirtCurrentFrame = null;
-	/**
-	 * The current frame of the idle animation for the yellow shirt pedestrians.
-	 */
-	private TextureRegion pedestrianIdleYellowshirtCurrentFrame = null;
-	/**
-	 * The current frame of the dying animation for the red shirt pedestrians.
-	 */
-	private TextureRegion pedestrianDyingRedshirtCurrentFrame = null;
-	/**
-	 * The current frame of the dying animation for the purple shirt pedestrians.
-	 */
-	private TextureRegion pedestrianDyingPurpleshirtCurrentFrame = null;
-	/**
-	 * The current frame of the dying animation for the yellow shirt pedestrians.
-	 */
-	private TextureRegion pedestrianDyingYellowshirtCurrentFrame = null;
-	/**
-	 * The current frame of the red vehicle animation.
-	 */
-	private TextureRegion vehicleRedCurrentFrame = null;
-    /**
-     * The current frame of the green vehicle animation.
-     */
-    private TextureRegion vehicleGreenCurrentFrame = null;
-	/**
-	 * The current frame of the blue vehicle animation.
-	 */
-	private TextureRegion vehicleBlueCurrentFrame = null;
-
+	private SpriteAnimation pedestrianIdleRedshirtAnim =null;
+	private SpriteAnimation pedestrianIdlePurpleshirtAnim =null;
+	private SpriteAnimation pedestrianIdleYellowshirtAnim =null;
+	private SpriteAnimation pedestrianDyingRedshirtAnim =null;
+	private SpriteAnimation pedestrianDyingPurpleshirtAnim =null;
+	private SpriteAnimation pedestrianDyingYellowshirtAnim =null;
+	private SpriteAnimation vehicleRedAnim =null;
+	private SpriteAnimation vehicleGreenAnim =null;
+	private SpriteAnimation vehicleBlueAnim =null;
 	/**
 	 * The texture for the blocks.
 	 */
@@ -242,99 +103,31 @@ public class GameRenderer extends Renderer
 
 		this.spriteBatch = new SpriteBatch();
 
-		loadTextures();
-		initTextureRegions();
-		initAnimations();
+       loadSpriteAnimations();
 
 		stateTime = 0;
 	}
-
-	/**
-	 * Loads the textures from files.
-	 */
-	private void loadTextures()
+	private void loadSpriteAnimations()
 	{
+		pedestrianIdleRedshirtAnim = new SpriteAnimation(2,2,.5f,
+				new Texture(Gdx.files.internal("images/pedestrian_idle_redshirt_sheet.png")));
+		pedestrianIdlePurpleshirtAnim = new SpriteAnimation(2,2,.5f,
+				new Texture(Gdx.files.internal("images/pedestrian_idle_purpleshirt_sheet.png")));
+		pedestrianIdleYellowshirtAnim = new SpriteAnimation(2,2,.5f,
+				new Texture(Gdx.files.internal("images/pedestrian_idle_yellowshirt_sheet.png")));
+		pedestrianDyingRedshirtAnim = new SpriteAnimation(2,2,.25f,
+				new Texture(Gdx.files.internal("images/pedestrian_dying_redshirt_sheet.png")));
+		pedestrianDyingPurpleshirtAnim = new SpriteAnimation(2,2,.25f,
+				new Texture(Gdx.files.internal("images/pedestrian_dying_purpleshirt_sheet.png")));
+		pedestrianDyingYellowshirtAnim = new SpriteAnimation(2,2,.25f,
+				new Texture(Gdx.files.internal("images/pedestrian_dying_yellowshirt_sheet.png")));
+		vehicleRedAnim = new SpriteAnimation(2,2,.25f, new Texture(Gdx.files.internal("images/vehicle_red_sheet.png")));
+		vehicleGreenAnim = new SpriteAnimation(2,2,.25f ,new Texture(Gdx.files.internal("images/vehicle_green_sheet.png")));
+		vehicleBlueAnim = new SpriteAnimation(2,2,.25f, new Texture(Gdx.files.internal("images/vehicle_blue_sheet.png")));
 
-		pedestrianIdleRedshirtSheet = new Texture(Gdx.files.internal("images/pedestrian_idle_redshirt_sheet.png"));
-		pedestrianIdlePurpleshirtSheet = new Texture(Gdx.files.internal("images/pedestrian_idle_purpleshirt_sheet.png"));
-		pedestrianIdleYellowshirtSheet = new Texture(Gdx.files.internal("images/pedestrian_idle_yellowshirt_sheet.png"));
 
-		pedestrianDyingRedshirtSheet = new Texture(Gdx.files.internal("images/pedestrian_dying_redshirt_sheet.png"));
-		pedestrianDyingPurpleshirtSheet =
-				new Texture(Gdx.files.internal("images/pedestrian_dying_purpleshirt_sheet.png"));
-		pedestrianDyingYellowshirtSheet =
-				new Texture(Gdx.files.internal("images/pedestrian_dying_yellowshirt_sheet.png"));
-
-		vehicleRedSheet = new Texture(Gdx.files.internal("images/vehicle_red_sheet.png"));
-        vehicleGreenSheet = new Texture(Gdx.files.internal("images/vehicle_green_sheet.png"));
-		vehicleBlueSheet = new Texture(Gdx.files.internal("images/vehicle_blue_sheet.png"));
 
 		blockTexture = new Texture(Gdx.files.internal("images/block.png"));
-	}
-
-	/**
-	 * Sets up and populates the texture regions.
-	 */
-	private void initTextureRegions()
-	{
-		pedestrianIdleRedshirtFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
-		pedestrianIdlePurpleshirtFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
-		pedestrianIdleYellowshirtFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
-
-		pedestrianDyingRedshirtFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
-		pedestrianDyingPurpleshirtFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
-		pedestrianDyingYellowshirtFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
-
-		vehicleRedFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
-        vehicleGreenFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
-		vehicleBlueFrames = new TextureRegion[FRAME_COLUMNS * FRAME_ROWS];
-
-		loadFrames(pedestrianIdleRedshirtFrames, pedestrianIdleRedshirtSheet);
-		loadFrames(pedestrianIdlePurpleshirtFrames, pedestrianIdlePurpleshirtSheet);
-		loadFrames(pedestrianIdleYellowshirtFrames, pedestrianIdleYellowshirtSheet);
-		loadFrames(pedestrianDyingRedshirtFrames, pedestrianDyingRedshirtSheet);
-		loadFrames(pedestrianDyingPurpleshirtFrames, pedestrianDyingPurpleshirtSheet);
-		loadFrames(pedestrianDyingYellowshirtFrames, pedestrianDyingYellowshirtSheet);
-		loadFrames(vehicleRedFrames, vehicleRedSheet);
-        loadFrames(vehicleGreenFrames, vehicleGreenSheet);
-		loadFrames(vehicleBlueFrames, vehicleBlueSheet);
-	}
-
-    /**
-     * Loads frames from a spritesheet into a TextureRegion[]
-     */
-    private void loadFrames(TextureRegion[] frames, Texture sheet)
-    {
-        TextureRegion[][] tmp = TextureRegion.split(sheet, sheet.getWidth() / FRAME_COLUMNS,
-                sheet.getHeight() / FRAME_ROWS);
-
-        int index = 0;
-        for(int i = 0; i < FRAME_ROWS; i++)
-        {
-            for(int j = 0; j < FRAME_COLUMNS; j++)
-            {
-                frames[index++] = tmp[i][j];
-            }
-        }
-    }
-
-
-	/**
-	 * Sets up animations
-	 */
-	private void initAnimations()
-	{
-		pedestrianIdleRedshirtAnimation = new Animation(0.5f, pedestrianIdleRedshirtFrames);
-		pedestrianIdlePurpleshirtAnimation = new Animation(0.5f, pedestrianIdlePurpleshirtFrames);
-		pedestrianIdleYellowshirtAnimation = new Animation(0.5f, pedestrianIdleYellowshirtFrames);
-
-		pedestrianDyingRedshirtAnimation = new Animation(0.25f, pedestrianDyingRedshirtFrames);
-		pedestrianDyingPurpleshirtAnimation = new Animation(0.25f, pedestrianDyingPurpleshirtFrames);
-		pedestrianDyingYellowshirtAnimation = new Animation(0.25f, pedestrianDyingYellowshirtFrames);
-
-		vehicleRedAnimation = new Animation(0.25f, vehicleRedFrames);
-        vehicleGreenAnimation = new Animation(0.25f, vehicleGreenFrames);
-		vehicleBlueAnimation = new Animation(0.25f, vehicleBlueFrames);
 	}
 
 	/**
@@ -364,17 +157,16 @@ public class GameRenderer extends Renderer
 	 */
 	private void setCurrentFrames()
 	{
-		pedestrianIdleRedshirtCurrentFrame = pedestrianIdleRedshirtAnimation.getKeyFrame(stateTime, true);
-		pedestrianIdlePurpleshirtCurrentFrame = pedestrianIdlePurpleshirtAnimation.getKeyFrame(stateTime, true);
-		pedestrianIdleYellowshirtCurrentFrame = pedestrianIdleYellowshirtAnimation.getKeyFrame(stateTime, true);
 
-		pedestrianDyingRedshirtCurrentFrame = pedestrianDyingRedshirtAnimation.getKeyFrame(stateTime, true);
-		pedestrianDyingPurpleshirtCurrentFrame = pedestrianDyingPurpleshirtAnimation.getKeyFrame(stateTime, true);
-		pedestrianDyingYellowshirtCurrentFrame = pedestrianDyingYellowshirtAnimation.getKeyFrame(stateTime, true);
-
-		vehicleRedCurrentFrame = vehicleRedAnimation.getKeyFrame(stateTime, true);
-        vehicleGreenCurrentFrame = vehicleGreenAnimation.getKeyFrame(stateTime, true);
-		vehicleBlueCurrentFrame = vehicleBlueAnimation.getKeyFrame(stateTime, true);
+		pedestrianIdleRedshirtAnim.updateKeyFrame(stateTime,true);
+		pedestrianIdlePurpleshirtAnim.updateKeyFrame(stateTime,true);
+		pedestrianIdleYellowshirtAnim.updateKeyFrame(stateTime,true);
+		pedestrianDyingRedshirtAnim.updateKeyFrame(stateTime,true);
+		pedestrianDyingPurpleshirtAnim.updateKeyFrame(stateTime,true);
+		pedestrianDyingYellowshirtAnim.updateKeyFrame(stateTime,true);
+		vehicleRedAnim.updateKeyFrame(stateTime,true);
+		vehicleGreenAnim.updateKeyFrame(stateTime,true);
+		vehicleBlueAnim.updateKeyFrame(stateTime,true);
 	}
 
 	/**
@@ -399,19 +191,19 @@ public class GameRenderer extends Renderer
         	switch(vehicleEntity.getImageType())
 			{
 				case 0:
-					spriteBatch.draw(vehicleRedCurrentFrame, vehicleEntity.getPosition().x * getPPuX(),
+					spriteBatch.draw(vehicleRedAnim.getCurrentFrame(), vehicleEntity.getPosition().x * getPPuX(),
 							vehicleEntity.getPosition().y * getPPuY(), VehicleEntity.SIZEX * getPPuX(),
 							VehicleEntity.SIZEY * getPPuY());
 					break;
 
 				case 1:
-					spriteBatch.draw(vehicleGreenCurrentFrame, vehicleEntity.getPosition().x * getPPuX(),
+					spriteBatch.draw(vehicleGreenAnim.getCurrentFrame(), vehicleEntity.getPosition().x * getPPuX(),
 							vehicleEntity.getPosition().y * getPPuY(), VehicleEntity.SIZEX * getPPuX(),
 							VehicleEntity.SIZEY * getPPuY());
 					break;
 
 				case 2:
-					spriteBatch.draw(vehicleBlueCurrentFrame, vehicleEntity.getPosition().x * getPPuX(),
+					spriteBatch.draw(vehicleBlueAnim.getCurrentFrame(), vehicleEntity.getPosition().x * getPPuX(),
 							vehicleEntity.getPosition().y * getPPuY(), VehicleEntity.SIZEX * getPPuX(),
 							VehicleEntity.SIZEY * getPPuY());
 					break;
@@ -435,7 +227,7 @@ public class GameRenderer extends Renderer
 				case 0:
 					if(pedestrianEntity.getState().equals(PedestrianEntity.State.IDLE))
 					{
-						spriteBatch.draw(pedestrianIdleRedshirtCurrentFrame,
+						spriteBatch.draw(pedestrianIdleRedshirtAnim.getCurrentFrame(),
 								pedestrianEntity.getPosition().x * getPPuX(),
 								pedestrianEntity.getPosition().y * getPPuY(),
 								PedestrianEntity.SIZEX * getPPuX(),
@@ -443,7 +235,7 @@ public class GameRenderer extends Renderer
 					}
 					else if(pedestrianEntity.getState().equals(PedestrianEntity.State.DYING))
 					{
-						spriteBatch.draw(pedestrianDyingRedshirtCurrentFrame,
+						spriteBatch.draw(pedestrianDyingRedshirtAnim.getCurrentFrame(),
 								pedestrianEntity.getPosition().x * getPPuX(),
 								pedestrianEntity.getPosition().y * getPPuY(),
 								PedestrianEntity.SIZEX * getPPuX(),
@@ -454,7 +246,7 @@ public class GameRenderer extends Renderer
 				case 1:
 					if(pedestrianEntity.getState().equals(PedestrianEntity.State.IDLE))
 					{
-						spriteBatch.draw(pedestrianIdlePurpleshirtCurrentFrame,
+						spriteBatch.draw(pedestrianIdlePurpleshirtAnim.getCurrentFrame(),
 								pedestrianEntity.getPosition().x * getPPuX(),
 								pedestrianEntity.getPosition().y * getPPuY(),
 								PedestrianEntity.SIZEX * getPPuX(),
@@ -462,7 +254,7 @@ public class GameRenderer extends Renderer
 					}
 					else if(pedestrianEntity.getState().equals(PedestrianEntity.State.DYING))
 					{
-						spriteBatch.draw(pedestrianDyingPurpleshirtCurrentFrame,
+						spriteBatch.draw(pedestrianDyingPurpleshirtAnim.getCurrentFrame(),
 								pedestrianEntity.getPosition().x * getPPuX(),
 								pedestrianEntity.getPosition().y * getPPuY(),
 								PedestrianEntity.SIZEX * getPPuX(),
@@ -473,7 +265,7 @@ public class GameRenderer extends Renderer
 				case 2:
 					if(pedestrianEntity.getState().equals(PedestrianEntity.State.IDLE))
 					{
-						spriteBatch.draw(pedestrianIdleYellowshirtCurrentFrame,
+						spriteBatch.draw(pedestrianIdleYellowshirtAnim.getCurrentFrame(),
 								pedestrianEntity.getPosition().x * getPPuX(),
 								pedestrianEntity.getPosition().y * getPPuY(),
 								PedestrianEntity.SIZEX * getPPuX(),
@@ -481,7 +273,7 @@ public class GameRenderer extends Renderer
 					}
 					else if(pedestrianEntity.getState().equals(PedestrianEntity.State.DYING))
 					{
-						spriteBatch.draw(pedestrianDyingYellowshirtCurrentFrame,
+						spriteBatch.draw(pedestrianDyingYellowshirtAnim.getCurrentFrame(),
 								pedestrianEntity.getPosition().x * getPPuX(),
 								pedestrianEntity.getPosition().y * getPPuY(),
 								PedestrianEntity.SIZEX * getPPuX(),
