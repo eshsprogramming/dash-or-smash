@@ -98,7 +98,7 @@ public class GameRenderer extends Renderer
 	private Text scoreText = null;
 
 	/**
-	 * A summation of the time between frames during the animation.
+	 * The time spent in the state represented by this animation
 	 */
 	float stateTime;
 
@@ -145,26 +145,6 @@ public class GameRenderer extends Renderer
 		blockTexture = new Texture(Gdx.files.internal("images/block.png"));
 	}
 
-
-	/**
-	 * Loads frames from a spritesheet into a TextureRegion[]
-	 */
-	private void loadFrames(TextureRegion[] frames, Texture sheet)
-	{
-		TextureRegion[][] tmp = TextureRegion.split(sheet, sheet.getWidth() / FRAME_COLUMNS,
-				sheet.getHeight() / FRAME_ROWS);
-
-		int index = 0;
-		for(int i = 0; i < FRAME_ROWS; i++)
-		{
-			for(int j = 0; j < FRAME_COLUMNS; j++)
-			{
-				frames[index++] = tmp[i][j];
-			}
-		}
-	}
-
-
 	/**
 	 * Renders things to be rendered on the gameWorld.
 	 */
@@ -192,16 +172,17 @@ public class GameRenderer extends Renderer
 	 */
 	private void setCurrentFrames()
 	{
+		pedestrianIdleRedshirtAnim.updateCurrentFrame(stateTime, true);
+		pedestrianIdlePurpleshirtAnim.updateCurrentFrame(stateTime, true);
+		pedestrianIdleYellowshirtAnim.updateCurrentFrame(stateTime, true);
 
-		pedestrianIdleRedshirtAnim.updateKeyFrame(stateTime, true);
-		pedestrianIdlePurpleshirtAnim.updateKeyFrame(stateTime, true);
-		pedestrianIdleYellowshirtAnim.updateKeyFrame(stateTime, true);
-		pedestrianDyingRedshirtAnim.updateKeyFrame(stateTime, true);
-		pedestrianDyingPurpleshirtAnim.updateKeyFrame(stateTime, true);
-		pedestrianDyingYellowshirtAnim.updateKeyFrame(stateTime, true);
-		vehicleRedAnim.updateKeyFrame(stateTime, true);
-		vehicleGreenAnim.updateKeyFrame(stateTime, true);
-		vehicleBlueAnim.updateKeyFrame(stateTime, true);
+		pedestrianDyingRedshirtAnim.updateCurrentFrame(stateTime, true);
+		pedestrianDyingPurpleshirtAnim.updateCurrentFrame(stateTime, true);
+		pedestrianDyingYellowshirtAnim.updateCurrentFrame(stateTime, true);
+
+		vehicleRedAnim.updateCurrentFrame(stateTime, true);
+		vehicleGreenAnim.updateCurrentFrame(stateTime, true);
+		vehicleBlueAnim.updateCurrentFrame(stateTime, true);
 	}
 
 	/**

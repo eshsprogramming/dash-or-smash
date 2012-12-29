@@ -9,6 +9,6 @@ public class DesktopStarter
 {
 	public static void main(String[] args)
 	{
-		new LwjglApplication(new DashOrSmash(), "Dash Or Smash", 640, 400, true);
+		new LwjglApplication(new DashOrSmash(), "Dash Or Smash", 1280, 800, true);
 	}
 }

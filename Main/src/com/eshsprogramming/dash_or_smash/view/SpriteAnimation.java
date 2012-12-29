@@ -5,58 +5,66 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 /**
- * A class to organize rendering code
+ * An animation utilizing a sprite sheet.
  *
- * @author benjamin Landers
+ * @author Benjamin Landers, Zachary Latta
  */
 public class SpriteAnimation
 {
 	/**
-	 * the number of columns
+	 * The number of columns in the sprite sheet.
 	 */
 	private int columns;
 	/**
-	 * the number of rows
+	 * The number of rows in the sprite sheet.
 	 */
 	private int rows;
 	/**
-	 * The current frame of the animation
+	 * The current frame of the animation .
 	 */
 	private TextureRegion currentFrame = null;
 	/**
-	 * The frames of the animation.
+	 * The frames used for the animation.
 	 */
 	private TextureRegion[] frames = null;
 	/**
-	 * The animation for class
+	 * The instance of animation from libGDX.
 	 */
 	private Animation animation = null;
 	/**
-	 * The texture sheet for the animation
+	 * The sprite sheet used in the animation.
 	 */
-	private Texture textureSheet = null;
+	private Texture spriteSheet = null;
 
 	/**
-	 * makes the animation
+	 * Creates a new sprite animation.
 	 *
-	 * @param col   the number of columns
-	 * @param row   the number of rows
-	 * @param sheet the sheet to base the animation off of
+	 * @param columns   The number of columns in the sprite sheet.
+	 * @param rows   The number of rows in the sprite sheet.
+	 * @param frameDuration The time in seconds between frames.
+	 * @param spriteSheet The sprite sheet used in the animation.
 	 */
-	public SpriteAnimation(int col, int row, float frameDuration, Texture sheet)
+	public SpriteAnimation(int columns, int rows, float frameDuration, Texture spriteSheet)
 	{
-		columns = col;
-		this.rows = row;
-		frames = new TextureRegion[col * row];
-		textureSheet = sheet;
-		loadFrames(frames, textureSheet);
+		this.columns = columns;
+		this.rows = rows;
+		this.spriteSheet = spriteSheet;
+
+		frames = new TextureRegion[columns * rows];
+		loadFrames(frames, this.spriteSheet);
 		animation = new Animation(frameDuration, frames);
 	}
 
-	private void loadFrames(TextureRegion[] frames, Texture sheet)
+	/**
+	 * Loads frames into a TextureRegion[]
+	 *
+	 * @param frames The frames to load into from the sprite sheet
+	 * @param spriteSheet The sprite sheet to load the frames from
+	 */
+	private void loadFrames(TextureRegion[] frames, Texture spriteSheet)
 	{
-		TextureRegion[][] tmp = TextureRegion.split(sheet, sheet.getWidth() / columns,
-				sheet.getHeight() / rows);
+		TextureRegion[][] tmp = TextureRegion.split(spriteSheet, spriteSheet.getWidth() / columns,
+				spriteSheet.getHeight() / rows);
 
 		int index = 0;
 		for(int i = 0; i < rows; i++)
@@ -68,11 +76,22 @@ public class SpriteAnimation
 		}
 	}
 
-	public void updateKeyFrame(float stateTime, boolean looping)
+	/**
+	 * Updates the current frame of the animation.
+	 *
+	 * @param stateTime The time spent in the state represented by this animation
+	 * @param looping Whether or not the animation should be looping
+	 */
+	public void updateCurrentFrame(float stateTime, boolean looping)
 	{
 		currentFrame = animation.getKeyFrame(stateTime, looping);
 	}
 
+	/**
+	 * Returns the current frame of the animation.
+	 *
+	 * @return The current frame of the animation.
+	 */
 	public TextureRegion getCurrentFrame()
 	{
 		return currentFrame;
