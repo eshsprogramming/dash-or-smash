@@ -12,6 +12,7 @@ import com.eshsprogramming.dash_or_smash.model.entity.VehicleEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Score;
 import com.eshsprogramming.dash_or_smash.model.world.GameWorld;
 import com.eshsprogramming.dash_or_smash.processor.MultiTouchProcessor;
+import com.eshsprogramming.dash_or_smash.processor.PedestrianController;
 import com.eshsprogramming.dash_or_smash.view.GameRenderer;
 
 /**
@@ -24,7 +25,7 @@ public class GameController extends Controller
 	/**
 	 * manages touches for the user
 	 */
-	private MultiTouchProcessor touchManager = null;
+	private PedestrianController touchManager = null;
 	/**
 	 * Used to count how long since the player hit a train
 	 */
@@ -72,7 +73,7 @@ public class GameController extends Controller
 	public GameController(GameWorld gameWorld, DashOrSmash game)
 	{
 		super(game);
-		touchManager = new MultiTouchProcessor(game, 3);
+		touchManager = new PedestrianController(game, 3);
 		this.gameWorld = gameWorld;
 		this.pedestrianEntities = gameWorld.getPedestrianEntities();
 		this.vehicleEntities = gameWorld.getVehicleEntities();
@@ -121,23 +122,10 @@ public class GameController extends Controller
 	 */
 	private void processInput()
 	{
-		try
-		{
 			touchManager.updatePositions();
-			float temp = (touchManager.getPositions()[0].x - pedestrianEntities.get(0).getPosition().x - PedestrianEntity.SIZEX / 2) * 1f;
-			temp = (selected) ? temp : 0;
-			temp = (Gdx.input.isTouched()) ? temp : 0;
-			temp = (-1f < temp && temp < 1f) ? temp : 0;
-			temp = (touchManager.getPositions()[0].x - PedestrianEntity.SIZEX / 2 > 0) ? temp : 0;
-			temp = (touchManager.getPositions()[0].x < GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX / 2) ?
-					temp : GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX - pedestrianEntities.get(0).getPosition().x;
-			pedestrianEntities.get(0).getPosition().x += temp;
-		}
-		catch(Exception e)
-		{
-			getGame().gameOverScreen.setScore(this.gameWorld.getScore().getScore());
-			getGame().setScreen(getGame().gameOverScreen);
-		}
+			touchManager.updatePedestrians(pedestrianEntities);
+
+
 	}
 
 	/**
@@ -190,6 +178,12 @@ public class GameController extends Controller
 					{
 						selected = false;
 					}
+					if(pedestrianEntities.size == 0)
+					{
+						getGame().gameOverScreen.setScore(this.gameWorld.getScore().getScore());
+						getGame().setScreen(getGame().gameOverScreen);
+					}
+
 				}
 			}
 		}
