@@ -134,11 +134,19 @@ public class GameScreen extends BaseScreen
 		float touchX = screenX;
 		float touchY = getHeight() - screenY;
 
-		float x = (touchX / getWidth()) * GameRenderer.CAMERA_WIDTH;
-		float y = (touchY / getHeight()) * GameRenderer.CAMERA_HEIGHT;
+		float x = getRelativeX(screenX);
+		float y = getRelativeY((int) touchY);
 
 		controller.setTouchPosition(new Vector2(x - PedestrianEntity.SIZEX / 2, y));
 
 		return true;
+	}
+	public float getRelativeX(int x)
+	{
+		return (x / getWidth()) * GameRenderer.CAMERA_WIDTH;
+	}
+	public float getRelativeY(int y)
+	{
+		return (y / getHeight()) * GameRenderer.CAMERA_HEIGHT;
 	}
 }
