@@ -5,7 +5,7 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.dash_or_smash.DashOrSmash;
 import com.eshsprogramming.dash_or_smash.controller.GameController;
-import com.eshsprogramming.dash_or_smash.model.entity.PedestrianEntity;
+import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.PedestrianEntity;
 import com.eshsprogramming.dash_or_smash.model.world.GameWorld;
 import com.eshsprogramming.dash_or_smash.view.GameRenderer;
 

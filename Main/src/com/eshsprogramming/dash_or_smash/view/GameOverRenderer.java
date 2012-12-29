@@ -3,7 +3,7 @@ package com.eshsprogramming.dash_or_smash.view;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.eshsprogramming.dash_or_smash.model.entity.BlockEntity;
+import com.eshsprogramming.dash_or_smash.model.entity.block.BlockEntity;
 import com.eshsprogramming.dash_or_smash.model.world.GameOverWorld;
 
 /**

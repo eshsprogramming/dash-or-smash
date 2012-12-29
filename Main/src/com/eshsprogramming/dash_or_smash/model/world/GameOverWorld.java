@@ -2,7 +2,7 @@ package com.eshsprogramming.dash_or_smash.model.world;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.eshsprogramming.dash_or_smash.model.entity.BlockEntity;
+import com.eshsprogramming.dash_or_smash.model.entity.block.BlockEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Text;
 import com.eshsprogramming.dash_or_smash.screens.GameOverScreen;
 

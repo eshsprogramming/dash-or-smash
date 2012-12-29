@@ -1,7 +1,8 @@
-package com.eshsprogramming.dash_or_smash.model.entity;
+package com.eshsprogramming.dash_or_smash.model.entity.block;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.eshsprogramming.dash_or_smash.model.entity.Entity;
 
 /**
  * A block in the world.

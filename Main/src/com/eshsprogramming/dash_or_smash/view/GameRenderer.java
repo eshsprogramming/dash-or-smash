@@ -7,9 +7,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
-import com.eshsprogramming.dash_or_smash.model.entity.BlockEntity;
-import com.eshsprogramming.dash_or_smash.model.entity.PedestrianEntity;
-import com.eshsprogramming.dash_or_smash.model.entity.VehicleEntity;
+import com.eshsprogramming.dash_or_smash.model.entity.block.BlockEntity;
+import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.PedestrianEntity;
+import com.eshsprogramming.dash_or_smash.model.entity.vehicle.VehicleEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Text;
 import com.eshsprogramming.dash_or_smash.model.world.GameWorld;
 

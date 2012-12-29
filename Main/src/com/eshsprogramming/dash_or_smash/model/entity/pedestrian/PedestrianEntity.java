@@ -1,6 +1,7 @@
-package com.eshsprogramming.dash_or_smash.model.entity;
+package com.eshsprogramming.dash_or_smash.model.entity.pedestrian;
 
 import com.badlogic.gdx.math.Vector2;
+import com.eshsprogramming.dash_or_smash.model.entity.Entity;
 
 /**
  * A pedestrian. Pedestrians can either be idle or dying. Their position should be where the user moves them.
