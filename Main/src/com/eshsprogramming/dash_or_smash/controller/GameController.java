@@ -116,12 +116,14 @@ public class GameController extends Controller
 	{
 		try
 		{
-			float temp = (getTouchPosition().x - pedestrianEntities.get(0).getPosition().x) * 1f;
+			float x = getGame().gameScreen.getRelativeX(Gdx.input.getX());
+			float temp = (x - pedestrianEntities.get(0).getPosition().x) * 1f;
 
 			temp = (selected) ? temp : 0;
+			temp = (Gdx.input.isTouched()) ? temp : 0;
 			temp = (-1f < temp && temp < 1f) ? temp : 0;
-			temp = (getTouchPosition().x > 0) ? temp : 0;
-			temp = (getTouchPosition().x < GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX) ?
+			temp = (x  > 0) ? temp : 0;
+			temp = (x  < GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX) ?
 					temp : GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX -
 					pedestrianEntities.get(0).getPosition().x;
 
