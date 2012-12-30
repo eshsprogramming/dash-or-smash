@@ -1,10 +1,17 @@
 package com.eshsprogramming.dash_or_smash.model.world;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.dash_or_smash.model.entity.block.BlockEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Text;
 import com.eshsprogramming.dash_or_smash.screens.HighScoreScreen;
+
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  * The world for the high score screen
@@ -87,7 +94,22 @@ public class HighScoreWorld extends World
 	 */
 	private void loadValuesFromFile()
 	{
-		// todo-zach Load the values from a file in this method
+		FileHandle file = Gdx.files.internal("save.dat");
+		BufferedReader bufferedReader = file.reader(100);
+		String line;
+
+		try
+		{
+			while((line = bufferedReader.readLine()) != null)
+			{
+				  highScoreValues.add(Integer.parseInt(line));
+			}
+		}
+		catch(IOException e)
+		{
+			System.out.println("Error reading save.dat!");
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -95,11 +117,10 @@ public class HighScoreWorld extends World
 	 */
 	private void setupHighScoreTexts()
 	{
-		// todo-zach Make this method load proper values to display into the Text instances
 		for(int index = 0; index < HIGH_SCORE_COUNT; index++)
 		{
 			highScoreTexts.insert(index, new Text("fonts/arial-15.fnt", false, highScoreScreen.getWidth() * 0.0035f,
-					new Vector2(1, 3.25f - index * 0.6f), index + 1 + ": "));
+					new Vector2(1, 3.25f - index * 0.6f), index + 1 + ": " + highScoreValues.get(index)));
 		}
 	}
 
