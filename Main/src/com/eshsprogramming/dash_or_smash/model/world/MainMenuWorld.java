@@ -25,6 +25,10 @@ public class MainMenuWorld extends World
 	 * The play text.
 	 */
 	private Text playText = null;
+	/**
+	 * The high score text.
+	 */
+	private Text highScoreText = null;
 
 	/**
 	 * An array of the blocks which make up the background.
@@ -42,6 +46,8 @@ public class MainMenuWorld extends World
 				new Vector2(1, 4.5f), "Dash Or Smash");
 		this.playText = new Text("fonts/arial-15.fnt", false, mainMenuScreen.getWidth() * 0.0035f,
 				new Vector2(1, 3), "Play");
+		this.highScoreText = new Text("fonts/arial-15.fnt", false, mainMenuScreen.getWidth() * 0.0035f,
+				new Vector2(1, 2), "High Scores");
 
 		this.blockEntities = new Array<BlockEntity>();
 
@@ -90,5 +96,15 @@ public class MainMenuWorld extends World
 	public Text getPlayText()
 	{
 		return playText;
+	}
+
+	/**
+	 * Returns the high score text object.
+	 *
+	 * @return The high score text object.
+	 */
+	public Text getHighScoreText()
+	{
+		return highScoreText;
 	}
 }

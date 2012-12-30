@@ -4,20 +4,18 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.eshsprogramming.dash_or_smash.model.entity.block.BlockEntity;
-import com.eshsprogramming.dash_or_smash.model.world.MainMenuWorld;
-import com.eshsprogramming.dash_or_smash.model.world.World;
+import com.eshsprogramming.dash_or_smash.model.gui.Text;
+import com.eshsprogramming.dash_or_smash.model.world.HighScoreWorld;
 
 /**
- * Renders the main menu.
- *
- * @author Zachary Latta, Benjamin Landers
+ * @author Zachary Latta
  */
-public class MainMenuRenderer extends Renderer
+public class HighScoreRenderer extends Renderer
 {
 	/**
-	 * The main menu instance.
+	 * The high score's world.
 	 */
-	private MainMenuWorld mainMenuWorld;
+	private HighScoreWorld highScoreWorld;
 
 	/**
 	 * The sprite batch. Used for rendering sprites.
@@ -32,9 +30,9 @@ public class MainMenuRenderer extends Renderer
 	/**
 	 * Creates a new MainMenuRenderer
 	 */
-	public MainMenuRenderer(MainMenuWorld mainMenuWorld)
+	public HighScoreRenderer(HighScoreWorld highScoreWorld)
 	{
-		this.mainMenuWorld = mainMenuWorld;
+		this.highScoreWorld = highScoreWorld;
 		this.spriteBatch = new SpriteBatch();
 
 		this.loadTextures();
@@ -58,7 +56,7 @@ public class MainMenuRenderer extends Renderer
 	 */
 	private void drawBlocks()
 	{
-		for(BlockEntity blockEntity : mainMenuWorld.getBlockEntities())
+		for(BlockEntity blockEntity : highScoreWorld.getBlockEntities())
 		{
 			spriteBatch.draw(blockTexture, blockEntity.getPosition().x * getPPuX(), blockEntity.getPosition().y * getPPuY(),
 					BlockEntity.SIZEX * getPPuX(), BlockEntity.SIZEY * getPPuY());
@@ -70,9 +68,14 @@ public class MainMenuRenderer extends Renderer
 	 */
 	private void drawText()
 	{
-		mainMenuWorld.getTitleText().render(spriteBatch, getPPuX(), getPPuY());
-		mainMenuWorld.getPlayText().render(spriteBatch, getPPuX(), getPPuY());
-		mainMenuWorld.getHighScoreText().render(spriteBatch, getPPuX(), getPPuY());
+		highScoreWorld.getTitleText().render(spriteBatch, getPPuX(), getPPuY());
+		highScoreWorld.getBackToMainMenuText().render(spriteBatch, getPPuX(), getPPuY());
+
+		// Renders the high score text array (highScoreTexts)
+		for(Text highScore : highScoreWorld.getHighScoreTexts())
+		{
+			highScore.render(spriteBatch, getPPuX(), getPPuY());
+		}
 	}
 
 	/**

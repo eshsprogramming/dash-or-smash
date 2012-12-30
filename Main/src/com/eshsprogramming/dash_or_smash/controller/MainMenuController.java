@@ -36,7 +36,7 @@ public class MainMenuController extends Controller
 	{
 		super(game);
 
-		this.mainMenuWorld = (MainMenuWorld)game.mainMenuScreen.getWorld();
+		this.mainMenuWorld = game.mainMenuScreen.getMainMenuWorld();
 		this.mainMenuScreen = game.mainMenuScreen;
 
 		this.selectSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/select.wav"));
