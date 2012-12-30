@@ -131,24 +131,50 @@ public class GameScreen extends BaseScreen
 	@Override
 	public boolean touchDragged(int screenX, int screenY, int pointer)
 	{
-		float touchX = screenX;
-		float touchY = getHeight() - screenY;
-
 		float x = getRelativeX(screenX);
-		float y = getRelativeY((int)touchY);
+		float y = getRelativeY(screenY);
 
 		controller.setTouchPosition(new Vector2(x - PedestrianEntity.SIZEX / 2, y));
 
 		return true;
 	}
 
+	/**
+	 * gets the equivilant float to a number of pixels in the x direction
+	 * @param x number of pixels
+	 * @return the equivilant number of Relative Units
+	 */
+	public float getRelativeUnitsX(int x)
+	{
+		return getRelativeX(x);
+	}
+	/**
+	 * gets the number equivilant to a certain number of pixels in the y direction
+	 * @param y number of pixels
+	 * @return the equivilant number of Relative Units
+	 */
+	public float getRelativeUnitsY(int y)
+	{
+		return (y / getHeight()) * GameRenderer.CAMERA_HEIGHT;
+	}
+
+	/**
+	 * finds where the pixel is in relative units (Same as getRelativeUnitsX(int))
+	 * @param x the x part of the position of a pixel
+	 * @return the relative x position in the screen
+	 */
 	public float getRelativeX(int x)
 	{
 		return (x / getWidth()) * GameRenderer.CAMERA_WIDTH;
 	}
 
+	/**
+	 * Note: not the same as getRelativeUnitsY(int)
+	 * @param y the y part of the position of a pixel
+	 * @return the relative position of the pixel
+	 */
 	public float getRelativeY(int y)
 	{
-		return (y / getHeight()) * GameRenderer.CAMERA_HEIGHT;
+		return (getHeight() - y) / getHeight() * GameRenderer.CAMERA_HEIGHT;
 	}
 }

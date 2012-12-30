@@ -46,11 +46,15 @@ public class MultiTouchProcessor
 		{
 			positions[i].x = -5;
 			positions[i].y = -5;
-			positions[i].x = (Gdx.input.isTouched(i)) ? game.gameScreen.getRelativeX(Gdx.input.getX(i)) : 0;
-			positions[i].x = (Gdx.input.isTouched(i)) ? game.gameScreen.getRelativeY(Gdx.input.getY(i)) : 0;
-		}
 
-		System.out.println(positions[0]);
+			positions[i].x = (Gdx.input.isTouched(i)) ? game.gameScreen.getRelativeX(Gdx.input.getX(i)) : -5;
+			positions[i].y = (Gdx.input.isTouched(i)) ? game.gameScreen.getRelativeY(Gdx.input.getY(i)) : -5;
+
+
+		}
+		//System.out.println( "x:" + game.gameScreen.getRelativeX(Gdx.input.getX(1))+ " y:" + game.gameScreen.getRelativeY(Gdx.input.getY()));
+		//System.out.println( "x pos:" + positions[1]+ " y pos:" + positions[1]);
+
 	}
 
 	/**
@@ -61,6 +65,10 @@ public class MultiTouchProcessor
 	public Vector2[] getPositions()
 	{
 		return positions;
+	}
+	public DashOrSmash getGame()
+	{
+		return game;
 	}
 
 }
