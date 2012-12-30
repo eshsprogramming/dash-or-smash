@@ -94,7 +94,7 @@ public class HighScoreWorld extends World
 	 */
 	private void loadValuesFromFile()
 	{
-		FileHandle file = Gdx.files.internal("save.dat");
+		FileHandle file = Gdx.files.local("save.dat");
 		BufferedReader bufferedReader = file.reader(100);
 		String line;
 
