@@ -132,10 +132,20 @@ public class GameController extends Controller
 
 		if(respawnCounter > 5)
 		{
+			boolean isLegit = true;
+			for(VehicleEntity vehicle: vehicleEntities)
+			{
+			isLegit &= !(vehicle.getPosition().x + VehicleEntity.SIZEX > pedestrianEntities.first().getPosition().x + PedestrianEntity.SIZEX &&
+					 vehicle.getPosition().x < pedestrianEntities.first().getPosition().x + 2 * PedestrianEntity.SIZEX);
+			System.out.println("1: " + (vehicle.getPosition().x - VehicleEntity.SIZEX > pedestrianEntities.first().getPosition().x + PedestrianEntity.SIZEX));
+			System.out.println("2: " + (vehicle.getPosition().x < pedestrianEntities.first().getPosition().x + 2 * PedestrianEntity.SIZEX));
+			}
+			if(isLegit)
+			{
 			powerupSound.play();
-
 			respawnCounter = 0;
 			spawnPedestrian();
+			}
 		}
 
 		updateBaddies();
@@ -256,14 +266,12 @@ public class GameController extends Controller
 	{
 		PedestrianEntity temp = new PedestrianEntity(new Vector2(pedestrianEntities.first().getPosition().x +
 				PedestrianEntity.SIZEX, pedestrianEntities.first().getPosition().y), MathUtils.random(2));
-
 		if(temp.getPosition().x < 0 || temp.getPosition().x > GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX)
 		{
 			temp.getPosition().x = (temp.getPosition().x > 0) ? temp.getPosition().x : 0;
 			temp.getPosition().x = (temp.getPosition().x < GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX)
-					? temp.getPosition().x : GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX;
+					? temp.getPosition().x : GameRenderer.CAMERA_WIDTH - 2 * PedestrianEntity.SIZEX;
 		}
-
 		pedestrianEntities.add(temp);
 	}
 
