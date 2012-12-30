@@ -137,13 +137,11 @@ public class GameController extends Controller
 			{
 			isLegit &= !(vehicle.getPosition().x + VehicleEntity.SIZEX > pedestrianEntities.first().getPosition().x + PedestrianEntity.SIZEX &&
 					 vehicle.getPosition().x < pedestrianEntities.first().getPosition().x + 2 * PedestrianEntity.SIZEX);
-			System.out.println("1: " + (vehicle.getPosition().x - VehicleEntity.SIZEX > pedestrianEntities.first().getPosition().x + PedestrianEntity.SIZEX));
-			System.out.println("2: " + (vehicle.getPosition().x < pedestrianEntities.first().getPosition().x + 2 * PedestrianEntity.SIZEX));
 			}
 			if(isLegit)
 			{
 			powerupSound.play();
-			respawnCounter = 0;
+			respawnCounter -= 5;
 			spawnPedestrian();
 			}
 		}
