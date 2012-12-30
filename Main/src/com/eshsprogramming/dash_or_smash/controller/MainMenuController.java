@@ -15,7 +15,7 @@ import com.eshsprogramming.dash_or_smash.screens.MainMenuScreen;
 public class MainMenuController extends Controller
 {
 	/**
-	 * The main menu.
+	 * The main menu's world.
 	 */
 	private MainMenuWorld mainMenuWorld = null;
 	/**
@@ -58,6 +58,14 @@ public class MainMenuController extends Controller
 			selectSound.play();
 
 			getGame().setScreen(getGame().gameScreen);
+		}
+
+		if(mainMenuWorld.getHighScoreText().touches(getTouchPosition(), mainMenuScreen.getWidth(),
+				mainMenuScreen.getHeight()))
+		{
+			selectSound.play();
+
+			getGame().setScreen(getGame().highScoreScreen);
 		}
 	}
 }
