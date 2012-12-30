@@ -15,13 +15,13 @@ import com.eshsprogramming.dash_or_smash.screens.MainMenuScreen;
 public class MainMenuController extends Controller
 {
 	/**
-	 * The main menu's world.
-	 */
-	private MainMenuWorld mainMenuWorld = null;
-	/**
 	 * The main menu screen.
 	 */
 	private MainMenuScreen mainMenuScreen = null;
+	/**
+	 * The main menu's world.
+	 */
+	private MainMenuWorld mainMenuWorld = null;
 
 	/**
 	 * Played when the user selects something.
@@ -31,14 +31,14 @@ public class MainMenuController extends Controller
 	/**
 	 * Creates a new main menu controller.
 	 *
-	 * @param mainMenuWorld The main menu to use with the main menu controller
 	 */
-	public MainMenuController(MainMenuWorld mainMenuWorld, MainMenuScreen mainMenuScreen, DashOrSmash game)
+	public MainMenuController(DashOrSmash game)
 	{
 		super(game);
 
-		this.mainMenuWorld = mainMenuWorld;
-		this.mainMenuScreen = mainMenuScreen;
+		this.mainMenuWorld = (MainMenuWorld)game.mainMenuScreen.getWorld();
+		this.mainMenuScreen = game.mainMenuScreen;
+
 		this.selectSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/select.wav"));
 
 		// Sets touch position to (0, 0) to avoid NullPointerException
