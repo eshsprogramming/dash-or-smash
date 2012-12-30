@@ -13,7 +13,8 @@ import javax.swing.text.Position;
  */
 public class PedestrianController extends MultiTouchProcessor
 {
-	boolean[] controlling = null;
+	int[] controlling = null;
+	boolean[] isControlling = null;
 	/**
 	 * Creates a new MultiTouchProcessor instance. Also sets the max touches that it can deal with.
 	 *
@@ -22,24 +23,44 @@ public class PedestrianController extends MultiTouchProcessor
 	public PedestrianController(DashOrSmash game, int maxTouches)
 	{
 		super(game, maxTouches);
-		controlling = new boolean[maxTouches];
+		controlling = new int[maxTouches];
+		isControlling = new boolean[maxTouches];
 	}
 	public void updatePedestrians(Array<PedestrianEntity> pedestrians)
-	{   Vector2 temp;
+	{
+		Vector2 temp;
+		PedestrianEntity pedestrian;
 		for(int i = 0; i < getPositions().length; i++)
 		{
 			temp = getPositions()[i];
 			if(temp.x == -5 || temp.y == -5)
 				continue;
-			for(PedestrianEntity pedestrian: pedestrians)
+			for(int i2 = 0; i2 < pedestrians.size; i2++)
 			{
-				if(!controlling[i]&&temp.x < pedestrian.getPosition().x+PedestrianEntity.SIZEX && temp.x > pedestrian.getPosition().x)
+				pedestrian = pedestrians.get(i2);
+				if(controlling[i]==i2)
 				{
-					pedestrian.getPosition().x = temp.x -PedestrianEntity.SIZEX/2;
-					controlling[i]=true;
+					if(temp.x-.5f < pedestrian.getPosition().x+PedestrianEntity.SIZEX && temp.x + .5f> pedestrian.getPosition().x)
+					{
+						pedestrian.getPosition().x = temp.x -PedestrianEntity.SIZEX/2;
+
+						isControlling[i] = true;
+					}
+				}else{
+					if(!isControlling[i]&&temp.x < pedestrian.getPosition().x+PedestrianEntity.SIZEX && temp.x > pedestrian.getPosition().x)
+					{
+						pedestrian.getPosition().x = temp.x -PedestrianEntity.SIZEX/2;
+						controlling[i]=i2;
+						isControlling[i] = true;
+					}
 				}
+				pedestrian.getPosition().x = (pedestrian.getPosition().x > 0)?pedestrian.getPosition().x:0;
+				pedestrian.getPosition().x = (pedestrian.getPosition().x <
+						super.getGame().gameScreen.getRenderer().CAMERA_WIDTH- PedestrianEntity.SIZEX)
+						?pedestrian.getPosition().x:getGame().gameScreen.getRenderer().CAMERA_WIDTH- PedestrianEntity.SIZEX;
 			}
-			controlling[i] = false;
+			isControlling[i] = false;
 		}
+		//System.out.println(controlling[0]);
 	}
 }
