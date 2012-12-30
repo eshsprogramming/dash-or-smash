@@ -20,7 +20,9 @@ public abstract class Controller
 	private Vector2 touchPosition = null;
 
 	/**
-	 * Default constructor
+	 * Creates a new controller.
+	 *
+	 * @param game The game instance.
 	 */
 	public Controller(DashOrSmash game)
 	{
