@@ -17,7 +17,7 @@ import com.eshsprogramming.dash_or_smash.view.MainMenuRenderer;
 public class MainMenuScreen extends BaseScreen
 {
 	/**
-	 * The main menu.
+	 * The main menu's world.
 	 */
 	private MainMenuWorld mainMenuWorld;
 
