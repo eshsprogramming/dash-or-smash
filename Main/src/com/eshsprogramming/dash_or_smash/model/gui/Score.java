@@ -46,13 +46,13 @@ public class Score extends Text
 	}
 
 	/**
-	 * Increments the score by the points for each train
+	 * Increments the score by the points for each vehicle
 	 *
-	 * @param nudistCount The current number of nudists.
+	 * @param pedestrianCount The current number of pedestrians.
 	 */
-	public void increment(int nudistCount)
+	public void increment(int pedestrianCount)
 	{
-		score += Score.SCORE_COEFFICIENT * nudistCount;
+		score += Score.SCORE_COEFFICIENT * pedestrianCount;
 	}
 
 	/**
@@ -61,5 +61,25 @@ public class Score extends Text
 	public void pedestrianDeath()
 	{
 		score += (Score.DEATH_COEFFICIENT);
+	}
+
+	/**
+	 * Should be called when a vehicle doesn't kill a baddy. Subtracts pointsOnLive from the score.
+	 *
+	 * @param pointsOnLive The amount of points to subtract from the score when a baddy lives.
+	 */
+	public void baddyLive(int pointsOnLive)
+	{
+		score -= pointsOnLive;
+	}
+
+	/**
+	 * Should be called when a vehicle kills a baddy. Adds pointsOnDeath to the score.
+	 *
+	 * @param pointsOnDeath The amount of points to add to the score when a baddy dies.
+	 */
+	public void baddyDeath(int pointsOnDeath)
+	{
+		score += pointsOnDeath;
 	}
 }

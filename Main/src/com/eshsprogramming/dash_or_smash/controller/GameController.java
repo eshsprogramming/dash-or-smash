@@ -7,7 +7,10 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.dash_or_smash.DashOrSmash;
+import com.eshsprogramming.dash_or_smash.model.entity.Entity;
 import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.PedestrianEntity;
+import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.baddy.BaddyPedestrianEntity;
+import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.baddy.BurglarBaddyPedestrianEntity;
 import com.eshsprogramming.dash_or_smash.model.entity.vehicle.VehicleEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Score;
 import com.eshsprogramming.dash_or_smash.model.world.GameWorld;
@@ -46,6 +49,10 @@ public class GameController extends Controller
 	 */
 	private Array<PedestrianEntity> pedestrianEntities = null;
 	/**
+	 * The baddyEntities in the gameWorld.
+	 */
+	private Array<BaddyPedestrianEntity> baddyPedestrianEntities = null;
+	/**
 	 * The vehicleEntities in the gameWorld.
 	 */
 	private Array<VehicleEntity> vehicleEntities = null;
@@ -57,6 +64,10 @@ public class GameController extends Controller
 	 * The powerup sound. Played when a pedestrian is spawned.
 	 */
 	private Sound powerupSound = null;
+	/**
+	 * The baddy death sound. Played when a baddy dies.
+	 */
+	private Sound baddyDeathSound = null;
 
 	/**
 	 * The Score object
@@ -72,13 +83,18 @@ public class GameController extends Controller
 	public GameController(GameWorld gameWorld, DashOrSmash game)
 	{
 		super(game);
-		touchManager = new MultiTouchProcessor(game, 3);
+
 		this.gameWorld = gameWorld;
 		this.pedestrianEntities = gameWorld.getPedestrianEntities();
+		this.baddyPedestrianEntities = gameWorld.getBaddyPedestrianEntities();
 		this.vehicleEntities = gameWorld.getVehicleEntities();
 		this.score = gameWorld.getScore();
+
 		this.hurtSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/hurt.wav"));
 		this.powerupSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/powerup.wav"));
+		this.baddyDeathSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/baddy_death.wav"));
+
+		this.touchManager = new MultiTouchProcessor(game, 3);
 
 		setTouchPosition(gameWorld.getPedestrianEntities().first().getPosition());
 	}
@@ -98,6 +114,12 @@ public class GameController extends Controller
 			pedestrianEntity.update(delta);
 		}
 
+		// Calls update methods of baddyPedestrianEntities
+		for(BaddyPedestrianEntity baddyPedestrianEntity : baddyPedestrianEntities)
+		{
+			baddyPedestrianEntity.update(delta);
+		}
+
 		// Calls update methods of vehicleEntities
 		for(VehicleEntity vehicleEntity : vehicleEntities)
 		{
@@ -114,6 +136,8 @@ public class GameController extends Controller
 			respawnCounter = 0;
 			spawnPedestrian();
 		}
+
+		updateBaddies();
 	}
 
 	/**
@@ -175,6 +199,7 @@ public class GameController extends Controller
 	 */
 	private void handleCollision()
 	{
+		// Collision between vehicles and pedestrians
 		for(int index1 = 0; index1 < vehicleEntities.size; index1++)
 		{
 			for(int index2 = 0; index2 < pedestrianEntities.size; index2++)
@@ -193,18 +218,32 @@ public class GameController extends Controller
 				}
 			}
 		}
+
+		// Collision between vehicles and baddies
+		for(int index1 = 0; index1 < vehicleEntities.size; index1++)
+		{
+			for(int index2 = 0; index2 < baddyPedestrianEntities.size; index2++)
+			{
+				if(checkCollision(vehicleEntities.get(index1), baddyPedestrianEntities.get(index2)))
+				{
+				 	baddyDeathSound.play();
+					score.baddyDeath(baddyPedestrianEntities.get(index2).POINTS_ON_DEATH);
+					baddyPedestrianEntities.removeIndex(index2);
+				}
+			}
+		}
 	}
 
 	/**
-	 * Checks for collision between a vehicleEntity and a pedestrianEntity.
+	 * Checks for collision between two entities.
 	 *
-	 * @param vehicleEntity    The vehicleEntity used for the collision check.
-	 * @param pedestrianEntity The pedestrianEntity used for the collision check.
-	 * @return Whether or not there is a collision between the vehicleEntity and pedestrianEntity.
+	 * @param entity1    The first entity used for the collision check.
+	 * @param entity2 The second entity used for the collision check.
+	 * @return Whether or not there is a collision between the entity1 and pedestrianEntity.
 	 */
-	private boolean checkCollision(VehicleEntity vehicleEntity, PedestrianEntity pedestrianEntity)
+	private boolean checkCollision(Entity entity1, Entity entity2)
 	{
-		return Intersector.intersectRectangles(vehicleEntity.getBounds(), pedestrianEntity.getBounds());
+		return Intersector.intersectRectangles(entity1.getBounds(), entity2.getBounds());
 	}
 
 	/**
@@ -233,6 +272,20 @@ public class GameController extends Controller
 		}
 
 		pedestrianEntities.add(temp);
+	}
+
+	/**
+	 * Creates a new random number and checks if it matches spawn requirements of the different baddies. If it does,
+	 * then a new baddy is added to the baddyPedestrianEntities array.
+	 */
+	private void updateBaddies()
+	{
+		float randomNumber = MathUtils.random(10000);
+
+		if(randomNumber < BurglarBaddyPedestrianEntity.SPAWN_CHANCE)
+		{
+			baddyPedestrianEntities.add(new BurglarBaddyPedestrianEntity(new Vector2(MathUtils.random(8f), 0)));
+		}
 	}
 
 	/**

@@ -36,6 +36,16 @@ public class PedestrianEntity extends Entity
 	 * Creates a new pedestrian.
 	 *
 	 * @param position  The pedestrian's starting position.
+	 */
+	public PedestrianEntity(Vector2 position)
+	{
+		super(position, SIZEX, SIZEY);
+	}
+
+	/**
+	 * Creates a new pedestrian.
+	 *
+	 * @param position  The pedestrian's starting position.
 	 * @param imageType The type of image to use while rendering
 	 */
 	public PedestrianEntity(Vector2 position, int imageType)

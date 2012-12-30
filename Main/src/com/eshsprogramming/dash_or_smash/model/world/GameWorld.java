@@ -4,10 +4,13 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.dash_or_smash.DashOrSmash;
+import com.eshsprogramming.dash_or_smash.model.entity.Entity;
 import com.eshsprogramming.dash_or_smash.model.entity.block.BlockEntity;
 import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.PedestrianEntity;
+import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.baddy.BaddyPedestrianEntity;
 import com.eshsprogramming.dash_or_smash.model.entity.vehicle.VehicleEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Score;
+import com.sun.org.apache.xpath.internal.res.XPATHErrorResources;
 
 /**
  * The game world.
@@ -29,6 +32,10 @@ public class GameWorld extends World
 	 */
 	private Array<PedestrianEntity> pedestrianEntities = new Array<PedestrianEntity>();
 	/**
+	 * An array of the baddies in the world.
+	 */
+	private Array<BaddyPedestrianEntity> baddyPedestrianEntities = new Array<BaddyPedestrianEntity>();
+	/**
 	 * An array of all the vehicleEntities
 	 */
 	private Array<VehicleEntity> vehicleEntities = new Array<VehicleEntity>();
@@ -43,8 +50,9 @@ public class GameWorld extends World
 	public GameWorld(DashOrSmash game)
 	{
 		this.game = game;
-		score = new Score("fonts/arial-15.fnt", false, game.gameScreen.getWidth() * 0.0035f,
+		this.score = new Score("fonts/arial-15.fnt", false, game.gameScreen.getWidth() * 0.0035f,
 				new Vector2(6.5f, 4.75f));
+
 		createBlankWorld();
 	}
 
@@ -87,6 +95,16 @@ public class GameWorld extends World
 	public Array<PedestrianEntity> getPedestrianEntities()
 	{
 		return pedestrianEntities;
+	}
+
+	/**
+	 * Returns the array of baddyPedestrianEntities in the world.
+	 *
+	 * @return The array of baddyPedestrianEntities in the world.
+	 */
+	public Array<BaddyPedestrianEntity> getBaddyPedestrianEntities()
+	{
+		return baddyPedestrianEntities;
 	}
 
 	/**

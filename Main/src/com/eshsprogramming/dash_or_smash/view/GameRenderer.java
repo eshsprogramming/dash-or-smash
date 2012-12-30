@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.eshsprogramming.dash_or_smash.model.entity.block.BlockEntity;
 import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.PedestrianEntity;
+import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.baddy.BaddyPedestrianEntity;
+import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.baddy.BurglarBaddyPedestrianEntity;
 import com.eshsprogramming.dash_or_smash.model.entity.vehicle.VehicleEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Text;
 import com.eshsprogramming.dash_or_smash.model.world.GameWorld;
@@ -42,6 +44,14 @@ public class GameRenderer extends Renderer
 	 * For debug rendering
 	 */
 	private ShapeRenderer debugRenderer = new ShapeRenderer();
+	/**
+	 * The animation for the idle burglar baddy pedestrians.
+	 */
+	private SpriteAnimation pedestrianBaddyIdleBurglarAnimation = null;
+	/**
+	 * The animation for the dying burglar baddies.
+	 */
+	private SpriteAnimation pedestrianBaddyDyingBurglarAnimation = null;
 	/**
 	 * An animation for idle red shirt pedestrians
 	 */
@@ -125,6 +135,12 @@ public class GameRenderer extends Renderer
 
 	private void loadSpriteAnimations()
 	{
+		pedestrianBaddyIdleBurglarAnimation = new SpriteAnimation(2, 2, 0.5f,
+				new Texture(Gdx.files.internal("images/pedestrian_baddy_idle_burglar_sheet.png")));
+
+		pedestrianBaddyDyingBurglarAnimation = new SpriteAnimation(2, 2, 0.5f,
+				new Texture(Gdx.files.internal("images/pedestrian_baddy_dying_burglar_sheet.png")));
+
 		pedestrianIdleRedshirtAnimation = new SpriteAnimation(2, 2, .5f,
 				new Texture(Gdx.files.internal("images/pedestrian_idle_redshirt_sheet.png")));
 		pedestrianIdlePurpleshirtAnimation = new SpriteAnimation(2, 2, .5f,
@@ -162,6 +178,7 @@ public class GameRenderer extends Renderer
 		drawBlocks();
 		drawVehicles();
 		drawPedestrians();
+		drawBaddies();
 		drawScore();
 		spriteBatch.end();
 
@@ -176,6 +193,10 @@ public class GameRenderer extends Renderer
 	 */
 	private void setCurrentFrames()
 	{
+		pedestrianBaddyIdleBurglarAnimation.updateCurrentFrame(stateTime, true);
+
+		pedestrianBaddyDyingBurglarAnimation.updateCurrentFrame(stateTime, true);
+
 		pedestrianIdleRedshirtAnimation.updateCurrentFrame(stateTime, true);
 		pedestrianIdlePurpleshirtAnimation.updateCurrentFrame(stateTime, true);
 		pedestrianIdleYellowshirtAnimation.updateCurrentFrame(stateTime, true);
@@ -308,6 +329,36 @@ public class GameRenderer extends Renderer
 	}
 
 	/**
+	 * Draws the baddies.
+	 */
+	private void drawBaddies()
+	{
+		for(BaddyPedestrianEntity baddyPedestrianEntity : gameWorld.getBaddyPedestrianEntities())
+		{
+			if(baddyPedestrianEntity instanceof BurglarBaddyPedestrianEntity)
+			{
+				if(baddyPedestrianEntity.getState() == BurglarBaddyPedestrianEntity.State.IDLE)
+				{
+					spriteBatch.draw(pedestrianBaddyIdleBurglarAnimation.getCurrentFrame(),
+							baddyPedestrianEntity.getPosition().x * getPPuX(),
+							baddyPedestrianEntity.getPosition().y * getPPuY(),
+							BaddyPedestrianEntity.SIZEX * getPPuX(),
+							BaddyPedestrianEntity.SIZEY * getPPuY());
+				}
+				else if(baddyPedestrianEntity.getState() == BurglarBaddyPedestrianEntity.State.DYING)
+				{
+					spriteBatch.draw(pedestrianBaddyDyingBurglarAnimation.getCurrentFrame(),
+							baddyPedestrianEntity.getPosition().x * getPPuX(),
+							baddyPedestrianEntity.getPosition().y * getPPuY(),
+							BaddyPedestrianEntity.SIZEX * getPPuX(),
+							BaddyPedestrianEntity.SIZEY * getPPuY());
+				}
+			}
+
+		}
+	}
+
+	/**
 	 * Draws the score on the gameWorld.
 	 */
 	private void drawScore()
@@ -354,6 +405,17 @@ public class GameRenderer extends Renderer
 			float y1 = rect.y;
 
 			debugRenderer.setColor(new Color(0, 1, 0, 1));
+			debugRenderer.rect(x1, y1, rect.width, rect.height);
+		}
+
+		for(BaddyPedestrianEntity baddyPedestrianEntity : gameWorld.getBaddyPedestrianEntities())
+		{
+			Rectangle rect = baddyPedestrianEntity.getBounds();
+
+			float x1 = rect.x;
+			float y1 = rect.y;
+
+			debugRenderer.setColor(new Color(2, 1, 2, 1));
 			debugRenderer.rect(x1, y1, rect.width, rect.height);
 		}
 

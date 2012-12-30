@@ -53,6 +53,9 @@ public abstract class Entity
 		this(position, sizeX, sizeY);
 
 		this.imageType = imageType;
+
+		bounds.setY(position.y);
+		bounds.setX(position.x);
 	}
 
 	/**
