@@ -14,6 +14,7 @@ import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.baddy.BurglarBa
 import com.eshsprogramming.dash_or_smash.model.entity.vehicle.VehicleEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Score;
 import com.eshsprogramming.dash_or_smash.model.world.GameWorld;
+import com.eshsprogramming.dash_or_smash.processor.BaddyController;
 import com.eshsprogramming.dash_or_smash.processor.MultiTouchProcessor;
 import com.eshsprogramming.dash_or_smash.processor.PedestrianController;
 import com.eshsprogramming.dash_or_smash.view.GameRenderer;
@@ -25,6 +26,10 @@ import com.eshsprogramming.dash_or_smash.view.GameRenderer;
  */
 public class GameController extends Controller
 {
+	/**
+	 * manages baddies
+	 */
+	private BaddyController baddyController = null;
 	/**
 	 * manages touches for the user
 	 */
@@ -96,6 +101,7 @@ public class GameController extends Controller
 		this.baddyDeathSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/baddy_death.wav"));
 
 		this.touchManager = new PedestrianController(game, 3);
+		this.baddyController = new BaddyController(game, 3);
 
 		setTouchPosition(gameWorld.getPedestrianEntities().first().getPosition());
 	}
@@ -156,6 +162,8 @@ public class GameController extends Controller
 	{
 		touchManager.updatePositions();
 		touchManager.updatePedestrians(pedestrianEntities);
+		baddyController.updatePositions();
+		baddyController.updateBaddies(baddyPedestrianEntities , pedestrianEntities);
 	}
 
 	/**
