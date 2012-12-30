@@ -14,7 +14,7 @@ import com.eshsprogramming.dash_or_smash.screens.MainMenuScreen;
 public class MainMenuWorld extends World
 {
 	/**
-	 * The main menu world. Used for relative sizing of text.
+	 * The main menu screen. Used to retrieve values from related classes.
 	 */
 	private MainMenuScreen mainMenuScreen = null;
 	/**
@@ -25,10 +25,11 @@ public class MainMenuWorld extends World
 	 * The play text.
 	 */
 	private Text playText = null;
+
 	/**
 	 * An array of the blocks which make up the background.
 	 */
-	private Array<BlockEntity> blockEntities = new Array<BlockEntity>();
+	private Array<BlockEntity> blockEntities = null;
 
 	/**
 	 * Creates a new main menu
@@ -37,10 +38,12 @@ public class MainMenuWorld extends World
 	{
 		this.mainMenuScreen = mainMenuScreen;
 
-		titleText = new Text("fonts/arial-15.fnt", false, mainMenuScreen.getWidth() * 0.007f,
+		this.titleText = new Text("fonts/arial-15.fnt", false, mainMenuScreen.getWidth() * 0.007f,
 				new Vector2(1, 4.5f), "Dash Or Smash");
-		playText = new Text("fonts/arial-15.fnt", false, mainMenuScreen.getWidth() * 0.0035f,
+		this.playText = new Text("fonts/arial-15.fnt", false, mainMenuScreen.getWidth() * 0.0035f,
 				new Vector2(1, 3), "Play");
+
+		this.blockEntities = new Array<BlockEntity>();
 
 		fillBlockArray();
 	}
