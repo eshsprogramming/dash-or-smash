@@ -226,7 +226,7 @@ public class GameController extends Controller
 			{
 				if(checkCollision(vehicleEntities.get(index1), baddyPedestrianEntities.get(index2)))
 				{
-				 	baddyDeathSound.play();
+					baddyDeathSound.play();
 					score.baddyDeath(baddyPedestrianEntities.get(index2).POINTS_ON_DEATH);
 					baddyPedestrianEntities.removeIndex(index2);
 				}
@@ -237,7 +237,7 @@ public class GameController extends Controller
 	/**
 	 * Checks for collision between two entities.
 	 *
-	 * @param entity1    The first entity used for the collision check.
+	 * @param entity1 The first entity used for the collision check.
 	 * @param entity2 The second entity used for the collision check.
 	 * @return Whether or not there is a collision between the entity1 and pedestrianEntity.
 	 */

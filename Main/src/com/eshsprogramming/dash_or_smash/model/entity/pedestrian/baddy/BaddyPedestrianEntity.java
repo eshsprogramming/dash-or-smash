@@ -28,7 +28,7 @@ public class BaddyPedestrianEntity extends PedestrianEntity
 	/**
 	 * Creates a new baddy.
 	 *
-	 * @param position  The baddy's starting position.
+	 * @param position The baddy's starting position.
 	 */
 	public BaddyPedestrianEntity(Vector2 position, int pointsOnDeath, int pointsOnLive)
 	{

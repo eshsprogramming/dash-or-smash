@@ -35,7 +35,7 @@ public class PedestrianEntity extends Entity
 	/**
 	 * Creates a new pedestrian.
 	 *
-	 * @param position  The pedestrian's starting position.
+	 * @param position The pedestrian's starting position.
 	 */
 	public PedestrianEntity(Vector2 position)
 	{

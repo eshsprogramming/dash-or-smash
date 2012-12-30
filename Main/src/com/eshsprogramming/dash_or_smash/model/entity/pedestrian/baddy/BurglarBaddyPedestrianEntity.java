@@ -15,7 +15,7 @@ public class BurglarBaddyPedestrianEntity extends BaddyPedestrianEntity
 	/**
 	 * Creates a new burglar.
 	 *
-	 * @param position  The burglar's starting position.
+	 * @param position The burglar's starting position.
 	 */
 	public BurglarBaddyPedestrianEntity(Vector2 position)
 	{

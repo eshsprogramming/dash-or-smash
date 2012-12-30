@@ -4,13 +4,11 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.dash_or_smash.DashOrSmash;
-import com.eshsprogramming.dash_or_smash.model.entity.Entity;
 import com.eshsprogramming.dash_or_smash.model.entity.block.BlockEntity;
 import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.PedestrianEntity;
 import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.baddy.BaddyPedestrianEntity;
 import com.eshsprogramming.dash_or_smash.model.entity.vehicle.VehicleEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Score;
-import com.sun.org.apache.xpath.internal.res.XPATHErrorResources;
 
 /**
  * The game world.
