@@ -30,7 +30,6 @@ public class MainMenuController extends Controller
 
 	/**
 	 * Creates a new main menu controller.
-	 *
 	 */
 	public MainMenuController(DashOrSmash game)
 	{

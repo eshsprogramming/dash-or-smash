@@ -66,6 +66,7 @@ public class MultiTouchProcessor
 	{
 		return positions;
 	}
+
 	public DashOrSmash getGame()
 	{
 		return game;

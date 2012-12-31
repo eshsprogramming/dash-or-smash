@@ -30,6 +30,7 @@ public class PedestrianController extends EntityController
 
 	/**
 	 * updates the positions of the group of pedestrians
+	 *
 	 * @param pedestrians an array of pedestrians that are controllable
 	 */
 	public void updatePedestrians(Array<PedestrianEntity> pedestrians)
@@ -42,7 +43,9 @@ public class PedestrianController extends EntityController
 			temp = getPositions()[i];
 
 			if(temp.x == -5 || temp.y == -5)
+			{
 				continue;
+			}
 
 			for(int i2 = 0; i2 < pedestrians.size; i2++)
 			{
@@ -50,29 +53,29 @@ public class PedestrianController extends EntityController
 
 				if(controlling[i] == i2)
 				{
-					if(temp.x-.5f < pedestrian.getPosition().x + PedestrianEntity.SIZEX && temp.x + .5f
+					if(temp.x - .5f < pedestrian.getPosition().x + PedestrianEntity.SIZEX && temp.x + .5f
 							> pedestrian.getPosition().x)
 					{
-						pedestrian.getPosition().x = temp.x -PedestrianEntity.SIZEX/2;
+						pedestrian.getPosition().x = temp.x - PedestrianEntity.SIZEX / 2;
 
 						isControlling[i] = true;
 					}
 				}
 				else
 				{
-					if(!isControlling[i]&&temp.x < pedestrian.getPosition().x+PedestrianEntity.SIZEX && temp.x
+					if(!isControlling[i] && temp.x < pedestrian.getPosition().x + PedestrianEntity.SIZEX && temp.x
 							> pedestrian.getPosition().x)
 					{
-						pedestrian.getPosition().x = temp.x -PedestrianEntity.SIZEX/2;
-						controlling[i]=i2;
+						pedestrian.getPosition().x = temp.x - PedestrianEntity.SIZEX / 2;
+						controlling[i] = i2;
 						isControlling[i] = true;
 					}
 				}
 
-				pedestrian.getPosition().x = (pedestrian.getPosition().x > 0)?pedestrian.getPosition().x:0;
+				pedestrian.getPosition().x = (pedestrian.getPosition().x > 0) ? pedestrian.getPosition().x : 0;
 				pedestrian.getPosition().x = (pedestrian.getPosition().x <
 						Renderer.CAMERA_WIDTH - PedestrianEntity.SIZEX) ? pedestrian.getPosition().x :
-						Renderer.CAMERA_WIDTH- PedestrianEntity.SIZEX;
+						Renderer.CAMERA_WIDTH - PedestrianEntity.SIZEX;
 			}
 
 			isControlling[i] = false;

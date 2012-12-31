@@ -8,9 +8,7 @@ import com.eshsprogramming.dash_or_smash.model.entity.block.BlockEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Text;
 import com.eshsprogramming.dash_or_smash.screens.HighScoreScreen;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 
 /**

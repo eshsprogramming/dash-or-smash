@@ -1,12 +1,10 @@
 package com.eshsprogramming.dash_or_smash.processor;
 
-import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.dash_or_smash.DashOrSmash;
-import com.eshsprogramming.dash_or_smash.model.entity.Entity;
-import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.PedestrianEntity;
 
 /**
  * A
+ *
  * @Benjamin Landers
  */
 public abstract class EntityController extends MultiTouchProcessor

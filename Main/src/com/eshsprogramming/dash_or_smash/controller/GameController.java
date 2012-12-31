@@ -15,13 +15,12 @@ import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.baddy.BurglarBa
 import com.eshsprogramming.dash_or_smash.model.entity.vehicle.VehicleEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Score;
 import com.eshsprogramming.dash_or_smash.model.world.GameWorld;
-import com.eshsprogramming.dash_or_smash.processor.BaddyController;
 import com.eshsprogramming.dash_or_smash.model.world.HighScoreWorld;
+import com.eshsprogramming.dash_or_smash.processor.BaddyController;
 import com.eshsprogramming.dash_or_smash.processor.PedestrianController;
 import com.eshsprogramming.dash_or_smash.view.GameRenderer;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.Writer;
 
@@ -145,16 +144,16 @@ public class GameController extends Controller
 		if(respawnCounter > 5)
 		{
 			boolean isLegit = true;
-			for(VehicleEntity vehicle: vehicleEntities)
+			for(VehicleEntity vehicle : vehicleEntities)
 			{
-			isLegit &= !(vehicle.getPosition().x + VehicleEntity.SIZEX > pedestrianEntities.first().getPosition().x + PedestrianEntity.SIZEX &&
-					 vehicle.getPosition().x < pedestrianEntities.first().getPosition().x + 2 * PedestrianEntity.SIZEX);
+				isLegit &= !(vehicle.getPosition().x + VehicleEntity.SIZEX > pedestrianEntities.first().getPosition().x + PedestrianEntity.SIZEX &&
+						vehicle.getPosition().x < pedestrianEntities.first().getPosition().x + 2 * PedestrianEntity.SIZEX);
 			}
 			if(isLegit)
 			{
-			powerupSound.play();
-			respawnCounter -= 5;
-			spawnPedestrian();
+				powerupSound.play();
+				respawnCounter -= 5;
+				spawnPedestrian();
 			}
 		}
 
@@ -169,7 +168,7 @@ public class GameController extends Controller
 		touchManager.updatePositions();
 		touchManager.updatePedestrians(pedestrianEntities);
 		baddyController.updatePositions();
-		baddyController.updateBaddies(baddyPedestrianEntities , pedestrianEntities);
+		baddyController.updateBaddies(baddyPedestrianEntities, pedestrianEntities);
 	}
 
 	/**
@@ -223,7 +222,7 @@ public class GameController extends Controller
 					{
 						selected = false;
 					}
-					
+
 					if(pedestrianEntities.size == 0)
 					{
 						updateHighScore(this.gameWorld.getScore().getScore());

@@ -141,6 +141,7 @@ public class GameScreen extends BaseScreen
 
 	/**
 	 * gets the equivilant float to a number of pixels in the x direction
+	 *
 	 * @param x number of pixels
 	 * @return the equivilant number of Relative Units
 	 */
@@ -148,8 +149,10 @@ public class GameScreen extends BaseScreen
 	{
 		return getRelativeX(x);
 	}
+
 	/**
 	 * gets the number equivilant to a certain number of pixels in the y direction
+	 *
 	 * @param y number of pixels
 	 * @return the equivilant number of Relative Units
 	 */
@@ -160,6 +163,7 @@ public class GameScreen extends BaseScreen
 
 	/**
 	 * finds where the pixel is in relative units (Same as getRelativeUnitsX(int))
+	 *
 	 * @param x the x part of the position of a pixel
 	 * @return the relative x position in the screen
 	 */
@@ -170,6 +174,7 @@ public class GameScreen extends BaseScreen
 
 	/**
 	 * Note: not the same as getRelativeUnitsY(int)
+	 *
 	 * @param y the y part of the position of a pixel
 	 * @return the relative position of the pixel
 	 */

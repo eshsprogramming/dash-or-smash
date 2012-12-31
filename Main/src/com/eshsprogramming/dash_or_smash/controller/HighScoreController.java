@@ -5,7 +5,6 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import com.eshsprogramming.dash_or_smash.DashOrSmash;
 import com.eshsprogramming.dash_or_smash.model.world.HighScoreWorld;
-import com.eshsprogramming.dash_or_smash.model.world.MainMenuWorld;
 import com.eshsprogramming.dash_or_smash.screens.HighScoreScreen;
 
 /**

@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.eshsprogramming.dash_or_smash.model.entity.block.BlockEntity;
 import com.eshsprogramming.dash_or_smash.model.world.MainMenuWorld;
-import com.eshsprogramming.dash_or_smash.model.world.World;
 
 /**
  * Renders the main menu.
