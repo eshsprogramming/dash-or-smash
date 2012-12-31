@@ -4,6 +4,7 @@ import com.badlogic.gdx.utils.Array;
 import com.eshsprogramming.dash_or_smash.DashOrSmash;
 import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.PedestrianEntity;
 import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.baddy.BaddyPedestrianEntity;
+import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.baddy.BurglarBaddyPedestrianEntity;
 
 /**
  * Controller for the baddies
