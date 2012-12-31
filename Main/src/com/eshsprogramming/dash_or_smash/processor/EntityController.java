@@ -5,7 +5,7 @@ import com.eshsprogramming.dash_or_smash.DashOrSmash;
 /**
  * A
  *
- * @Benjamin Landers
+ * @author Benjamin Landers
  */
 public abstract class EntityController extends MultiTouchProcessor
 {
