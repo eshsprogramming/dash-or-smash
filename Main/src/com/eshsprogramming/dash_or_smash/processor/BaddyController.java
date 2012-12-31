@@ -31,7 +31,7 @@ public class BaddyController extends EntityController
 	 */
 	public void updateBaddies(Array<BaddyPedestrianEntity> baddies, Array<PedestrianEntity> peds)
 	{
-		float temp = 0, temp2 = 0, speedLimit = .25f , runSpeed = .02f;
+		float temp = 0, temp2 = 0, speedLimit = .25f , runSpeed = .02f; //sets up some needed variables
 		boolean isNexttoPeople = false, isClosetoPeople = false;;
 
 		for(BaddyPedestrianEntity bad: baddies)
@@ -41,30 +41,31 @@ public class BaddyController extends EntityController
 				isNexttoPeople |= (bad.getPosition().x  + temp2  + .5f + BurglarBaddyPedestrianEntity.SIZEX
 						>  goodPed.getPosition().x &&
 						bad.getPosition().x  + temp2  - .5f <  goodPed.getPosition().x +PedestrianEntity.SIZEX);
+				//tests if within .5f of any pedestrian
 				isClosetoPeople |= (bad.getPosition().x  + temp2  + .2f + BurglarBaddyPedestrianEntity.SIZEX
 						>  goodPed.getPosition().x &&
 						bad.getPosition().x  + temp2  - .2f <  goodPed.getPosition().x +PedestrianEntity.SIZEX);
-				temp = ((isNexttoPeople)?((isClosetoPeople)?.001f:.005f):.03f) / (goodPed.getPosition().x -bad.getPosition().x);
-				temp = (temp < -.5f)? -.5f: temp;
+				//tests if within .2 of any pedestrian
+				temp = ((isNexttoPeople)?((isClosetoPeople)?.0015f:.007f):.03f) / (goodPed.getPosition().x -bad.getPosition().x);
+				//basic movement code follows rational fcn scheme
+				temp = (temp < -.5f)? -.5f: temp; //makes sure each temp is not larger than 5
 				temp = (temp >  .5f)? .5f: temp;
-				temp += (bad.getPosition().x  + temp2 < goodPed.getPosition().x + PedestrianEntity.SIZEX && bad.getPosition().x + temp2 > goodPed.getPosition().x)?
-						PedestrianEntity.SIZEX * .7f :0;
-				temp -= (goodPed.getPosition().x  < bad.getPosition().x + temp2+ BaddyPedestrianEntity.SIZEX && goodPed.getPosition().x  > bad.getPosition().x + temp2)?
-						BaddyPedestrianEntity.SIZEX * .7f :0;
+
+				temp += (bad.getPosition().x  + temp2 < goodPed.getPosition().x + PedestrianEntity.SIZEX && bad.getPosition().x
+						+ temp2 > goodPed.getPosition().x)? PedestrianEntity.SIZEX * .7f :0;
+				temp -= (goodPed.getPosition().x  < bad.getPosition().x + temp2+ BaddyPedestrianEntity.SIZEX &&
+						goodPed.getPosition().x  > bad.getPosition().x + temp2) ? BaddyPedestrianEntity.SIZEX * .7f :0;
+				//does collision for push back
 				temp2 += temp;
+				//adds movement for the ped to total movement
 
 			}
-			speedLimit = (isNexttoPeople)? ((isClosetoPeople)?.2f:.25f): .5f;
-			temp2 = (temp2 < -speedLimit)? -speedLimit: temp2;
+			speedLimit = (isNexttoPeople)? ((isClosetoPeople)?.25f:.35f): .5f; //sets speed limit
+			temp2 = (temp2 < -speedLimit)? -speedLimit: temp2;  //makes speed limit obeyed
 			temp2 = (temp2 >  speedLimit)? speedLimit: temp2;
-			/*isNexttoPeople = false;
-			for(PedestrianEntity ped: peds)
-			{
-				isNexttoPeople |= (temp2+bad.getPosition().x <ped.getPosition().x + PedestrianEntity.SizeX);
-			}*/
-			bad.getPosition().x += temp2;
+			bad.getPosition().x += temp2;   //adds movement to the bad guy
 			temp2 = 0;
-			isNexttoPeople = false;
+			isNexttoPeople = false;     //resets stuff for next bad guy
 		}
 
 	}
