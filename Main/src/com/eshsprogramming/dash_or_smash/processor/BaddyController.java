@@ -62,7 +62,7 @@ public class BaddyController extends EntityController
 				//adds movement for the ped to total movement
 
 			}
-			speedLimit = (isNexttoPeople)? ((isClosetoPeople)?.25f:.35f): .5f; //sets speed limit
+			speedLimit = (isNexttoPeople)? ((isClosetoPeople)?.2f:.3f): .4f; //sets speed limit
 			temp2 = (temp2 < -speedLimit)? -speedLimit: temp2;  //makes speed limit obeyed
 			temp2 = (temp2 >  speedLimit)? speedLimit: temp2;
 			bad.getPosition().x += temp2;   //adds movement to the bad guy
