@@ -39,8 +39,8 @@ public class MultiTouchProcessor
 		positions[0].x = -5;
 		positions[0].y = -5;
 
-		positions[0].x = (Gdx.input.isTouched()) ? game.gameScreen.getRelativeX(Gdx.input.getX()) : 0;
-		positions[0].y = (Gdx.input.isTouched()) ? game.gameScreen.getRelativeY(Gdx.input.getY()) : 0;
+		positions[0].x = (Gdx.input.isTouched()) ? game.gameScreen.getRelativeX(Gdx.input.getX()) : -5;
+		positions[0].y = (Gdx.input.isTouched()) ? game.gameScreen.getRelativeY(Gdx.input.getY()) : -5;
 
 		for(int i = 1; i < positions.length; i++)
 		{
