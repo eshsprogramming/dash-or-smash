@@ -32,28 +32,36 @@ public class BaddyController extends EntityController
 	public void updateBaddies(Array<BaddyPedestrianEntity> baddies, Array<PedestrianEntity> peds)
 	{
 		float temp = 0, temp2 = 0, speedLimit = .25f , runSpeed = .02f;
-		boolean isNexttoPeople = false;
+		boolean isNexttoPeople = false, isClosetoPeople = false;;
 
 		for(BaddyPedestrianEntity bad: baddies)
 		{
 			for(PedestrianEntity goodPed: peds)
 			{
-				isNexttoPeople |= (bad.getPosition().x  + temp2  + .3f + BurglarBaddyPedestrianEntity.SIZEX
+				isNexttoPeople |= (bad.getPosition().x  + temp2  + .5f + BurglarBaddyPedestrianEntity.SIZEX
 						>  goodPed.getPosition().x &&
-						bad.getPosition().x  + temp2  - .3f <  goodPed.getPosition().x +PedestrianEntity.SIZEX);
-				temp = ((isNexttoPeople)?.005f:.03f) / (goodPed.getPosition().x -bad.getPosition().x);
+						bad.getPosition().x  + temp2  - .5f <  goodPed.getPosition().x +PedestrianEntity.SIZEX);
+				isClosetoPeople |= (bad.getPosition().x  + temp2  + .2f + BurglarBaddyPedestrianEntity.SIZEX
+						>  goodPed.getPosition().x &&
+						bad.getPosition().x  + temp2  - .2f <  goodPed.getPosition().x +PedestrianEntity.SIZEX);
+				temp = ((isNexttoPeople)?((isClosetoPeople)?.001f:.005f):.03f) / (goodPed.getPosition().x -bad.getPosition().x);
 				temp = (temp < -.5f)? -.5f: temp;
 				temp = (temp >  .5f)? .5f: temp;
 				temp += (bad.getPosition().x  + temp2 < goodPed.getPosition().x + PedestrianEntity.SIZEX && bad.getPosition().x + temp2 > goodPed.getPosition().x)?
-						PedestrianEntity.SIZEX * .1f :0;
+						PedestrianEntity.SIZEX * .7f :0;
 				temp -= (goodPed.getPosition().x  < bad.getPosition().x + temp2+ BaddyPedestrianEntity.SIZEX && goodPed.getPosition().x  > bad.getPosition().x + temp2)?
-						BaddyPedestrianEntity.SIZEX * .1f :0;
+						BaddyPedestrianEntity.SIZEX * .7f :0;
 				temp2 += temp;
 
 			}
-			speedLimit = (isNexttoPeople)? .25f: .5f;
+			speedLimit = (isNexttoPeople)? ((isClosetoPeople)?.2f:.25f): .5f;
 			temp2 = (temp2 < -speedLimit)? -speedLimit: temp2;
 			temp2 = (temp2 >  speedLimit)? speedLimit: temp2;
+			/*isNexttoPeople = false;
+			for(PedestrianEntity ped: peds)
+			{
+				isNexttoPeople |= (temp2+bad.getPosition().x <ped.getPosition().x + PedestrianEntity.SizeX);
+			}*/
 			bad.getPosition().x += temp2;
 			temp2 = 0;
 			isNexttoPeople = false;
