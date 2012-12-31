@@ -44,9 +44,9 @@ public class BaddyController extends EntityController
 						>  goodPed.getPosition().x &&
 						bad.getPosition().x  + temp2  - .5f <  goodPed.getPosition().x +PedestrianEntity.SIZEX);
 				//tests if within .5f of any pedestrian
-				isClosetoPeople |= (bad.getPosition().x  + temp2  + .2f + BurglarBaddyPedestrianEntity.SIZEX
+				isClosetoPeople |= (bad.getPosition().x  + temp2  + .1f + BurglarBaddyPedestrianEntity.SIZEX
 						>  goodPed.getPosition().x &&
-						bad.getPosition().x  + temp2  - .2f <  goodPed.getPosition().x +PedestrianEntity.SIZEX);
+						bad.getPosition().x  + temp2  - .1f <  goodPed.getPosition().x +PedestrianEntity.SIZEX);
 				//tests if within .2 of any pedestrian
 				temp = ((isNexttoPeople)?((isClosetoPeople)?.0005f:.003f):.01f) / (goodPed.getPosition().x -bad.getPosition().x);
 				//basic movement code follows rational fcn scheme
@@ -62,7 +62,7 @@ public class BaddyController extends EntityController
 				//adds movement for the ped to total movement
 
 			}
-			speedLimit = (isNexttoPeople)? ((isClosetoPeople)?.2f:.3f): .4f; //sets speed limit
+			speedLimit = (isNexttoPeople)? ((isClosetoPeople)?0:.3f): .4f; //sets speed limit
 			temp2 = (temp2 < -speedLimit)? -speedLimit: temp2;  //makes speed limit obeyed
 			temp2 = (temp2 >  speedLimit)? speedLimit: temp2;
 			bad.getVelocity().x /= 1.3f; //friction
