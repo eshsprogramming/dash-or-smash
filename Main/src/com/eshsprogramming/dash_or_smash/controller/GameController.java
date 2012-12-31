@@ -136,23 +136,24 @@ public class GameController extends Controller
 		handleCollision();
 		checkTrainValidity();
 
-		if(respawnCounter > 5)
+		if(respawnCounter > 7)
 		{
 			boolean isLegit = true;
 			for(VehicleEntity vehicle: vehicleEntities)
 			{
-			isLegit &= !(vehicle.getPosition().x + VehicleEntity.SIZEX > pedestrianEntities.first().getPosition().x + PedestrianEntity.SIZEX &&
+				isLegit &= !(vehicle.getPosition().x + VehicleEntity.SIZEX > pedestrianEntities.first().getPosition().x + PedestrianEntity.SIZEX &&
 					 vehicle.getPosition().x < pedestrianEntities.first().getPosition().x + 2 * PedestrianEntity.SIZEX);
 			}
 			if(isLegit)
 			{
-			powerupSound.play();
-			respawnCounter -= 5;
-			spawnPedestrian();
+				powerupSound.play();
+				respawnCounter -= 7;
+				spawnPedestrian();
 			}
 		}
 
-		updateBaddies();
+		updateBaddies(delta);
+		;
 	}
 
 	/**
@@ -285,13 +286,28 @@ public class GameController extends Controller
 	 * Creates a new random number and checks if it matches spawn requirements of the different baddies. If it does,
 	 * then a new baddy is added to the baddyPedestrianEntities array.
 	 */
-	private void updateBaddies()
+	private void updateBaddies(float delta)
 	{
 		float randomNumber = MathUtils.random(10000);
 
 		if(randomNumber < BurglarBaddyPedestrianEntity.SPAWN_CHANCE)
 		{
-			baddyPedestrianEntities.add(new BurglarBaddyPedestrianEntity(new Vector2(MathUtils.random(8f), 0)));
+			BurglarBaddyPedestrianEntity temp = new BurglarBaddyPedestrianEntity(new Vector2(MathUtils.random(8f), 0));
+			boolean isNotLegit = true;
+			while(isNotLegit)
+			{
+				temp.getPosition().x =  MathUtils.random(8f);
+				isNotLegit = true;
+				for(VehicleEntity vehicle: vehicleEntities)
+				{
+					isNotLegit &= !(vehicle.getPosition().x + VehicleEntity.SIZEX > temp.getPosition().x + BaddyPedestrianEntity.SIZEX &&
+							vehicle.getPosition().x > temp.getPosition().x);
+				}
+			}
+			temp.update(delta);
+		    baddyPedestrianEntities.add(temp);
+			;
+
 		}
 	}
 

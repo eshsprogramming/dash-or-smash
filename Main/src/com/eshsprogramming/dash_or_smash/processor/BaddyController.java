@@ -31,12 +31,17 @@ public class BaddyController extends EntityController
 	 */
 	public void updateBaddies(Array<BaddyPedestrianEntity> baddies, Array<PedestrianEntity> peds)
 	{
-		float temp = 0, temp2 = 0;
+		float temp = 0, temp2 = 0, speedLimit = .25f , runSpeed = .02f;
+		boolean isNexttoPeople = false;
+
 		for(BaddyPedestrianEntity bad: baddies)
 		{
 			for(PedestrianEntity goodPed: peds)
 			{
-				temp = .01f / (goodPed.getPosition().x -bad.getPosition().x);
+				isNexttoPeople |= (bad.getPosition().x  + temp2  + .3f + BurglarBaddyPedestrianEntity.SIZEX
+						>  goodPed.getPosition().x &&
+						bad.getPosition().x  + temp2  - .3f <  goodPed.getPosition().x +PedestrianEntity.SIZEX);
+				temp = ((isNexttoPeople)?.005f:.03f) / (goodPed.getPosition().x -bad.getPosition().x);
 				temp = (temp < -.5f)? -.5f: temp;
 				temp = (temp >  .5f)? .5f: temp;
 				temp += (bad.getPosition().x  + temp2 < goodPed.getPosition().x + PedestrianEntity.SIZEX && bad.getPosition().x + temp2 > goodPed.getPosition().x)?
@@ -44,11 +49,14 @@ public class BaddyController extends EntityController
 				temp -= (goodPed.getPosition().x  < bad.getPosition().x + temp2+ BaddyPedestrianEntity.SIZEX && goodPed.getPosition().x  > bad.getPosition().x + temp2)?
 						BaddyPedestrianEntity.SIZEX * .1f :0;
 				temp2 += temp;
+
 			}
-			temp2 = (temp2 < -.5f)? -.5f: temp2;
-			temp2 = (temp2 >  .5f)? .5f: temp2;
+			speedLimit = (isNexttoPeople)? .25f: .5f;
+			temp2 = (temp2 < -speedLimit)? -speedLimit: temp2;
+			temp2 = (temp2 >  speedLimit)? speedLimit: temp2;
 			bad.getPosition().x += temp2;
 			temp2 = 0;
+			isNexttoPeople = false;
 		}
 
 	}
