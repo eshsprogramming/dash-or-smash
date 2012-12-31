@@ -10,7 +10,7 @@ public class BurglarBaddyPedestrianEntity extends BaddyPedestrianEntity
 	/**
 	 * The chance of a burglar spawning each frame out of 10000.
 	 */
-	public static final float SPAWN_CHANCE = 25f;
+	public static final float SPAWN_CHANCE = 10f;
 
 	/**
 	 * Creates a new burglar.
