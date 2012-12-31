@@ -24,7 +24,10 @@ public class BaddyPedestrianEntity extends PedestrianEntity
 	 * The chance of the baddy spawning each frame out of 100.
 	 */
 	public static float SPAWN_CHANCE;
-
+	/**
+	 * A 2d vector to symbolize velocity
+	 */
+	private Vector2 velocity = new Vector2(0,0);
 	/**
 	 * Creates a new baddy.
 	 *
@@ -36,5 +39,14 @@ public class BaddyPedestrianEntity extends PedestrianEntity
 
 		this.POINTS_ON_DEATH = pointsOnDeath;
 		this.POINTS_ON_LIVE = pointsOnLive;
+	}
+
+	/**
+	 * Gets the velocity og the baddy
+	 * @return The velocity of the baddy
+	 */
+	public Vector2 getVelocity()
+	{
+		 return velocity;
 	}
 }
