@@ -95,20 +95,29 @@ public class HighScoreWorld extends World
 	private void loadValuesFromFile()
 	{
 		FileHandle file = Gdx.files.local("save.dat");
-		BufferedReader bufferedReader = file.reader(100);
-		String line;
 
-		try
+		if(file.exists())
 		{
-			while((line = bufferedReader.readLine()) != null)
+			BufferedReader bufferedReader = file.reader(100);
+			String line;
+
+			try
 			{
-				  highScoreValues.add(Integer.parseInt(line));
+				while((line = bufferedReader.readLine()) != null)
+				{
+					highScoreValues.add(Integer.parseInt(line));
+				}
+			}
+			catch(IOException e)
+			{
+				System.out.println("Error reading save.dat!");
+				e.printStackTrace();
 			}
 		}
-		catch(IOException e)
+		else
 		{
-			System.out.println("Error reading save.dat!");
-			e.printStackTrace();
+			// Creates a new file
+			file.write(false);
 		}
 	}
 
@@ -119,8 +128,16 @@ public class HighScoreWorld extends World
 	{
 		for(int index = 0; index < HIGH_SCORE_COUNT; index++)
 		{
-			highScoreTexts.insert(index, new Text("fonts/arial-15.fnt", false, highScoreScreen.getWidth() * 0.0035f,
-					new Vector2(1, 3.25f - index * 0.6f), index + 1 + ": " + highScoreValues.get(index)));
+			try
+			{
+				highScoreTexts.insert(index, new Text("fonts/arial-15.fnt", false, highScoreScreen.getWidth() * 0.0035f,
+						new Vector2(1, 3.25f - index * 0.6f), index + 1 + ": " + highScoreValues.get(index)));
+			}
+			catch(IndexOutOfBoundsException e)
+			{
+				highScoreTexts.insert(index, new Text("fonts/arial-15.fnt", false, highScoreScreen.getWidth() * 0.0035f,
+						new Vector2(1, 3.25f - index * 0.6f), index + 1 + ": N/A"));
+			}
 		}
 	}
 
@@ -162,5 +179,15 @@ public class HighScoreWorld extends World
 	public Array<Text> getHighScoreTexts()
 	{
 		return highScoreTexts;
+	}
+
+	/**
+	 * Returns the array of high score values in the world.
+	 *
+	 * @return The array of high score values in the world.
+	 */
+	public Array<Integer> getHighScoreValues()
+	{
+		return highScoreValues;
 	}
 }

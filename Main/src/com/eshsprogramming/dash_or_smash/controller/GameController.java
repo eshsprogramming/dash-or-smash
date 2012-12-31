@@ -2,6 +2,7 @@ package com.eshsprogramming.dash_or_smash.controller;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -14,9 +15,14 @@ import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.baddy.BurglarBa
 import com.eshsprogramming.dash_or_smash.model.entity.vehicle.VehicleEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Score;
 import com.eshsprogramming.dash_or_smash.model.world.GameWorld;
-import com.eshsprogramming.dash_or_smash.processor.MultiTouchProcessor;
+import com.eshsprogramming.dash_or_smash.model.world.HighScoreWorld;
 import com.eshsprogramming.dash_or_smash.processor.PedestrianController;
 import com.eshsprogramming.dash_or_smash.view.GameRenderer;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.Writer;
 
 /**
  * The controller for the gameWorld. Manages sprite properties.
@@ -204,6 +210,8 @@ public class GameController extends Controller
 					
 					if(pedestrianEntities.size == 0)
 					{
+						updateHighScore(this.gameWorld.getScore().getScore());
+
 						getGame().gameOverScreen.setScore(this.gameWorld.getScore().getScore());
 						getGame().setScreen(getGame().gameOverScreen);
 					}
@@ -298,6 +306,94 @@ public class GameController extends Controller
 				{
 					return true;
 				}
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Checks if the user's score is a new high score and writes it to the file if it is.
+	 *
+	 * @return Whether or not the user's score is a high score.
+	 */
+	private boolean updateHighScore(int score)
+	{
+		Array<Integer> highScoreValues = new Array<Integer>();
+		FileHandle file = Gdx.files.local("save.dat");
+
+		if(file.exists())
+		{
+			BufferedReader bufferedReader = file.reader(100);
+			String line;
+
+			try
+			{
+				while((line = bufferedReader.readLine()) != null)
+				{
+					highScoreValues.add(Integer.parseInt(line));
+				}
+			}
+			catch(IOException e)
+			{
+				System.out.println("Error reading save.dat!");
+				e.printStackTrace();
+			}
+		}
+		else
+		{
+			// Creates a new file
+			file.write(false);
+		}
+
+		for(int index = 0; index < HighScoreWorld.HIGH_SCORE_COUNT; index++)
+		{
+			try
+			{
+				if(score > highScoreValues.get(index))
+				{
+					Writer writer = file.writer(false);
+
+					highScoreValues.insert(index, score);
+
+					try
+					{
+						for(int index2 = 0; index2 < highScoreValues.size; index2++)
+						{
+							writer.write(highScoreValues.get(index2) + "\n");
+						}
+
+						writer.close();
+					}
+					catch(IOException e)
+					{
+						e.printStackTrace();
+					}
+
+					return true;
+				}
+			}
+			catch(IndexOutOfBoundsException e)
+			{
+				Writer writer = file.writer(false);
+
+				highScoreValues.insert(index, score);
+
+				try
+				{
+					for(int index2 = 0; index2 < highScoreValues.size; index2++)
+					{
+						writer.write(highScoreValues.get(index2) + "\n");
+					}
+
+					writer.close();
+				}
+				catch(IOException e2)
+				{
+					e2.printStackTrace();
+				}
+
+				return true;
 			}
 		}
 
