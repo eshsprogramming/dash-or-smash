@@ -15,7 +15,6 @@ import com.eshsprogramming.dash_or_smash.model.entity.vehicle.VehicleEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Score;
 import com.eshsprogramming.dash_or_smash.model.world.GameWorld;
 import com.eshsprogramming.dash_or_smash.processor.BaddyController;
-import com.eshsprogramming.dash_or_smash.processor.MultiTouchProcessor;
 import com.eshsprogramming.dash_or_smash.processor.PedestrianController;
 import com.eshsprogramming.dash_or_smash.view.GameRenderer;
 
@@ -187,7 +186,7 @@ public class GameController extends Controller
 			temp = new VehicleEntity(new Vector2(MathUtils.random(0f, GameRenderer.CAMERA_WIDTH - VehicleEntity.SIZEX),
 					MathUtils.random(5f, 10f)), MathUtils.random(-2.2f) * timer * .01f - .8f, MathUtils.random(2));
 
-			while(checkTrain(temp))
+			while(checkVehicle(temp))
 			{
 				temp.getPosition().x = MathUtils.random(0f, GameRenderer.CAMERA_WIDTH - VehicleEntity.SIZEX);
 			}
@@ -296,12 +295,12 @@ public class GameController extends Controller
 	}
 
 	/**
-	 * Checks whether teh train is on the same track as another
+	 * Checks whether the vehicle is on the same track as another
 	 *
-	 * @param vehicle the train in question
-	 * @return Whether or not the train fails the check or not
+	 * @param vehicle The vehicle in question
+	 * @return Whether or not the vehicle fails the check or not
 	 */
-	private boolean checkTrain(VehicleEntity vehicle)
+	private boolean checkVehicle(VehicleEntity vehicle)
 	{
 		for(VehicleEntity temp : vehicleEntities)
 		{
