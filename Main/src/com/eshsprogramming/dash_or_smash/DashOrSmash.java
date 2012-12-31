@@ -1,10 +1,7 @@
 package com.eshsprogramming.dash_or_smash;
 
 import com.badlogic.gdx.Game;
-import com.eshsprogramming.dash_or_smash.screens.GameOverScreen;
-import com.eshsprogramming.dash_or_smash.screens.GameScreen;
-import com.eshsprogramming.dash_or_smash.screens.HighScoreScreen;
-import com.eshsprogramming.dash_or_smash.screens.MainMenuScreen;
+import com.eshsprogramming.dash_or_smash.screens.*;
 
 /**
  * The entry point of Dash Or Smash.
@@ -26,6 +23,10 @@ public class DashOrSmash extends Game
 	 */
 	public GameScreen gameScreen = null;
 	/**
+	 * The new high score screen.
+	 */
+	public NewHighScoreScreen newHighScoreScreen = null;
+	/**
 	 * The game over screen.
 	 */
 	public GameOverScreen gameOverScreen = null;
@@ -36,6 +37,7 @@ public class DashOrSmash extends Game
 		mainMenuScreen = new MainMenuScreen(this);
 		highScoreScreen = new HighScoreScreen(this);
 		gameScreen = new GameScreen(this);
+		newHighScoreScreen = new NewHighScoreScreen(this);
 		gameOverScreen = new GameOverScreen(this);
 
 		setScreen(mainMenuScreen);

@@ -225,10 +225,16 @@ public class GameController extends Controller
 
 					if(pedestrianEntities.size == 0)
 					{
-						updateHighScore(this.gameWorld.getScore().getScore());
-
-						getGame().gameOverScreen.setScore(this.gameWorld.getScore().getScore());
-						getGame().setScreen(getGame().gameOverScreen);
+						if(updateHighScore(this.gameWorld.getScore().getScore()))
+						{
+							getGame().newHighScoreScreen.setScore(this.gameWorld.getScore().getScore());
+							getGame().setScreen(getGame().newHighScoreScreen);
+						}
+						else
+						{
+							getGame().gameOverScreen.setScore(this.gameWorld.getScore().getScore());
+							getGame().setScreen(getGame().gameOverScreen);
+						}
 					}
 
 				}

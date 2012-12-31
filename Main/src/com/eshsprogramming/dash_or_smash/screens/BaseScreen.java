@@ -20,7 +20,7 @@ public class BaseScreen implements Screen, InputProcessor
 	/**
 	 * A reference to the game
 	 */
-	private DashOrSmash game = null;
+	protected DashOrSmash game = null;
 
 	/**
 	 * Handles the rendering for the screen.
