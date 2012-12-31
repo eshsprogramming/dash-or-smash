@@ -15,6 +15,7 @@ import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.baddy.BurglarBa
 import com.eshsprogramming.dash_or_smash.model.entity.vehicle.VehicleEntity;
 import com.eshsprogramming.dash_or_smash.model.gui.Score;
 import com.eshsprogramming.dash_or_smash.model.world.GameWorld;
+import com.eshsprogramming.dash_or_smash.processor.BaddyController;
 import com.eshsprogramming.dash_or_smash.model.world.HighScoreWorld;
 import com.eshsprogramming.dash_or_smash.processor.PedestrianController;
 import com.eshsprogramming.dash_or_smash.view.GameRenderer;
@@ -31,6 +32,10 @@ import java.io.Writer;
  */
 public class GameController extends Controller
 {
+	/**
+	 * manages baddies
+	 */
+	private BaddyController baddyController = null;
 	/**
 	 * manages touches for the user
 	 */
@@ -102,6 +107,7 @@ public class GameController extends Controller
 		this.baddyDeathSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/baddy_death.wav"));
 
 		this.touchManager = new PedestrianController(game, 3);
+		this.baddyController = new BaddyController(game, 3);
 
 		setTouchPosition(gameWorld.getPedestrianEntities().first().getPosition());
 	}
@@ -138,10 +144,18 @@ public class GameController extends Controller
 
 		if(respawnCounter > 5)
 		{
+			boolean isLegit = true;
+			for(VehicleEntity vehicle: vehicleEntities)
+			{
+			isLegit &= !(vehicle.getPosition().x + VehicleEntity.SIZEX > pedestrianEntities.first().getPosition().x + PedestrianEntity.SIZEX &&
+					 vehicle.getPosition().x < pedestrianEntities.first().getPosition().x + 2 * PedestrianEntity.SIZEX);
+			}
+			if(isLegit)
+			{
 			powerupSound.play();
-
-			respawnCounter = 0;
+			respawnCounter -= 5;
 			spawnPedestrian();
+			}
 		}
 
 		updateBaddies();
@@ -154,6 +168,8 @@ public class GameController extends Controller
 	{
 		touchManager.updatePositions();
 		touchManager.updatePedestrians(pedestrianEntities);
+		baddyController.updatePositions();
+		baddyController.updateBaddies(baddyPedestrianEntities , pedestrianEntities);
 	}
 
 	/**
@@ -177,7 +193,7 @@ public class GameController extends Controller
 			temp = new VehicleEntity(new Vector2(MathUtils.random(0f, GameRenderer.CAMERA_WIDTH - VehicleEntity.SIZEX),
 					MathUtils.random(5f, 10f)), MathUtils.random(-2.2f) * timer * .01f - .8f, MathUtils.random(2));
 
-			while(checkTrain(temp))
+			while(checkVehicle(temp))
 			{
 				temp.getPosition().x = MathUtils.random(0f, GameRenderer.CAMERA_WIDTH - VehicleEntity.SIZEX);
 			}
@@ -269,7 +285,7 @@ public class GameController extends Controller
 		{
 			temp.getPosition().x = (temp.getPosition().x > 0) ? temp.getPosition().x : 0;
 			temp.getPosition().x = (temp.getPosition().x < GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX)
-					? temp.getPosition().x : GameRenderer.CAMERA_WIDTH - PedestrianEntity.SIZEX;
+					? temp.getPosition().x : GameRenderer.CAMERA_WIDTH - 2 * PedestrianEntity.SIZEX;
 		}
 
 		pedestrianEntities.add(temp);
@@ -290,12 +306,12 @@ public class GameController extends Controller
 	}
 
 	/**
-	 * Checks whether teh train is on the same track as another
+	 * Checks whether the vehicle is on another
 	 *
-	 * @param vehicle the train in question
-	 * @return Whether or not the train fails the check or not
+	 * @param vehicle The vehicle in question
+	 * @return Whether or not the vehicle fails the check or not
 	 */
-	private boolean checkTrain(VehicleEntity vehicle)
+	private boolean checkVehicle(VehicleEntity vehicle)
 	{
 		for(VehicleEntity temp : vehicleEntities)
 		{

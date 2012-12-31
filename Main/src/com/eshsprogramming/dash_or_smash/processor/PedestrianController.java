@@ -11,7 +11,7 @@ import com.eshsprogramming.dash_or_smash.view.Renderer;
  *
  * @author Benjamin Landers
  */
-public class PedestrianController extends MultiTouchProcessor
+public class PedestrianController extends EntityController
 {
 	int[] controlling = null;
 	boolean[] isControlling = null;
@@ -28,7 +28,10 @@ public class PedestrianController extends MultiTouchProcessor
 		isControlling = new boolean[maxTouches];
 	}
 
-	// todo-ben Javadoc this
+	/**
+	 * updates the positions of the group of pedestrians
+	 * @param pedestrians an array of pedestrians that are controllable
+	 */
 	public void updatePedestrians(Array<PedestrianEntity> pedestrians)
 	{
 		Vector2 temp;
