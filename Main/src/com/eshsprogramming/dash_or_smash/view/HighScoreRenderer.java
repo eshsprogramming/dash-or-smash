@@ -8,6 +8,8 @@ import com.eshsprogramming.dash_or_smash.model.gui.Text;
 import com.eshsprogramming.dash_or_smash.model.world.HighScoreWorld;
 
 /**
+ * The renderer for the high score screen
+ *
  * @author Zachary Latta
  */
 public class HighScoreRenderer extends Renderer

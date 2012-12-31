@@ -11,7 +11,7 @@ import com.eshsprogramming.dash_or_smash.view.GameRenderer;
 import com.eshsprogramming.dash_or_smash.view.HighScoreRenderer;
 
 /**
- *
+ * The high score screen. Display high scores to the user.
  *
  * @author Zachary Latta
  */

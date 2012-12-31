@@ -9,6 +9,8 @@ import com.eshsprogramming.dash_or_smash.model.world.MainMenuWorld;
 import com.eshsprogramming.dash_or_smash.screens.HighScoreScreen;
 
 /**
+ * Controller for the high score screen.
+ *
  * @author Zachary Latta
  */
 public class HighScoreController extends Controller
