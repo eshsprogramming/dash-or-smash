@@ -306,7 +306,7 @@ public class GameController extends Controller
 
 		if(randomNumber < BurglarBaddyPedestrianEntity.SPAWN_CHANCE)
 		{
-			BurglarBaddyPedestrianEntity temp = new BurglarBaddyPedestrianEntity(new Vector2(MathUtils.random(8f), 0));
+			BurglarBaddyPedestrianEntity temp = new BurglarBaddyPedestrianEntity(new Vector2(MathUtils.random(8f), 0),score);
 			boolean isNotLegit = true;
 			
 			while(isNotLegit)

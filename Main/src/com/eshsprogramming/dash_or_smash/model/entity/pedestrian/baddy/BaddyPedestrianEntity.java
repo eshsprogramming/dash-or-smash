@@ -9,7 +9,7 @@ import com.eshsprogramming.dash_or_smash.model.entity.pedestrian.PedestrianEntit
  *
  * @author Zachary Latta
  */
-public class BaddyPedestrianEntity extends PedestrianEntity
+public abstract class BaddyPedestrianEntity extends PedestrianEntity
 {
 	/**
 	 * The points to add to the score on death.
@@ -49,4 +49,8 @@ public class BaddyPedestrianEntity extends PedestrianEntity
 	{
 		 return velocity;
 	}
+	/**
+	 * abstract method that descendants will override with their special effect
+	 */
+	public abstract void specialEffect(boolean closeToPedestrian);
 }
