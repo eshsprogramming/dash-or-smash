@@ -70,6 +70,7 @@ public class BaddyController extends EntityController
 			bad.getPosition().x += bad.getVelocity().x;   //adds movement to the bad guy
 			temp2 = 0;
 			isNexttoPeople = false;     //resets stuff for next bad guy
+			bad.specialEffect(isClosetoPeople);
 		}
 
 	}

@@ -64,13 +64,13 @@ public class Score extends Text
 	}
 
 	/**
-	 * Should be called when a vehicle doesn't kill a baddy. Subtracts pointsOnLive from the score.
+	 * Should be called when a pedestrian is right next to a burgeler. Subtracts pointsOnLive from the score.
 	 *
-	 * @param pointsOnLive The amount of points to subtract from the score when a baddy lives.
+	 * @param pointsOnBurgle The amount of points to subtract from the score when a baddy burgles.
 	 */
-	public void baddyLive(int pointsOnLive)
+	public void baddyBurgle(int pointsOnBurgle)
 	{
-		score -= pointsOnLive;
+		score -= pointsOnBurgle;
 	}
 
 	/**
