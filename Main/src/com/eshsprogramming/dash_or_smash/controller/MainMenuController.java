@@ -14,57 +14,52 @@ import com.eshsprogramming.dash_or_smash.screens.MainMenuScreen;
  */
 public class MainMenuController extends Controller
 {
-	/**
-	 * The main menu screen.
-	 */
-	private MainMenuScreen mainMenuScreen = null;
-	/**
-	 * The main menu's world.
-	 */
-	private MainMenuWorld mainMenuWorld = null;
+    /**
+     * The main menu screen.
+     */
+    private MainMenuScreen mainMenuScreen = null;
+    /**
+     * The main menu's world.
+     */
+    private MainMenuWorld mainMenuWorld = null;
 
-	/**
-	 * Played when the user selects something.
-	 */
-	private Sound selectSound = null;
+    /**
+     * Played when the user selects something.
+     */
+    private Sound selectSound = null;
 
-	/**
-	 * Creates a new main menu controller.
-	 */
-	public MainMenuController(DashOrSmash game)
-	{
-		super(game);
+    /**
+     * Creates a new main menu controller.
+     */
+    public MainMenuController(DashOrSmash game)
+    {
+        super(game);
+        this.mainMenuWorld = game.mainMenuScreen.getMainMenuWorld();
+        this.mainMenuScreen = game.mainMenuScreen;
+        this.selectSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/select.wav"));
+        // Sets touch position to (0, 0) to avoid NullPointerException
+        this.setTouchPosition(new Vector2(0, 0));
+    }
 
-		this.mainMenuWorld = game.mainMenuScreen.getMainMenuWorld();
-		this.mainMenuScreen = game.mainMenuScreen;
+    /**
+     * The main update method. Called each frame.
+     *
+     * @param delta Time in milliseconds between frames.
+     */
+    public void update(float delta)
+    {
+        if(mainMenuWorld.getPlayText().touches(getTouchPosition(), mainMenuScreen.getWidth(),
+                                               mainMenuScreen.getHeight()))
+        {
+            selectSound.play();
+            getGame().setScreen(getGame().gameScreen);
+        }
 
-		this.selectSound = Gdx.audio.newSound(Gdx.files.internal("sounds/effects/select.wav"));
-
-		// Sets touch position to (0, 0) to avoid NullPointerException
-		this.setTouchPosition(new Vector2(0, 0));
-	}
-
-	/**
-	 * The main update method. Called each frame.
-	 *
-	 * @param delta Time in milliseconds between frames.
-	 */
-	public void update(float delta)
-	{
-		if(mainMenuWorld.getPlayText().touches(getTouchPosition(), mainMenuScreen.getWidth(),
-				mainMenuScreen.getHeight()))
-		{
-			selectSound.play();
-
-			getGame().setScreen(getGame().gameScreen);
-		}
-
-		if(mainMenuWorld.getHighScoreText().touches(getTouchPosition(), mainMenuScreen.getWidth(),
-				mainMenuScreen.getHeight()))
-		{
-			selectSound.play();
-
-			getGame().setScreen(getGame().highScoreScreen);
-		}
-	}
+        if(mainMenuWorld.getHighScoreText().touches(getTouchPosition(), mainMenuScreen.getWidth(),
+                mainMenuScreen.getHeight()))
+        {
+            selectSound.play();
+            getGame().setScreen(getGame().highScoreScreen);
+        }
+    }
 }

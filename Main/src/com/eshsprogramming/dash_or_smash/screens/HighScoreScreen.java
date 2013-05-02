@@ -16,82 +16,75 @@ import com.eshsprogramming.dash_or_smash.view.HighScoreRenderer;
  */
 public class HighScoreScreen extends BaseScreen
 {
-	/**
-	 * The high score's world.
-	 */
-	private HighScoreWorld highScoreWorld;
+    /**
+     * The high score's world.
+     */
+    private HighScoreWorld highScoreWorld;
 
-	/**
-	 * The background music for this screen.
-	 */
-	private Music music;
+    /**
+     * The background music for this screen.
+     */
+    private Music music;
 
-	/**
-	 * Creates a new high score screen.
-	 *
-	 * @param game The game that the screen is in.
-	 */
-	public HighScoreScreen(DashOrSmash game)
-	{
-		super(game);
-	}
+    /**
+     * Creates a new high score screen.
+     *
+     * @param game The game that the screen is in.
+     */
+    public HighScoreScreen(DashOrSmash game)
+    {
+        super(game);
+    }
 
-	/**
-	 * Called when this screen becomes the current screen.
-	 */
-	@Override
-	public void show()
-	{
-		super.show();
+    /**
+     * Called when this screen becomes the current screen.
+     */
+    @Override
+    public void show()
+    {
+        super.show();
+        highScoreWorld = new HighScoreWorld(this);
+        renderer = new HighScoreRenderer(highScoreWorld);
+        controller = new HighScoreController(getGame());
+        music = Gdx.audio.newMusic(Gdx.files.internal("sounds/soundtrack/high_score.mp3"));
+        music.setLooping(true);
+        music.setVolume(0.7f);
+        music.play();
+    }
 
-		highScoreWorld = new HighScoreWorld(this);
-		renderer = new HighScoreRenderer(highScoreWorld);
-		controller = new HighScoreController(getGame());
+    /**
+     * Called when this screen is no longer the current screen for the game.
+     */
+    @Override
+    public void hide()
+    {
+        music.setLooping(false);
+        music.stop();
+        super.hide();
+    }
 
-		music = Gdx.audio.newMusic(Gdx.files.internal("sounds/soundtrack/high_score.mp3"));
+    ////////////////////////////////
+    //   InputProcessor Methods   //
+    ////////////////////////////////
 
-		music.setLooping(true);
-		music.setVolume(0.7f);
-		music.play();
-	}
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button)
+    {
+        float touchX = screenX;
+        float touchY = getHeight() - screenY;
+        float x = (touchX / getWidth()) * GameRenderer.CAMERA_WIDTH;
+        float y = (touchY / getHeight()) * GameRenderer.CAMERA_HEIGHT;
+        controller.setTouchPosition(new Vector2(x, y));
+        return true;
+    }
 
-	/**
-	 * Called when this screen is no longer the current screen for the game.
-	 */
-	@Override
-	public void hide()
-	{
-		music.setLooping(false);
-		music.stop();
-
-		super.hide();
-	}
-
-	////////////////////////////////
-	//   InputProcessor Methods   //
-	////////////////////////////////
-
-	@Override
-	public boolean touchDown(int screenX, int screenY, int pointer, int button)
-	{
-		float touchX = screenX;
-		float touchY = getHeight() - screenY;
-
-		float x = (touchX / getWidth()) * GameRenderer.CAMERA_WIDTH;
-		float y = (touchY / getHeight()) * GameRenderer.CAMERA_HEIGHT;
-
-		controller.setTouchPosition(new Vector2(x, y));
-
-		return true;
-	}
-
-	/**
-	 * Returns the high score world.
-	 *
-	 * @return The high score world.
-	 */
-	public HighScoreWorld getHighScoreWorld()
-	{
-		return highScoreWorld;
-	}
+    /**
+     * Returns the high score world.
+     *
+     * @return The high score world.
+     */
+    public HighScoreWorld getHighScoreWorld()
+    {
+        return highScoreWorld;
+    }
 }

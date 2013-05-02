@@ -7,8 +7,8 @@ import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
  */
 public class DesktopStarter
 {
-	public static void main(String[] args)
-	{
-		new LwjglApplication(new DashOrSmash(), "Dash Or Smash", 1280, 800, true);
-	}
+    public static void main(String[] args)
+    {
+        new LwjglApplication(new DashOrSmash(), "Dash Or Smash", 1280, 800, true);
+    }
 }

@@ -13,82 +13,82 @@ import com.eshsprogramming.dash_or_smash.model.world.GameOverWorld;
  */
 public class GameOverRenderer extends Renderer
 {
-	/**
-	 * The GameOverWorld instance.
-	 */
-	private GameOverWorld gameOverWorld;
+    /**
+     * The GameOverWorld instance.
+     */
+    private GameOverWorld gameOverWorld;
 
-	/**
-	 * The sprite batch. Used for rendering sprites.
-	 */
-	private SpriteBatch spriteBatch;
+    /**
+     * The sprite batch. Used for rendering sprites.
+     */
+    private SpriteBatch spriteBatch;
 
-	/**
-	 * The texture for the blocks.
-	 */
-	private Texture blockTexture;
+    /**
+     * The texture for the blocks.
+     */
+    private Texture blockTexture;
 
-	/**
-	 * Creates a new GameOverRenderer
-	 */
-	public GameOverRenderer(GameOverWorld gameOverWorld)
-	{
-		this.gameOverWorld = gameOverWorld;
-		this.spriteBatch = new SpriteBatch();
-		loadTextures();
-	}
+    /**
+     * Creates a new GameOverRenderer
+     */
+    public GameOverRenderer(GameOverWorld gameOverWorld)
+    {
+        this.gameOverWorld = gameOverWorld;
+        this.spriteBatch = new SpriteBatch();
+        loadTextures();
+    }
 
-	/**
-	 * Renders the contents of main menu renderer.
-	 *
-	 * @param delta The time in milliseconds between frames.
-	 */
-	public void render(float delta)
-	{
-		spriteBatch.begin();
-		drawBlocks();
-		drawText();
-		spriteBatch.end();
-	}
+    /**
+     * Renders the contents of main menu renderer.
+     *
+     * @param delta The time in milliseconds between frames.
+     */
+    public void render(float delta)
+    {
+        spriteBatch.begin();
+        drawBlocks();
+        drawText();
+        spriteBatch.end();
+    }
 
-	/**
-	 * Draws blocks on the world.
-	 */
-	private void drawBlocks()
-	{
-		for(BlockEntity blockEntity : gameOverWorld.getBlockEntities())
-		{
-			spriteBatch.draw(blockTexture, blockEntity.getPosition().x * getPPuX(), blockEntity.getPosition().y * getPPuY(),
-					BlockEntity.SIZEX * getPPuX(), BlockEntity.SIZEY * getPPuY());
-		}
-	}
+    /**
+     * Draws blocks on the world.
+     */
+    private void drawBlocks()
+    {
+        for(BlockEntity blockEntity : gameOverWorld.getBlockEntities())
+        {
+            spriteBatch.draw(blockTexture, blockEntity.getPosition().x * getPPuX(), blockEntity.getPosition().y * getPPuY(),
+                             BlockEntity.SIZEX * getPPuX(), BlockEntity.SIZEY * getPPuY());
+        }
+    }
 
-	/**
-	 * Draws the text onto the world.
-	 */
-	private void drawText()
-	{
-		gameOverWorld.getScoreText().render(spriteBatch, getPPuX(), getPPuY());
-		gameOverWorld.getScoreText().render(spriteBatch, getPPuX(), getPPuY());
-		gameOverWorld.getPlayAgainText().render(spriteBatch, getPPuX(), getPPuY());
-		gameOverWorld.getMainMenuText().render(spriteBatch, getPPuX(), getPPuY());
-	}
+    /**
+     * Draws the text onto the world.
+     */
+    private void drawText()
+    {
+        gameOverWorld.getScoreText().render(spriteBatch, getPPuX(), getPPuY());
+        gameOverWorld.getScoreText().render(spriteBatch, getPPuX(), getPPuY());
+        gameOverWorld.getPlayAgainText().render(spriteBatch, getPPuX(), getPPuY());
+        gameOverWorld.getMainMenuText().render(spriteBatch, getPPuX(), getPPuY());
+    }
 
-	/**
-	 * Loads the textures from files.
-	 */
-	private void loadTextures()
-	{
-		blockTexture = new Texture(Gdx.files.internal("images/block.png"));
-	}
+    /**
+     * Loads the textures from files.
+     */
+    private void loadTextures()
+    {
+        blockTexture = new Texture(Gdx.files.internal("images/block.png"));
+    }
 
-	/**
-	 * Returns the world to render.
-	 *
-	 * @return The world to render.
-	 */
-	public GameOverWorld getWorld()
-	{
-		return gameOverWorld;
-	}
+    /**
+     * Returns the world to render.
+     *
+     * @return The world to render.
+     */
+    public GameOverWorld getWorld()
+    {
+        return gameOverWorld;
+    }
 }
